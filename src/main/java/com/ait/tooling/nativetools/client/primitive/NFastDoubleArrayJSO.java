@@ -18,7 +18,7 @@ package com.ait.tooling.nativetools.client.primitive;
 
 public class NFastDoubleArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastDoubleArrayJSO>
 {
-    public static NFastDoubleArrayJSO make(final double d, final double... list)
+    public static final NFastDoubleArrayJSO make(final double d, final double... list)
     {
         final NFastDoubleArrayJSO jso = make();
 
@@ -27,9 +27,9 @@ public class NFastDoubleArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastDoubleA
         return jso;
     }
     
-    public static NFastDoubleArrayJSO make()
+    public static final NFastDoubleArrayJSO make()
     {
-        return create();
+        return createNArrayBaseJSO();
     }
 
     protected NFastDoubleArrayJSO()

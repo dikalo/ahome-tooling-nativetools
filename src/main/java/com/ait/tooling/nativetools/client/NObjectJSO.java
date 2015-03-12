@@ -20,6 +20,11 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
 {
+    public static final NObjectJSO make()
+    {
+        return createNObjectBaseJSO();
+    }
+
     protected NObjectJSO()
     {
     }
@@ -56,11 +61,6 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
         }
     }
 
-    public final void remove(final String name)
-    {
-        remove_0(NUtils.doKeyRepair(name, true));
-    }
-
     private final native void put_0(String name, int value)
     /*-{
 		this[name] = value;
@@ -84,11 +84,6 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
     private final native void put_0(String name, JavaScriptObject value)
     /*-{
 		this[name] = value;
-    }-*/;
-
-    private final native void remove_0(String name)
-    /*-{
-		delete this[name];
     }-*/;
 
     public final NValue<?> getAsNValue(final String name)

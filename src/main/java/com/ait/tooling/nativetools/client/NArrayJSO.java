@@ -22,6 +22,11 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 {
     public static final NArrayJSO JS_NULL = null;
 
+    public static final NArrayJSO make()
+    {
+        return createNArrayBaseJSO();
+    }
+
     protected NArrayJSO()
     {
     }

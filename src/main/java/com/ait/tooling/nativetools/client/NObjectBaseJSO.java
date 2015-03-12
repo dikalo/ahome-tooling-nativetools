@@ -25,13 +25,18 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObject implements NHasJSO<T>, JSONStringify
 {
-    public static final <T extends NObjectBaseJSO<T>> T make()
+    public static final <T extends NObjectBaseJSO<T>> T createNObjectBaseJSO()
     {
         return JavaScriptObject.createObject().cast();
     }
 
     protected NObjectBaseJSO()
     {
+    }
+
+    public final JavaScriptObject asJavaScriptObject()
+    {
+        return this;
     }
 
     @Override
@@ -43,7 +48,7 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
     @Override
     public final String toJSONString()
     {
-        return NUtils.JSON.toJSONString((JavaScriptObject) this);
+        return NUtils.JSON.toJSONString(asJavaScriptObject());
     }
 
     public final boolean isEmpty()
@@ -133,5 +138,15 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
 			}
 		}
 		return false;
+    }-*/;
+
+    public final void remove(final String name)
+    {
+        remove_0(NUtils.doKeyRepair(name, true));
+    }
+
+    private final native void remove_0(String name)
+    /*-{
+		delete this[name];
     }-*/;
 }

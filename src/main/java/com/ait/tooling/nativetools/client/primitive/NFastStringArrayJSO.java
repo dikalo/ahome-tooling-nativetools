@@ -31,7 +31,7 @@ public class NFastStringArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastStringA
 
     public static final NFastStringArrayJSO make()
     {
-        return create();
+        return createNArrayBaseJSO();
     }
 
     protected NFastStringArrayJSO()

@@ -19,6 +19,6 @@
 -->
 <module>
 	<inherits name='com.google.gwt.user.User' />
-	<inherits name='com.ait.tooling.common.ToolingCommon' />
+	<inherits name='com.ait.tooling.common.Common' />
 	<source path='client' />
 </module>

@@ -27,7 +27,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     {
         if (null == jso)
         {
-            m_jso = NArrayJSO.create();
+            m_jso = NArrayJSO.make();
         }
         else
         {
@@ -37,7 +37,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
 
     public NArray()
     {
-        m_jso = NArrayJSO.create();
+        m_jso = NArrayJSO.make();
     }
 
     public NArray(final int value)

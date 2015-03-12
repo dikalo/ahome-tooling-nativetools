@@ -18,13 +18,13 @@ apply plugin: 'maven'
 
 sourceCompatibility = 1.7
 
-version = '1.0.0-SNAPSHOT'
+version = '1.0.2-SNAPSHOT'
 
 group = 'com.ahome-it'
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Ahome-Tooling-Native', 'Implementation-Version': version
+        attributes 'Implementation-Title': 'Ahome-Tooling-NativeTools', 'Implementation-Version': version
     }
     from sourceSets.main.allSource
 }
@@ -44,7 +44,7 @@ sourceSets {
 
 dependencies {
     compile(group: 'com.google.gwt', name: 'gwt-user', version: '2.6.1')
-    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.1-SNAPSHOT')
+    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.2-SNAPSHOT')
 }
 
 uploadArchives {
