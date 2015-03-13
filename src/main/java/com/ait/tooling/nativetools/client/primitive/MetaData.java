@@ -22,6 +22,7 @@ import com.ait.tooling.nativetools.client.NNativeType;
 import com.ait.tooling.nativetools.client.NObjectJSO;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.json.client.JSONObject;
 
 public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
 {
@@ -54,6 +55,11 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
         {
             m_jso = NObjectJSO.make();
         }
+    }
+    
+    public final JSONObject toJSONObject()
+    {
+        return new JSONObject(m_jso);
     }
 
     @Override

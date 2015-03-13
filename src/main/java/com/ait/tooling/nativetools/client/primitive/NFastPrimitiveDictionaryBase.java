@@ -21,6 +21,7 @@ import java.util.Objects;
 import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NNativeType;
+import com.google.gwt.json.client.JSONObject;
 
 public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDictionarytBaseJSO<T>> implements NHasJSO<T>, JSONStringify
 {
@@ -29,6 +30,11 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
     protected NFastPrimitiveDictionaryBase(final T jso)
     {
         m_jso = Objects.requireNonNull(jso);
+    }
+    
+    public final JSONObject toJSONObject()
+    {
+        return new JSONObject(m_jso);
     }
 
     @Override

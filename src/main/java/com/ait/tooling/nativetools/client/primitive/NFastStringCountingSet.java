@@ -24,6 +24,7 @@ import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.json.client.JSONObject;
 
 public final class NFastStringCountingSet implements NHasJSO<NFastStringCountingSet.NFastStringCountingSetJSO>, JSONStringify
 {
@@ -55,6 +56,11 @@ public final class NFastStringCountingSet implements NHasJSO<NFastStringCounting
             m_jso.inc(NUtils.doStringRepair(key));
         }
         return this;
+    }
+    
+    public final JSONObject toJSONObject()
+    {
+        return new JSONObject(m_jso);
     }
 
     public final NFastStringCountingSet inc(final String key, final String... keys)

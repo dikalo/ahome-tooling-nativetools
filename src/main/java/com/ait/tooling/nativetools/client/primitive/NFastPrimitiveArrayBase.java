@@ -21,6 +21,7 @@ import java.util.Objects;
 import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NNativeType;
+import com.google.gwt.json.client.JSONArray;
 
 public abstract class NFastPrimitiveArrayBase<T extends NFastPrimitiveArrayBaseJSO<T>> implements NHasJSO<T>, JSONStringify
 {
@@ -29,6 +30,11 @@ public abstract class NFastPrimitiveArrayBase<T extends NFastPrimitiveArrayBaseJ
     protected NFastPrimitiveArrayBase(final T jso)
     {
         m_jso = Objects.requireNonNull(jso);
+    }
+    
+    public final JSONArray toJSONArray()
+    {
+        return new JSONArray(m_jso);
     }
 
     @Override

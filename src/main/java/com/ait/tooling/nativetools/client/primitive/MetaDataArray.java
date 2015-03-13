@@ -22,6 +22,7 @@ import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NNativeType;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.json.client.JSONArray;
 
 public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
 {
@@ -54,6 +55,11 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
         {
             m_jso = NArrayJSO.make();
         }
+    }
+    
+    public final JSONArray toJSONArray()
+    {
+        return new JSONArray(m_jso);
     }
 
     public final NNativeType getNativeTypeOf(final int index)
