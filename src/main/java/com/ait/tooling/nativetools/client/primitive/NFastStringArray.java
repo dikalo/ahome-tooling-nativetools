@@ -16,7 +16,11 @@
 
 package com.ait.tooling.nativetools.client.primitive;
 
-public class NFastStringArray extends NFastPrimitiveArrayBase<NFastStringArrayJSO>
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+
+public class NFastStringArray extends NFastPrimitiveArrayBase<NFastStringArrayJSO> implements Iterable<String>
 {
     public NFastStringArray(final NFastStringArrayJSO jso)
     {
@@ -93,5 +97,11 @@ public class NFastStringArray extends NFastPrimitiveArrayBase<NFastStringArrayJS
     public final NFastStringArray uniq()
     {
         return new NFastStringArray(getJSO().uniq());
+    }
+
+    @Override
+    public Iterator<String> iterator()
+    {
+        return Collections.unmodifiableList(Arrays.asList(toArray())).iterator();
     }
 }

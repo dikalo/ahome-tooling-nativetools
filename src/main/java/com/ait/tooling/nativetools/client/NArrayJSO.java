@@ -75,7 +75,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
         }
     }
 
-    public final native void push(JavaScriptObject value)
+    private final native void push(JavaScriptObject value)
     /*-{
 		this[this.length] = value;
     }-*/;
@@ -124,7 +124,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
         }
     }
 
-    public final native void set(int index, JavaScriptObject value)
+    private final native void set(int index, JavaScriptObject value)
     /*-{
 		this[index] = value;
     }-*/;
