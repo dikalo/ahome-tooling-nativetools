@@ -20,7 +20,5 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public interface NHasJSO<T extends JavaScriptObject>
 {
-    public static final JavaScriptObject JS_NULL = null;
-
     public T getJSO();
 }

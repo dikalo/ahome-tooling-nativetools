@@ -20,10 +20,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import com.ait.tooling.common.api.json.JSONStringify;
 import com.google.gwt.core.client.JavaScriptObject;
 
-public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObject implements NHasJSO<T>, JSONStringify
+public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObject
 {
     public static final <T extends NObjectBaseJSO<T>> T createNObjectBaseJSO()
     {
@@ -39,13 +38,6 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
         return this;
     }
 
-    @Override
-    public final T getJSO()
-    {
-        return this.cast();
-    }
-
-    @Override
     public final String toJSONString()
     {
         return NUtils.JSON.toJSONString(asJavaScriptObject());

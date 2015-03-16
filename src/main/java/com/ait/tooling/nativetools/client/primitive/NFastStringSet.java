@@ -24,6 +24,7 @@ import java.util.Objects;
 
 import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NHasJSO;
+import com.ait.tooling.nativetools.client.NUtils;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
@@ -130,7 +131,7 @@ public class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.
     {
         final ArrayList<String> keys = new ArrayList<String>();
 
-        m_jso.fill_0(keys);
+        m_jso.keys_0(keys);
 
         return Collections.unmodifiableList(keys);
     }
@@ -167,7 +168,7 @@ public class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.
     @Override
     public final String toJSONString()
     {
-        return new JSONObject(m_jso).toString();
+        return NUtils.JSON.toJSONString(m_jso);
     }
 
     public final boolean any(final NFastStringSet look)
@@ -248,7 +249,7 @@ public class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.
 			}
         }-*/;
 
-        final native void fill_0(Collection<String> keys)
+        final native void keys_0(Collection<String> keys)
         /*-{
 			for ( var name in this) {
 				if (this.hasOwnProperty(String(name))) {

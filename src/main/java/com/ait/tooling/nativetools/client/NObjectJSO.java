@@ -57,8 +57,18 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
         }
         else
         {
-            put_0(NUtils.doKeyRepair(name, true), JS_NULL);
+            put_0(NUtils.doKeyRepair(name, true), (JavaScriptObject) null);
         }
+    }
+
+    public final void put(final String name, final NObjectBaseJSO<?> value)
+    {
+        put_0(NUtils.doKeyRepair(name, true), value);
+    }
+
+    public final void put(final String name, final NArrayBaseJSO<?> value)
+    {
+        put_0(NUtils.doKeyRepair(name, true), value);
     }
 
     private final native void put_0(String name, int value)

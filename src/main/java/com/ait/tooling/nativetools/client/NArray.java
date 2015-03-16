@@ -423,7 +423,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     {
         if (null == value)
         {
-            m_jso.spliceValueOf(beg, removed, NArrayJSO.JS_NULL);
+            m_jso.spliceValueOf(beg, removed, (NArrayJSO) null);
         }
         else
         {

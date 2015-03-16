@@ -16,10 +16,9 @@
 
 package com.ait.tooling.nativetools.client;
 
-import com.ait.tooling.common.api.json.JSONStringify;
 import com.google.gwt.core.client.JavaScriptObject;
 
-public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject implements NHasJSO<T>, JSONStringify
+public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject
 {
     protected static final <T extends NArrayBaseJSO<T>> T createNArrayBaseJSO()
     {
@@ -35,13 +34,6 @@ public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject 
         return this;
     }
     
-    @Override
-    public final T getJSO()
-    {
-        return this.cast();
-    }
-
-    @Override
     public final String toJSONString()
     {
         return NUtils.JSON.toJSONString(asJavaScriptObject());

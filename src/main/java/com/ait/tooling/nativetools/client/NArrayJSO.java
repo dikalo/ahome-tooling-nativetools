@@ -20,8 +20,6 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 {
-    public static final NArrayJSO JS_NULL = null;
-
     public static final NArrayJSO make()
     {
         return createNArrayBaseJSO();
@@ -71,7 +69,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
         }
         else
         {
-            push(NHasJSO.JS_NULL);
+            push((JavaScriptObject) null);
         }
     }
 
@@ -120,7 +118,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
         }
         else
         {
-            set(index, NHasJSO.JS_NULL);
+            set(index, (JavaScriptObject) null);
         }
     }
 
@@ -172,7 +170,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
         }
         else
         {
-            unshift(NHasJSO.JS_NULL);
+            unshift((JavaScriptObject) null);
         }
     }
 
@@ -224,7 +222,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
         }
         else
         {
-            splice(beg, removed, NHasJSO.JS_NULL);
+            splice(beg, removed, (JavaScriptObject) null);
         }
     }
 

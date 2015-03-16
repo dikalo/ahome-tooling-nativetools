@@ -19,6 +19,7 @@
 -->
 <module>
 	<inherits name='com.google.gwt.user.User' />
+	<inherits name='com.google.gwt.json.JSON' />
 	<inherits name='com.ait.tooling.common.Common' />
 	<source path='client' />
 </module>
