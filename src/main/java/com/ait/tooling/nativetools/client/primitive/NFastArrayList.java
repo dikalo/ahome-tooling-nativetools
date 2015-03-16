@@ -90,18 +90,22 @@ public final class NFastArrayList<M> implements Iterable<M>
      * Add a value to the List
      * @param value
      */
-    public final void add(final M value)
+    public final NFastArrayList<M> add(final M value)
     {
         m_jso.add(value);
+
+        return this;
     }
 
     /**
      * Add a value to the List
      * @param value
      */
-    public final void set(final int i, final M value)
+    public final NFastArrayList<M> set(final int i, final M value)
     {
         m_jso.set(i, value);
+
+        return this;
     }
 
     /**
@@ -118,55 +122,69 @@ public final class NFastArrayList<M> implements Iterable<M>
     /**
      * Clear all values from the List.
      */
-    public final void clear()
+    public final NFastArrayList<M> clear()
     {
         m_jso.clear();
+
+        return this;
     }
 
     /**
      * Remove the value passed in as argument from the List.
      * @param value
      */
-    public final void remove(final M value)
+    public final NFastArrayList<M> remove(final M value)
     {
         m_jso.remove(value);
+
+        return this;
     }
 
-    public final void unshift(final M value)
+    public final NFastArrayList<M> unshift(final M value)
     {
         m_jso.unshift(value);
+
+        return this;
     }
 
-    public final void moveUp(final M value)
+    public final NFastArrayList<M> moveUp(final M value)
     {
         m_jso.moveUp(value);
+
+        return this;
     }
 
-    public final void moveDown(final M value)
+    public final NFastArrayList<M> moveDown(final M value)
     {
         m_jso.moveDown(value);
+
+        return this;
     }
 
-    public final void moveToTop(final M value)
+    public final NFastArrayList<M> moveToTop(final M value)
     {
         if ((size() < 2) || (false == contains(value)))
         {
-            return;
+            return this;
         }
         remove(value);
 
         add(value);
+
+        return this;
     }
 
-    public final void moveToBottom(final M value)
+    public final NFastArrayList<M> moveToBottom(final M value)
     {
         if ((size() < 2) || (false == contains(value)))
         {
-            return;
+            return this;
         }
         remove(value);
 
         unshift(value);
+
+        return this;
     }
 
     public final M pop()
@@ -179,19 +197,25 @@ public final class NFastArrayList<M> implements Iterable<M>
         return m_jso.shift();
     }
 
-    public final void splice(final int beg, final int removed, final M value)
+    public final NFastArrayList<M> splice(final int beg, final int removed, final M value)
     {
         m_jso.splice(beg, removed, value);
+
+        return this;
     }
 
-    public final void splice(final int beg, final int removed)
+    public final NFastArrayList<M> splice(final int beg, final int removed)
     {
         m_jso.splice(beg, removed);
+
+        return this;
     }
 
-    public final void reverse()
+    public final NFastArrayList<M> reverse()
     {
         m_jso.reverse();
+
+        return this;
     }
 
     @SuppressWarnings("unchecked")
@@ -244,7 +268,7 @@ public final class NFastArrayList<M> implements Iterable<M>
     }
 
     @Override
-    public Iterator<M> iterator()
+    public final Iterator<M> iterator()
     {
         return toList().iterator();
     }
@@ -255,7 +279,7 @@ public final class NFastArrayList<M> implements Iterable<M>
         {
         }
 
-        static final FastArrayListJSO<?> make()
+        static final <M> FastArrayListJSO<M> make()
         {
             return NArrayBaseJSO.createNArrayBaseJSO().cast();
         }

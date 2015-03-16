@@ -18,6 +18,7 @@ package com.ait.tooling.nativetools.client;
 
 import com.ait.tooling.common.api.types.IMixedListDefinition;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.json.client.JSONArray;
 
 public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NArray, NObject>
 {
@@ -109,6 +110,11 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         this();
 
         push(value, values);
+    }
+
+    public final JSONArray toJSONArray()
+    {
+        return m_jso.toJSONArray();
     }
 
     @Override
@@ -444,6 +450,13 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return new NArray(m_jso.copy());
     }
 
+    public final NArray deep() throws Exception
+    {
+        NValue<?> value = NUtils.JSON.parse(NUtils.JSON.toJSONString(m_jso));
+
+        return value.asNArray();
+    }
+
     public final NArray concat(NArray value)
     {
         if (null == value)
@@ -600,9 +613,39 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
+    public final String toJSONString(final int indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final String indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final int indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final String indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
+
+    @Override
     public final String toJSONString()
     {
         return m_jso.toJSONString();
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer)
+    {
+        return m_jso.toJSONString(replacer);
     }
 
     @Override

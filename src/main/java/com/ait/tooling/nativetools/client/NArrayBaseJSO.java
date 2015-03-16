@@ -17,6 +17,7 @@
 package com.ait.tooling.nativetools.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.json.client.JSONArray;
 
 public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject
 {
@@ -28,15 +29,40 @@ public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject
     protected NArrayBaseJSO()
     {
     }
-    
-    public final JavaScriptObject asJavaScriptObject()
+
+    public final JSONArray toJSONArray()
     {
-        return this;
+        return new JSONArray(this);
     }
-    
+
     public final String toJSONString()
     {
-        return NUtils.JSON.toJSONString(asJavaScriptObject());
+        return NUtils.JSON.toJSONString(this);
+    }
+
+    public final String toJSONString(final NJSONReplacer replacer)
+    {
+        return NUtils.JSON.toJSONString(this, replacer);
+    }
+
+    public final String toJSONString(final String indent)
+    {
+        return NUtils.JSON.toJSONString(this, indent);
+    }
+
+    public final String toJSONString(final NJSONReplacer replacer, final String indent)
+    {
+        return NUtils.JSON.toJSONString(this, replacer, indent);
+    }
+
+    public final String toJSONString(final int indent)
+    {
+        return NUtils.JSON.toJSONString(this, indent);
+    }
+
+    public final String toJSONString(final NJSONReplacer replacer, final int indent)
+    {
+        return NUtils.JSON.toJSONString(this, replacer, indent);
     }
 
     public final boolean isEmpty()

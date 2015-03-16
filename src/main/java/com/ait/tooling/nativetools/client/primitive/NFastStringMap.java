@@ -40,9 +40,11 @@ public final class NFastStringMap<V>
      * @param key
      * @param value
      */
-    public final void put(final String key, final V value)
+    public final NFastStringMap<V> put(final String key, final V value)
     {
         m_jso.put(NUtils.doKeyRepair(key, true), value);
+        
+        return this;
     }
 
     /**
@@ -59,9 +61,11 @@ public final class NFastStringMap<V>
      * Remove the value based on the key passed in as argument.
      * @param key
      */
-    public final void remove(final String key)
+    public final NFastStringMap<V> remove(final String key)
     {
         m_jso.remove(key);
+        
+        return this;
     }
 
     /**
@@ -85,6 +89,13 @@ public final class NFastStringMap<V>
     {
         return m_jso.size();
     }
+    
+    public final NFastStringMap<V> clear()
+    {
+        m_jso.clear();
+        
+        return this;
+    }
 
     public final Collection<String> keys()
     {
@@ -105,7 +116,7 @@ public final class NFastStringMap<V>
         {
         }
 
-        private static final NFastStringMapJSO<?> make()
+        private static final <V> NFastStringMapJSO<V> make()
         {
             return NObjectBaseJSO.createNObjectBaseJSO().cast();
         }

@@ -22,13 +22,14 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Objects;
 
-import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NHasJSO;
+import com.ait.tooling.nativetools.client.NJSONReplacer;
+import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
-public class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.NFastStringSetJSO>, JSONStringify
+public final class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.NFastStringSetJSO>, NJSONStringify
 {
     private final NFastStringSetJSO m_jso;
 
@@ -69,14 +70,14 @@ public class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.
 
         add(nset);
     }
-    
+
     public final JSONObject toJSONObject()
     {
         return new JSONObject(m_jso);
     }
 
     @Override
-    public NFastStringSetJSO getJSO()
+    public final NFastStringSetJSO getJSO()
     {
         return m_jso;
     }
@@ -115,12 +116,12 @@ public class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.
         return this;
     }
 
-    public final boolean contains(String key)
+    public final boolean contains(final String key)
     {
         return m_jso.contains(Objects.requireNonNull(key));
     }
 
-    public final NFastStringSet remove(String key)
+    public final NFastStringSet remove(final String key)
     {
         m_jso.remove(Objects.requireNonNull(key));
 
@@ -160,9 +161,39 @@ public class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.
     }
 
     @Override
-    public String toString()
+    public final String toString()
     {
         return toJSONString();
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final int indent)
+    {
+        return NUtils.JSON.toJSONString(m_jso, replacer, indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final String indent)
+    {
+        return NUtils.JSON.toJSONString(m_jso, replacer, indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer)
+    {
+        return NUtils.JSON.toJSONString(m_jso, replacer);
+    }
+
+    @Override
+    public final String toJSONString(final int indent)
+    {
+        return NUtils.JSON.toJSONString(m_jso, indent);
+    }
+
+    @Override
+    public final String toJSONString(final String indent)
+    {
+        return NUtils.JSON.toJSONString(m_jso, indent);
     }
 
     @Override
@@ -198,13 +229,13 @@ public class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.
         return m_jso.all(look.m_jso);
     }
 
-    static final class NFastStringSetJSO extends JavaScriptObject
+    public static final class NFastStringSetJSO extends JavaScriptObject
     {
         protected NFastStringSetJSO()
         {
         }
 
-        static final NFastStringSetJSO make()
+        public static final NFastStringSetJSO make()
         {
             return JavaScriptObject.createObject().cast();
         }

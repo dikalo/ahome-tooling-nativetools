@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class NFastStringArray extends NFastPrimitiveArrayBase<NFastStringArrayJSO> implements Iterable<String>
+public final class NFastStringArray extends NFastPrimitiveArrayBase<NFastStringArray, NFastStringArrayJSO> implements Iterable<String>
 {
     public NFastStringArray(final NFastStringArrayJSO jso)
     {
@@ -100,7 +100,7 @@ public class NFastStringArray extends NFastPrimitiveArrayBase<NFastStringArrayJS
     }
 
     @Override
-    public Iterator<String> iterator()
+    public final Iterator<String> iterator()
     {
         return Collections.unmodifiableList(Arrays.asList(toArray())).iterator();
     }

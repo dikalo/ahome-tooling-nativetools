@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client.primitive;
 
-public class NFastIntegerArray extends NFastPrimitiveArrayBase<NFastIntegerArrayJSO>
+public final class NFastIntegerArray extends NFastPrimitiveArrayBase<NFastIntegerArray, NFastIntegerArrayJSO>
 {
     public NFastIntegerArray(final NFastIntegerArrayJSO jso)
     {

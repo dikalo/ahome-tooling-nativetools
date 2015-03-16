@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import com.ait.tooling.common.api.types.IMixedStringHashDefinition;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.json.client.JSONObject;
 
 public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefinition<NArray, NObject>
 {
@@ -76,6 +77,11 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
 
         put(name, value);
     }
+    
+    public final JSONObject toJSONObject()
+    {
+        return m_jso.toJSONObject();
+    }
 
     public final NObject put(String name, int value)
     {
@@ -126,7 +132,7 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
 
     public final NObject deep() throws Exception
     {
-        NValue<?> value = NUtils.JSON.parse(NUtils.JSON.toJSONString(this));
+        NValue<?> value = NUtils.JSON.parse(NUtils.JSON.toJSONString(m_jso));
 
         return value.asNObject();
     }
@@ -262,6 +268,30 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     {
         return this;
     }
+    
+    @Override
+    public final String toJSONString(final int indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final String indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final int indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final String indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
 
     @Override
     public final String toJSONString()
@@ -270,7 +300,13 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     }
 
     @Override
-    public final boolean equals(Object other)
+    public final String toJSONString(final NJSONReplacer replacer)
+    {
+        return m_jso.toJSONString(replacer);
+    }
+
+    @Override
+    public final boolean equals(final Object other)
     {
         if ((null != other) && (other instanceof NObject))
         {

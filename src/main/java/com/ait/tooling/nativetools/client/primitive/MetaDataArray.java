@@ -16,15 +16,16 @@
 
 package com.ait.tooling.nativetools.client.primitive;
 
-import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NArrayJSO;
 import com.ait.tooling.nativetools.client.NHasJSO;
+import com.ait.tooling.nativetools.client.NJSONReplacer;
+import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NNativeType;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONArray;
 
-public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
+public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 {
     private final NArrayJSO m_jso;
 
@@ -56,10 +57,10 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
             m_jso = NArrayJSO.make();
         }
     }
-    
+
     public final JSONArray toJSONArray()
     {
-        return new JSONArray(m_jso);
+        return m_jso.toJSONArray();
     }
 
     public final NNativeType getNativeTypeOf(final int index)
@@ -163,7 +164,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
 
     public final int getAsInteger(final int index)
     {
-        if (is(index, NNativeType.NUMBER))
+        if (isNumber(index))
         {
             return m_jso.getAsInteger(index);
         }
@@ -172,7 +173,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
 
     public final double getAsDouble(final int index)
     {
-        if (is(index, NNativeType.NUMBER))
+        if (isNumber(index))
         {
             return m_jso.getAsDouble(index);
         }
@@ -181,7 +182,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
 
     public final String getAsString(final int index)
     {
-        if (is(index, NNativeType.STRING))
+        if(isString(index))
         {
             return m_jso.getAsString(index);
         }
@@ -190,7 +191,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
 
     public final boolean getAsBoolean(final int index)
     {
-        if (is(index, NNativeType.BOOLEAN))
+        if(isBoolean(index))
         {
             return m_jso.getAsBoolean(index);
         }
@@ -199,7 +200,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
 
     public final MetaData getAsMetaData(final int index)
     {
-        if (is(index, NNativeType.OBJECT))
+        if(isObject(index))
         {
             return new MetaData(m_jso.getAsJSO(index));
         }
@@ -208,11 +209,36 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
 
     public final MetaDataArray getAsMetaDataArray(final int index)
     {
-        if (is(index, NNativeType.ARRAY))
+        if(isArray(index))
         {
             return new MetaDataArray(m_jso.getAsJSO(index));
         }
         return null;
+    }
+
+    public final boolean isString(final int index)
+    {
+        return is(index, NNativeType.STRING);
+    }
+
+    public final boolean isBoolean(final int index)
+    {
+        return is(index, NNativeType.BOOLEAN);
+    }
+
+    public final boolean isObject(final int index)
+    {
+        return is(index, NNativeType.OBJECT);
+    }
+
+    public final boolean isArray(final int index)
+    {
+        return is(index, NNativeType.ARRAY);
+    }
+
+    public final boolean isNumber(final int index)
+    {
+        return is(index, NNativeType.NUMBER);
     }
 
     @Override
@@ -222,19 +248,49 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
     }
 
     @Override
+    public final String toJSONString(final int indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final String indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final int indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final String indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
+
+    @Override
     public final String toJSONString()
     {
         return m_jso.toJSONString();
     }
 
     @Override
-    public String toString()
+    public final String toJSONString(final NJSONReplacer replacer)
+    {
+        return m_jso.toJSONString(replacer);
+    }
+
+    @Override
+    public final String toString()
     {
         return toJSONString();
     }
 
     @Override
-    public boolean equals(final Object other)
+    public final boolean equals(final Object other)
     {
         if ((other == null) || (false == (other instanceof MetaDataArray)))
         {
@@ -248,7 +304,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, JSONStringify
     }
 
     @Override
-    public int hashCode()
+    public final int hashCode()
     {
         return toJSONString().hashCode();
     }

@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.json.client.JSONObject;
 
 public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObject
 {
@@ -33,14 +34,39 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
     {
     }
 
-    public final JavaScriptObject asJavaScriptObject()
+    public final JSONObject toJSONObject()
     {
-        return this;
+        return new JSONObject(this);
     }
 
     public final String toJSONString()
     {
-        return NUtils.JSON.toJSONString(asJavaScriptObject());
+        return NUtils.JSON.toJSONString(this);
+    }
+
+    public final String toJSONString(final NJSONReplacer replacer)
+    {
+        return NUtils.JSON.toJSONString(this, replacer);
+    }
+
+    public final String toJSONString(final String indent)
+    {
+        return NUtils.JSON.toJSONString(this, indent);
+    }
+
+    public final String toJSONString(final NJSONReplacer replacer, final String indent)
+    {
+        return NUtils.JSON.toJSONString(this, replacer, indent);
+    }
+
+    public final String toJSONString(final int indent)
+    {
+        return NUtils.JSON.toJSONString(this, indent);
+    }
+
+    public final String toJSONString(final NJSONReplacer replacer, final int indent)
+    {
+        return NUtils.JSON.toJSONString(this, replacer, indent);
     }
 
     public final boolean isEmpty()

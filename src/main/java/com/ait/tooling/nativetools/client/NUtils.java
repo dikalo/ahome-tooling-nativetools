@@ -78,6 +78,31 @@ public final class NUtils
 			return $wnd.JSON.stringify(value);
         }-*/;
 
+        final static native String toJSONString(JavaScriptObject value, JavaScriptObject replacer)
+        /*-{
+			return $wnd.JSON.stringify(value, replacer);
+        }-*/;
+
+        final static native String toJSONString(JavaScriptObject value, String indent)
+        /*-{
+			return $wnd.JSON.stringify(value, null, indent);
+        }-*/;
+
+        final static native String toJSONString(JavaScriptObject value, int indent)
+        /*-{
+			return $wnd.JSON.stringify(value, null, indent);
+        }-*/;
+
+        final static native String toJSONString(JavaScriptObject value, JavaScriptObject replacer, String indent)
+        /*-{
+			return $wnd.JSON.stringify(value, replacer, indent);
+        }-*/;
+
+        final static native String toJSONString(JavaScriptObject value, JavaScriptObject replacer, int indent)
+        /*-{
+			return $wnd.JSON.stringify(value, replacer, indent);
+        }-*/;
+
         public final static native NNativeType getNativeTypeOfJSO(JavaScriptObject jso, String name)
         /*-{
 			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
@@ -205,15 +230,6 @@ public final class NUtils
             }
         }
 
-        public static final String toJSONString(final NHasJSO<?> value)
-        {
-            if (null == value)
-            {
-                return null;
-            }
-            return toJSONString(value.getJSO());
-        }
-
         public static final String toJSONString(final JavaScriptObject value)
         {
             if (null == value)
@@ -221,6 +237,97 @@ public final class NUtils
                 return null;
             }
             return Native.toJSONString(value);
+        }
+
+        public static final String toJSONString(final JavaScriptObject value, final NJSONReplacer replacer)
+        {
+            if (null == value)
+            {
+                return null;
+            }
+            if (null == replacer)
+            {
+                return Native.toJSONString(value);
+            }
+            final JavaScriptObject func = replacer.replacer();
+
+            if (NNativeType.FUNCTION == Native.getNativeTypeOfJSO(func))
+            {
+                return Native.toJSONString(value, func);
+            }
+            return Native.toJSONString(value);
+        }
+
+        public static final String toJSONString(final JavaScriptObject value, final String indent)
+        {
+            if (null == value)
+            {
+                return null;
+            }
+            if (null == indent)
+            {
+                return Native.toJSONString(value);
+            }
+            return Native.toJSONString(value, indent);
+        }
+
+        public static final String toJSONString(final JavaScriptObject value, final NJSONReplacer replacer, String indent)
+        {
+            if (null == value)
+            {
+                return null;
+            }
+            if (null == replacer)
+            {
+                if (null == indent)
+                {
+                    return Native.toJSONString(value);
+                }
+                return Native.toJSONString(value, indent);
+            }
+            final JavaScriptObject func = replacer.replacer();
+
+            if (NNativeType.FUNCTION == Native.getNativeTypeOfJSO(func))
+            {
+                if (null == indent)
+                {
+                    return Native.toJSONString(value, func);
+                }
+                return Native.toJSONString(value, func, indent);
+            }
+            if (null == indent)
+            {
+                return Native.toJSONString(value);
+            }
+            return Native.toJSONString(value);
+        }
+
+        public static final String toJSONString(final JavaScriptObject value, final int indent)
+        {
+            if (null == value)
+            {
+                return null;
+            }
+            return Native.toJSONString(value, Math.max(0, indent));
+        }
+
+        public static final String toJSONString(final JavaScriptObject value, final NJSONReplacer replacer, final int indent)
+        {
+            if (null == value)
+            {
+                return null;
+            }
+            if (null == replacer)
+            {
+                return Native.toJSONString(value, Math.max(0, indent));
+            }
+            final JavaScriptObject func = replacer.replacer();
+
+            if (NNativeType.FUNCTION == Native.getNativeTypeOfJSO(func))
+            {
+                return Native.toJSONString(value, func, Math.max(0, indent));
+            }
+            return Native.toJSONString(value, Math.max(0, indent));
         }
     }
 

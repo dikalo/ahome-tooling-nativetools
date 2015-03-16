@@ -16,15 +16,16 @@
 
 package com.ait.tooling.nativetools.client.primitive;
 
-import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NHasJSO;
+import com.ait.tooling.nativetools.client.NJSONReplacer;
+import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NNativeType;
 import com.ait.tooling.nativetools.client.NObjectJSO;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
-public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
+public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 {
     private final NObjectJSO m_jso;
 
@@ -56,10 +57,10 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
             m_jso = NObjectJSO.make();
         }
     }
-    
+
     public final JSONObject toJSONObject()
     {
-        return new JSONObject(m_jso);
+        return m_jso.toJSONObject();
     }
 
     @Override
@@ -68,35 +69,35 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
         return m_jso;
     }
 
-    public final MetaData put(String name, String value)
+    public final MetaData put(final String name, final String value)
     {
         m_jso.put(name, value);
 
         return this;
     }
 
-    public final MetaData put(String name, int value)
+    public final MetaData put(final String name, final int value)
     {
         m_jso.put(name, value);
 
         return this;
     }
 
-    public final MetaData put(String name, double value)
+    public final MetaData put(final String name, final double value)
     {
         m_jso.put(name, value);
 
         return this;
     }
 
-    public final MetaData put(String name, boolean value)
+    public final MetaData put(final String name, final boolean value)
     {
         m_jso.put(name, value);
 
         return this;
     }
 
-    public final MetaData put(String name, MetaData value)
+    public final MetaData put(final String name, final MetaData value)
     {
         if (null != value)
         {
@@ -109,7 +110,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
         return this;
     }
 
-    public final MetaData put(String name, MetaDataArray value)
+    public final MetaData put(final String name, final MetaDataArray value)
     {
         if (null != value)
         {
@@ -137,9 +138,34 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
         return (type == getNativeTypeOf(name));
     }
 
+    public final boolean isString(final String name)
+    {
+        return is(name, NNativeType.STRING);
+    }
+
+    public final boolean isBoolean(final String name)
+    {
+        return is(name, NNativeType.BOOLEAN);
+    }
+
+    public final boolean isObject(final String name)
+    {
+        return is(name, NNativeType.OBJECT);
+    }
+
+    public final boolean isArray(final String name)
+    {
+        return is(name, NNativeType.ARRAY);
+    }
+
+    public final boolean isNumber(final String name)
+    {
+        return is(name, NNativeType.NUMBER);
+    }
+
     public final int getAsInteger(final String name)
     {
-        if (is(name, NNativeType.NUMBER))
+        if (isNumber(name))
         {
             return m_jso.getAsInteger(name);
         }
@@ -148,7 +174,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
 
     public final double getAsDouble(final String name)
     {
-        if (is(name, NNativeType.NUMBER))
+        if (isNumber(name))
         {
             return m_jso.getAsDouble(name);
         }
@@ -157,7 +183,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
 
     public final String getAsString(final String name)
     {
-        if (is(name, NNativeType.STRING))
+        if (isString(name))
         {
             return m_jso.getAsString(name);
         }
@@ -166,7 +192,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
 
     public final boolean getAsBoolean(final String name)
     {
-        if (is(name, NNativeType.BOOLEAN))
+        if (isBoolean(name))
         {
             return m_jso.getAsBoolean(name);
         }
@@ -175,7 +201,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
 
     public final MetaData getAsMetaData(final String name)
     {
-        if (is(name, NNativeType.OBJECT))
+        if (isObject(name))
         {
             return new MetaData(m_jso.getAsJSO(name));
         }
@@ -184,7 +210,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
 
     public final MetaDataArray getAsMetaDataArray(final String name)
     {
-        if (is(name, NNativeType.ARRAY))
+        if (isArray(name))
         {
             return new MetaDataArray(m_jso.getAsJSO(name));
         }
@@ -193,10 +219,6 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
 
     public final boolean isDefined(final String name)
     {
-        if (null == name)
-        {
-            return false;
-        }
         return m_jso.isDefined(name);
     }
 
@@ -208,19 +230,49 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
     }
 
     @Override
+    public final String toJSONString(final int indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final String indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final int indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final String indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
+
+    @Override
     public final String toJSONString()
     {
         return m_jso.toJSONString();
     }
 
     @Override
-    public String toString()
+    public final String toJSONString(final NJSONReplacer replacer)
+    {
+        return m_jso.toJSONString(replacer);
+    }
+
+    @Override
+    public final String toString()
     {
         return toJSONString();
     }
 
     @Override
-    public boolean equals(final Object other)
+    public final boolean equals(final Object other)
     {
         if ((other == null) || (false == (other instanceof MetaData)))
         {
@@ -234,7 +286,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, JSONStringify
     }
 
     @Override
-    public int hashCode()
+    public final int hashCode()
     {
         return toJSONString().hashCode();
     }

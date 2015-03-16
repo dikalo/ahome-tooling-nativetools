@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client.primitive;
 
-public class NFastBooleanDictionary extends NFastPrimitiveDictionaryBase<NFastBooleanDictionaryJSO>
+public final class NFastBooleanDictionary extends NFastPrimitiveDictionaryBase<NFastBooleanDictionaryJSO>
 {
     public NFastBooleanDictionary(final NFastBooleanDictionaryJSO jso)
     {
@@ -38,5 +38,12 @@ public class NFastBooleanDictionary extends NFastPrimitiveDictionaryBase<NFastBo
     public final boolean get(final String name)
     {
         return getJSO().get(name);
+    }
+    
+    public final NFastBooleanDictionary clear()
+    {
+        getJSO().clear();
+        
+        return this;
     }
 }

@@ -18,12 +18,13 @@ package com.ait.tooling.nativetools.client.primitive;
 
 import java.util.Objects;
 
-import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NHasJSO;
+import com.ait.tooling.nativetools.client.NJSONReplacer;
+import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NNativeType;
 import com.google.gwt.json.client.JSONObject;
 
-public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDictionarytBaseJSO<T>> implements NHasJSO<T>, JSONStringify
+public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDictionarytBaseJSO<T>> implements NHasJSO<T>, NJSONStringify
 {
     private final T m_jso;
 
@@ -34,19 +35,49 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
     
     public final JSONObject toJSONObject()
     {
-        return new JSONObject(m_jso);
+        return m_jso.toJSONObject();
     }
 
     @Override
-    public String toString()
+    public final String toString()
     {
         return toJSONString();
+    }
+    
+    @Override
+    public final String toJSONString(final int indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final String indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final int indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final String indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
     }
 
     @Override
     public final String toJSONString()
     {
         return m_jso.toJSONString();
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer)
+    {
+        return m_jso.toJSONString(replacer);
     }
 
     @Override
@@ -58,11 +89,6 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
     public final boolean isEmpty()
     {
         return m_jso.isEmpty();
-    }
-
-    public final void clear()
-    {
-        m_jso.clear();
     }
 
     public final NNativeType getNativeTypeOf(final String name)

@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client.primitive;
 
-public class NFastBooleanArray extends NFastPrimitiveArrayBase<NFastBooleanArrayJSO>
+public final class NFastBooleanArray extends NFastPrimitiveArrayBase<NFastBooleanArray, NFastBooleanArrayJSO>
 {
     public NFastBooleanArray(final NFastBooleanArrayJSO jso)
     {

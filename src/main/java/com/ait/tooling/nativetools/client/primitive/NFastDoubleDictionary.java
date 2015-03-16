@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client.primitive;
 
-public class NFastDoubleDictionary extends NFastPrimitiveDictionaryBase<NFastDoubleDictionaryJSO>
+public final class NFastDoubleDictionary extends NFastPrimitiveDictionaryBase<NFastDoubleDictionaryJSO>
 {
     public NFastDoubleDictionary(final NFastDoubleDictionaryJSO jso)
     {
@@ -38,5 +38,12 @@ public class NFastDoubleDictionary extends NFastPrimitiveDictionaryBase<NFastDou
     public final double get(final String name)
     {
         return getJSO().get(name);
+    }
+    
+    public final NFastDoubleDictionary clear()
+    {
+        getJSO().clear();
+        
+        return this;
     }
 }

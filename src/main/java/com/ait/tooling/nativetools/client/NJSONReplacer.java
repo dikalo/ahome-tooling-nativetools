@@ -18,15 +18,7 @@ package com.ait.tooling.nativetools.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-public interface NValue<T extends JavaScriptObject> extends NHasJSO<T>, NJSONStringify
+public interface NJSONReplacer
 {
-    public NNativeType getNativeTypeOf();
-
-    public boolean is(NNativeType type);
-
-    public NValue<T> asNValue();
-
-    public NArray asNArray();
-
-    public NObject asNObject();
+    public JavaScriptObject replacer();
 }

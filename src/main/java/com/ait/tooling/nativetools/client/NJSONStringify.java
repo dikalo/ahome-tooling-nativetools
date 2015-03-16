@@ -16,17 +16,17 @@
 
 package com.ait.tooling.nativetools.client;
 
-import com.google.gwt.core.client.JavaScriptObject;
+import com.ait.tooling.common.api.json.JSONStringify;
 
-public interface NValue<T extends JavaScriptObject> extends NHasJSO<T>, NJSONStringify
+public interface NJSONStringify extends JSONStringify
 {
-    public NNativeType getNativeTypeOf();
+    public String toJSONString(int indent);
 
-    public boolean is(NNativeType type);
-
-    public NValue<T> asNValue();
-
-    public NArray asNArray();
-
-    public NObject asNObject();
+    public String toJSONString(String indent);
+    
+    public String toJSONString(NJSONReplacer replacer);
+    
+    public String toJSONString(NJSONReplacer replacer, int indent);
+    
+    public String toJSONString(NJSONReplacer replacer, String indent);
 }

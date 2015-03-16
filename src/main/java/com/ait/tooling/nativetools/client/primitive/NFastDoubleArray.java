@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client.primitive;
 
-public class NFastDoubleArray extends NFastPrimitiveArrayBase<NFastDoubleArrayJSO>
+public final class NFastDoubleArray extends NFastPrimitiveArrayBase<NFastDoubleArray, NFastDoubleArrayJSO>
 {
     public NFastDoubleArray(final NFastDoubleArrayJSO jso)
     {

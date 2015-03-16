@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client.primitive;
 
-public class NFastIntegerDictionary extends NFastPrimitiveDictionaryBase<NFastIntegerDictionaryJSO>
+public final class NFastIntegerDictionary extends NFastPrimitiveDictionaryBase<NFastIntegerDictionaryJSO>
 {
     public NFastIntegerDictionary(final NFastIntegerDictionaryJSO jso)
     {
@@ -38,5 +38,12 @@ public class NFastIntegerDictionary extends NFastPrimitiveDictionaryBase<NFastIn
     public final int get(final String name)
     {
         return getJSO().get(name);
+    }
+    
+    public final NFastIntegerDictionary clear()
+    {
+        getJSO().clear();
+        
+        return this;
     }
 }

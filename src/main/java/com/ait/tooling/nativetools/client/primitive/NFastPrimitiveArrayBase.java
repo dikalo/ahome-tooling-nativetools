@@ -18,12 +18,13 @@ package com.ait.tooling.nativetools.client.primitive;
 
 import java.util.Objects;
 
-import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NHasJSO;
+import com.ait.tooling.nativetools.client.NJSONReplacer;
+import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NNativeType;
 import com.google.gwt.json.client.JSONArray;
 
-public abstract class NFastPrimitiveArrayBase<T extends NFastPrimitiveArrayBaseJSO<T>> implements NHasJSO<T>, JSONStringify
+public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<A, T>, T extends NFastPrimitiveArrayBaseJSO<T>> implements NHasJSO<T>, NJSONStringify
 {
     private final T m_jso;
 
@@ -34,7 +35,31 @@ public abstract class NFastPrimitiveArrayBase<T extends NFastPrimitiveArrayBaseJ
     
     public final JSONArray toJSONArray()
     {
-        return new JSONArray(m_jso);
+        return m_jso.toJSONArray();
+    }
+    
+    @Override
+    public final String toJSONString(final int indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final String indent)
+    {
+        return m_jso.toJSONString(indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final int indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
+    }
+
+    @Override
+    public final String toJSONString(final NJSONReplacer replacer, final String indent)
+    {
+        return m_jso.toJSONString(replacer, indent);
     }
 
     @Override
@@ -44,9 +69,21 @@ public abstract class NFastPrimitiveArrayBase<T extends NFastPrimitiveArrayBaseJ
     }
 
     @Override
+    public final String toJSONString(final NJSONReplacer replacer)
+    {
+        return m_jso.toJSONString(replacer);
+    }
+
+    @Override
     public final T getJSO()
     {
         return m_jso;
+    }
+    
+    @SuppressWarnings("unchecked")
+    protected final A cast()
+    {
+        return (A) this;
     }
 
     public final boolean isEmpty()
@@ -54,9 +91,11 @@ public abstract class NFastPrimitiveArrayBase<T extends NFastPrimitiveArrayBaseJ
         return m_jso.isEmpty();
     }
 
-    public final void clear()
+    public final A clear()
     {
         m_jso.clear();
+        
+        return cast();
     }
 
     public final String join()
@@ -89,19 +128,25 @@ public abstract class NFastPrimitiveArrayBase<T extends NFastPrimitiveArrayBaseJ
         return m_jso.size();
     }
 
-    public final void setSize(final int size)
+    public final A setSize(final int size)
     {
         m_jso.setSize(size);
+        
+        return cast();
     }
 
-    public final void splice(final int beg, final int removed)
+    public final A splice(final int beg, final int removed)
     {
         m_jso.splice(beg, removed);
+        
+        return cast();
     }
 
-    public final void reverse()
+    public final A reverse()
     {
         m_jso.reverse();
+        
+        return cast();
     }
 
     public final String join(final String separator)
