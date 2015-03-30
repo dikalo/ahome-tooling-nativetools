@@ -73,6 +73,11 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
         return (type == getNativeTypeOf(index));
     }
 
+    public final boolean isEmpty()
+    {
+        return m_jso.isEmpty();
+    }
+
     public final int size()
     {
         return m_jso.size();
@@ -182,7 +187,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public final String getAsString(final int index)
     {
-        if(isString(index))
+        if (isString(index))
         {
             return m_jso.getAsString(index);
         }
@@ -191,7 +196,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public final boolean getAsBoolean(final int index)
     {
-        if(isBoolean(index))
+        if (isBoolean(index))
         {
             return m_jso.getAsBoolean(index);
         }
@@ -200,7 +205,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public final MetaData getAsMetaData(final int index)
     {
-        if(isObject(index))
+        if (isObject(index))
         {
             return new MetaData(m_jso.getAsJSO(index));
         }
@@ -209,7 +214,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public final MetaDataArray getAsMetaDataArray(final int index)
     {
-        if(isArray(index))
+        if (isArray(index))
         {
             return new MetaDataArray(m_jso.getAsJSO(index));
         }
