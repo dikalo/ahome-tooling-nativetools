@@ -26,7 +26,7 @@ public class NFastDoubleArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastDoubleA
 
         return jso;
     }
-    
+
     public static final NFastDoubleArrayJSO make()
     {
         return createNArrayBaseJSO();

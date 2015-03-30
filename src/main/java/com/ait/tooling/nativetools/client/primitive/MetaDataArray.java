@@ -21,7 +21,7 @@ import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NNativeType;
-import com.ait.tooling.nativetools.client.NUtils;
+import com.ait.tooling.nativetools.client.NUtils.Native;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONArray;
 
@@ -48,7 +48,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public MetaDataArray(final JavaScriptObject jso)
     {
-        if ((null != jso) && (NNativeType.ARRAY == NUtils.Native.getNativeTypeOfJSO(jso)))
+        if ((null != jso) && (Native.is(jso, NNativeType.ARRAY)))
         {
             m_jso = jso.cast();
         }
@@ -65,7 +65,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public final NNativeType getNativeTypeOf(final int index)
     {
-        return NUtils.Native.getNativeTypeOfJSO(m_jso, index);
+        return Native.getNativeTypeOfJSO(m_jso, index);
     }
 
     public final boolean is(final int index, final NNativeType type)

@@ -39,11 +39,4 @@ public final class NFastBooleanDictionary extends NFastPrimitiveDictionaryBase<N
     {
         return getJSO().get(name);
     }
-    
-    public final NFastBooleanDictionary clear()
-    {
-        getJSO().clear();
-        
-        return this;
-    }
 }

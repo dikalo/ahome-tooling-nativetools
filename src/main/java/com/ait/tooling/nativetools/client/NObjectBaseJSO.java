@@ -22,6 +22,8 @@ import java.util.Collections;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
+import com.ait.tooling.nativetools.client.NUtils.JSON;
+import com.ait.tooling.nativetools.client.NUtils.Native;
 
 public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObject
 {
@@ -41,32 +43,32 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
 
     public final String toJSONString()
     {
-        return NUtils.JSON.toJSONString(this);
+        return JSON.toJSONString(this);
     }
 
     public final String toJSONString(final NJSONReplacer replacer)
     {
-        return NUtils.JSON.toJSONString(this, replacer);
+        return JSON.toJSONString(this, replacer);
     }
 
     public final String toJSONString(final String indent)
     {
-        return NUtils.JSON.toJSONString(this, indent);
+        return JSON.toJSONString(this, indent);
     }
 
     public final String toJSONString(final NJSONReplacer replacer, final String indent)
     {
-        return NUtils.JSON.toJSONString(this, replacer, indent);
+        return JSON.toJSONString(this, replacer, indent);
     }
 
     public final String toJSONString(final int indent)
     {
-        return NUtils.JSON.toJSONString(this, indent);
+        return JSON.toJSONString(this, indent);
     }
 
     public final String toJSONString(final NJSONReplacer replacer, final int indent)
     {
-        return NUtils.JSON.toJSONString(this, replacer, indent);
+        return JSON.toJSONString(this, replacer, indent);
     }
 
     public final boolean isEmpty()
@@ -76,12 +78,42 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
 
     public final NNativeType getNativeTypeOf(final String name)
     {
-        return NUtils.Native.getNativeTypeOfJSO(this, NUtils.doKeyRepair(name, true));
+        return Native.getNativeTypeOfJSO(this, NUtils.doKeyRepair(name, true));
     }
 
     public final boolean is(final String name, final NNativeType type)
     {
         return (type == getNativeTypeOf(name));
+    }
+
+    public final boolean isString(final String name)
+    {
+        return is(name, NNativeType.STRING);
+    }
+
+    public final boolean isNumber(final String name)
+    {
+        return is(name, NNativeType.NUMBER);
+    }
+
+    public final boolean isBoolean(final String name)
+    {
+        return is(name, NNativeType.BOOLEAN);
+    }
+
+    public final boolean isArray(final String name)
+    {
+        return is(name, NNativeType.ARRAY);
+    }
+
+    public final boolean isObject(final String name)
+    {
+        return is(name, NNativeType.OBJECT);
+    }
+
+    public final boolean isNativeFunction(final String name)
+    {
+        return is(name, NNativeType.FUNCTION);
     }
 
     public final Collection<String> keys()

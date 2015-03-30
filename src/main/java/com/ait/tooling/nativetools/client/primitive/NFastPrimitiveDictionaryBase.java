@@ -32,7 +32,7 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
     {
         m_jso = Objects.requireNonNull(jso);
     }
-    
+
     public final JSONObject toJSONObject()
     {
         return m_jso.toJSONObject();
@@ -43,7 +43,7 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
     {
         return toJSONString();
     }
-    
+
     @Override
     public final String toJSONString(final int indent)
     {
@@ -114,5 +114,10 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
     public final int size()
     {
         return m_jso.size();
+    }
+    
+    public final void clear()
+    {
+        m_jso.clear();
     }
 }

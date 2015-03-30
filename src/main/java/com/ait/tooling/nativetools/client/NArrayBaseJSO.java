@@ -18,6 +18,8 @@ package com.ait.tooling.nativetools.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONArray;
+import com.ait.tooling.nativetools.client.NUtils.JSON;
+import com.ait.tooling.nativetools.client.NUtils.Native;
 
 public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject
 {
@@ -37,37 +39,32 @@ public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject
 
     public final String toJSONString()
     {
-        return NUtils.JSON.toJSONString(this);
+        return JSON.toJSONString(this);
     }
 
     public final String toJSONString(final NJSONReplacer replacer)
     {
-        return NUtils.JSON.toJSONString(this, replacer);
+        return JSON.toJSONString(this, replacer);
     }
 
     public final String toJSONString(final String indent)
     {
-        return NUtils.JSON.toJSONString(this, indent);
+        return JSON.toJSONString(this, indent);
     }
 
     public final String toJSONString(final NJSONReplacer replacer, final String indent)
     {
-        return NUtils.JSON.toJSONString(this, replacer, indent);
+        return JSON.toJSONString(this, replacer, indent);
     }
 
     public final String toJSONString(final int indent)
     {
-        return NUtils.JSON.toJSONString(this, indent);
+        return JSON.toJSONString(this, indent);
     }
 
     public final String toJSONString(final NJSONReplacer replacer, final int indent)
     {
-        return NUtils.JSON.toJSONString(this, replacer, indent);
-    }
-
-    public final boolean isEmpty()
-    {
-        return (0 == size());
+        return JSON.toJSONString(this, replacer, indent);
     }
 
     public final void clear()
@@ -86,10 +83,10 @@ public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject
         {
             return NNativeType.UNDEFINED;
         }
-        return NUtils.Native.getNativeTypeOfJSO(this, index);
+        return Native.getNativeTypeOfJSO(this, index);
     }
 
-    public final boolean is(int index, NNativeType type)
+    public final boolean is(int index, final NNativeType type)
     {
         return (type == getNativeTypeOf(index));
     }
@@ -111,6 +108,11 @@ public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject
         }
         return isDefined_0(index);
     }
+
+    public final native boolean isEmpty()
+    /*-{
+		return (this.length < 1);
+    }-*/;
 
     public final native int size()
     /*-{

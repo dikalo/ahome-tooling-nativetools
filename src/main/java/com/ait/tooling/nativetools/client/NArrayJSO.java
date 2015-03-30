@@ -44,7 +44,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this[this.length] = value;
     }-*/;
 
-    public final void push(String value)
+    public final void push(final String value)
     {
         if (null != value)
         {
@@ -61,7 +61,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this[this.length] = value;
     }-*/;
 
-    public final void push(NHasJSO<? extends JavaScriptObject> value)
+    public final void push(final NHasJSO<? extends JavaScriptObject> value)
     {
         if (null != value)
         {
@@ -93,7 +93,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this[index] = value;
     }-*/;
 
-    public final void set(int index, String value)
+    public final void set(final int index, final String value)
     {
         if (null != value)
         {
@@ -110,7 +110,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this[index] = value;
     }-*/;
 
-    public final void set(int index, NHasJSO<? extends JavaScriptObject> value)
+    public final void set(final int index, final NHasJSO<? extends JavaScriptObject> value)
     {
         if (null != value)
         {
@@ -152,7 +152,19 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this.unshift(value);
     }-*/;
 
-    public final native void unshift(String value)
+    public final void unshift(String value)
+    {
+        if (null != value)
+        {
+            unshift_0(value.substring(0));
+        }
+        else
+        {
+            unshift_0(value);
+        }
+    }
+
+    public final native void unshift_0(String value)
     /*-{
 		this.unshift(value);
     }-*/;
@@ -162,7 +174,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this.unshift(value);
     }-*/;
 
-    public final void unshift(NHasJSO<? extends JavaScriptObject> value)
+    public final void unshift(final NHasJSO<? extends JavaScriptObject> value)
     {
         if (null != value)
         {
@@ -186,7 +198,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		}
     }-*/;
 
-    public final void remove(NHasJSO<? extends JavaScriptObject> value)
+    public final void remove(final NHasJSO<? extends JavaScriptObject> value)
     {
         if (null != value)
         {
@@ -209,12 +221,24 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this.splice(beg, removed, value);
     }-*/;
 
-    public final native void splice(int beg, int removed, String value)
+    public final void splice(final int beg, final int removed, final String value)
+    {
+        if (null != value)
+        {
+            splice_0(beg, removed, value.substring(0));
+        }
+        else
+        {
+            splice_0(beg, removed, value);
+        }
+    };
+
+    public final native void splice_0(int beg, int removed, String value)
     /*-{
 		this.splice(beg, removed, value);
     }-*/;
 
-    public final void splice(int beg, int removed, NHasJSO<? extends JavaScriptObject> value)
+    public final void splice(final int beg, final int removed, final NHasJSO<? extends JavaScriptObject> value)
     {
         if (null != value)
         {
@@ -240,7 +264,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		}
     }-*/;
 
-    public final NValue<?> getAsNValue(int index)
+    public final NValue<?> getAsNValue(final int index)
     {
         return NUtils.Native.getAsNValue(this, index);
     }

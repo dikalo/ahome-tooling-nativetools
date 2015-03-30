@@ -17,6 +17,7 @@
 package com.ait.tooling.nativetools.client;
 
 import com.ait.tooling.common.api.java.util.StringOps;
+import com.ait.tooling.nativetools.client.util.Logging;
 import com.google.gwt.core.client.JavaScriptObject;
 
 public final class NUtils
@@ -53,20 +54,6 @@ public final class NUtils
         private Native()
         {
         }
-
-        private static final native void log(String message)
-        /*-{
-			if (!!$wnd.console) {
-				$wnd.console.log(message);
-			}
-        }-*/;
-
-        public static final native void debug(String message)
-        /*-{
-			if (!!$wnd.console) {
-				$wnd.console.debug(message);
-			}
-        }-*/;
 
         final static native JavaScriptObject parseJSON(String json)
         /*-{
@@ -127,6 +114,11 @@ public final class NUtils
 
 			return nops.getNativeTypeOf(jso[index]);
         }-*/;
+        
+        public final static boolean is(final JavaScriptObject jso, final NNativeType type)
+        {
+            return (type == getNativeTypeOfJSO(jso));
+        }
 
         public final static native NNativeType getNativeTypeOfJSO(JavaScriptObject jso)
         /*-{
@@ -135,12 +127,22 @@ public final class NUtils
 			return nops.getNativeTypeOf(jso);
         }-*/;
 
-        public final static NNativeType getNativeTypeOf(NObjectJSO ojso, String name)
+        public final static boolean is(final NObjectJSO jso, final String name, final NNativeType type)
+        {
+            return (type == getNativeTypeOf(jso, name)); 
+        }
+        
+        public final static NNativeType getNativeTypeOf(final NObjectJSO ojso, final String name)
         {
             return getNativeTypeOfJSO(ojso, name);
         }
 
-        public final static NNativeType getNativeTypeOf(NArrayJSO array, int index)
+        public final static boolean is(final NArrayJSO jso, final int index, final NNativeType type)
+        {
+            return (type == getNativeTypeOf(jso, index)); 
+        }
+        
+        public final static NNativeType getNativeTypeOf(final NArrayJSO array, final int index)
         {
             if ((index >= 0) && (index < array.size()))
             {
@@ -149,7 +151,7 @@ public final class NUtils
             return NNativeType.UNDEFINED;
         }
 
-        public final static NValue<?> getAsNValue(NArrayJSO array, int index)
+        public final static NValue<?> getAsNValue(final NArrayJSO array, final int index)
         {
             if ((index >= 0) && (index < array.size()))
             {
@@ -172,7 +174,7 @@ public final class NUtils
             return null;
         }
 
-        public final static NValue<?> getAsNValue(NObjectJSO ojso, String name)
+        public final static NValue<?> getAsNValue(final NObjectJSO ojso, final String name)
         {
             switch (getNativeTypeOf(ojso, name))
             {
@@ -194,7 +196,7 @@ public final class NUtils
 
     public static final class JSON
     {
-        public static final NValue<?> parse(String json) throws Exception
+        public static final NValue<?> parse(final String json) throws Exception
         {
             return parse(json, null);
         }
@@ -223,7 +225,7 @@ public final class NUtils
                 {
                     final JavaScriptObject func = reviver.reviver();
 
-                    if (NNativeType.FUNCTION == Native.getNativeTypeOfJSO(func))
+                    if (Native.is(func, NNativeType.FUNCTION))
                     {
                         root = Native.parseJSON(json, func);
                     }
@@ -239,7 +241,7 @@ public final class NUtils
             }
             catch (Exception e)
             {
-                Native.log(e.getMessage());
+                Logging.get().error(e.getMessage());
             }
             if (null == root)
             {
@@ -283,7 +285,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (NNativeType.FUNCTION == Native.getNativeTypeOfJSO(func))
+            if (Native.is(func, NNativeType.FUNCTION))
             {
                 return Native.toJSONString(value, func);
             }
@@ -319,7 +321,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (NNativeType.FUNCTION == Native.getNativeTypeOfJSO(func))
+            if (Native.is(func, NNativeType.FUNCTION))
             {
                 if (null == indent)
                 {
@@ -355,7 +357,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (NNativeType.FUNCTION == Native.getNativeTypeOfJSO(func))
+            if (Native.is(func, NNativeType.FUNCTION))
             {
                 return Native.toJSONString(value, func, Math.max(0, indent));
             }

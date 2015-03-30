@@ -55,49 +55,49 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         push(value, values);
     }
 
-    public NArray(double value)
+    public NArray(final double value)
     {
         this();
 
         push(value);
     }
 
-    public NArray(double value, double... values)
+    public NArray(final double value, final double... values)
     {
         this();
 
         push(value, values);
     }
 
-    public NArray(boolean value)
+    public NArray(final boolean value)
     {
         this();
 
         push(value);
     }
 
-    public NArray(boolean value, boolean... values)
+    public NArray(final boolean value, final boolean... values)
     {
         this();
 
         push(value, values);
     }
 
-    public NArray(String value)
+    public NArray(final String value)
     {
         this();
 
         push(value);
     }
 
-    public NArray(String value, String... values)
+    public NArray(final String value, final String... values)
     {
         this();
 
         push(value, values);
     }
 
-    public NArray(NHasJSO<? extends JavaScriptObject> value)
+    public NArray(final NHasJSO<? extends JavaScriptObject> value)
     {
         this();
 
@@ -105,7 +105,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @SuppressWarnings("unchecked")
-    public NArray(NHasJSO<? extends JavaScriptObject> value, NHasJSO<? extends JavaScriptObject>... values)
+    public NArray(final NHasJSO<? extends JavaScriptObject> value, final NHasJSO<? extends JavaScriptObject>... values)
     {
         this();
 
@@ -123,42 +123,21 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return m_jso.size();
     }
 
-    public final NArray setSize(int length)
+    public final NArray setSize(final int length)
     {
         m_jso.setSize(length);
 
         return this;
     }
 
-    public final NArray push(int value)
+    public final NArray push(final int value)
     {
         m_jso.push(value);
 
         return this;
     }
 
-    public final NArray push(int value, int... values)
-    {
-        m_jso.push(value);
-
-        if ((null != values) && (values.length > 0))
-        {
-            for (int i = 0, l = values.length; i < l; i++)
-            {
-                m_jso.push(values[i]);
-            }
-        }
-        return this;
-    }
-
-    public final NArray push(double value)
-    {
-        m_jso.push(value);
-
-        return this;
-    }
-
-    public final NArray push(double value, double... values)
+    public final NArray push(final int value, final int... values)
     {
         m_jso.push(value);
 
@@ -172,35 +151,14 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return this;
     }
 
-    public final NArray push(boolean value)
+    public final NArray push(final double value)
     {
         m_jso.push(value);
 
         return this;
     }
 
-    public final NArray push(boolean value, boolean... values)
-    {
-        m_jso.push(value);
-
-        if ((null != values) && (values.length > 0))
-        {
-            for (int i = 0, l = values.length; i < l; i++)
-            {
-                m_jso.push(values[i]);
-            }
-        }
-        return this;
-    }
-
-    public final NArray push(String value)
-    {
-        m_jso.push(value);
-
-        return this;
-    }
-
-    public final NArray push(String value, String... values)
+    public final NArray push(final double value, final double... values)
     {
         m_jso.push(value);
 
@@ -214,7 +172,49 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return this;
     }
 
-    public final NArray push(NHasJSO<? extends JavaScriptObject> value)
+    public final NArray push(final boolean value)
+    {
+        m_jso.push(value);
+
+        return this;
+    }
+
+    public final NArray push(final boolean value, final boolean... values)
+    {
+        m_jso.push(value);
+
+        if ((null != values) && (values.length > 0))
+        {
+            for (int i = 0, l = values.length; i < l; i++)
+            {
+                m_jso.push(values[i]);
+            }
+        }
+        return this;
+    }
+
+    public final NArray push(final String value)
+    {
+        m_jso.push(value);
+
+        return this;
+    }
+
+    public final NArray push(final String value, final String... values)
+    {
+        m_jso.push(value);
+
+        if ((null != values) && (values.length > 0))
+        {
+            for (int i = 0, l = values.length; i < l; i++)
+            {
+                m_jso.push(values[i]);
+            }
+        }
+        return this;
+    }
+
+    public final NArray push(final NHasJSO<? extends JavaScriptObject> value)
     {
         m_jso.push(value);
 
@@ -222,7 +222,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @SuppressWarnings("unchecked")
-    public final NArray push(NHasJSO<? extends JavaScriptObject> value, NHasJSO<? extends JavaScriptObject>... values)
+    public final NArray push(final NHasJSO<? extends JavaScriptObject> value, final NHasJSO<? extends JavaScriptObject>... values)
     {
         m_jso.push(value);
 
@@ -236,35 +236,35 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return this;
     }
 
-    public final NArray set(int index, int value)
+    public final NArray set(final int index, final int value)
     {
         m_jso.set(index, value);
 
         return this;
     }
 
-    public final NArray set(int index, double value)
+    public final NArray set(final int index, final double value)
     {
         m_jso.set(index, value);
 
         return this;
     }
 
-    public final NArray set(int index, boolean value)
+    public final NArray set(final int index, final boolean value)
     {
         m_jso.set(index, value);
 
         return this;
     }
 
-    public final NArray set(int index, String value)
+    public final NArray set(final int index, final String value)
     {
         m_jso.set(index, value);
 
         return this;
     }
 
-    public final NArray set(int index, NHasJSO<? extends JavaScriptObject> value)
+    public final NArray set(final int index, final NHasJSO<? extends JavaScriptObject> value)
     {
         m_jso.set(index, value);
 
@@ -285,35 +285,14 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return this;
     }
 
-    public final NArray unshift(int value)
+    public final NArray unshift(final int value)
     {
         m_jso.unshift(value);
 
         return this;
     }
 
-    public final NArray unshift(int value, int... values)
-    {
-        if ((null != values) && (values.length > 0))
-        {
-            for (int i = values.length; i > 0; i--)
-            {
-                m_jso.unshift(values[i - 1]);
-            }
-        }
-        m_jso.unshift(value);
-
-        return this;
-    }
-
-    public final NArray unshift(double value)
-    {
-        m_jso.unshift(value);
-
-        return this;
-    }
-
-    public final NArray unshift(double value, double... values)
+    public final NArray unshift(final int value, final int... values)
     {
         if ((null != values) && (values.length > 0))
         {
@@ -327,35 +306,14 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return this;
     }
 
-    public final NArray unshift(boolean value)
+    public final NArray unshift(final double value)
     {
         m_jso.unshift(value);
 
         return this;
     }
 
-    public final NArray unshift(boolean value, boolean... values)
-    {
-        if ((null != values) && (values.length > 0))
-        {
-            for (int i = values.length; i > 0; i--)
-            {
-                m_jso.unshift(values[i - 1]);
-            }
-        }
-        m_jso.unshift(value);
-
-        return this;
-    }
-
-    public final NArray unshift(String value)
-    {
-        m_jso.unshift(value);
-
-        return this;
-    }
-
-    public final NArray unshift(String value, String... values)
+    public final NArray unshift(final double value, final double... values)
     {
         if ((null != values) && (values.length > 0))
         {
@@ -369,42 +327,84 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return this;
     }
 
-    public final NArray unshift(NHasJSO<? extends JavaScriptObject> value)
+    public final NArray unshift(final boolean value)
     {
         m_jso.unshift(value);
 
         return this;
     }
 
-    public final NArray remove(NHasJSO<? extends JavaScriptObject> value)
+    public final NArray unshift(final boolean value, final boolean... values)
+    {
+        if ((null != values) && (values.length > 0))
+        {
+            for (int i = values.length; i > 0; i--)
+            {
+                m_jso.unshift(values[i - 1]);
+            }
+        }
+        m_jso.unshift(value);
+
+        return this;
+    }
+
+    public final NArray unshift(final String value)
+    {
+        m_jso.unshift(value);
+
+        return this;
+    }
+
+    public final NArray unshift(final String value, final String... values)
+    {
+        if ((null != values) && (values.length > 0))
+        {
+            for (int i = values.length; i > 0; i--)
+            {
+                m_jso.unshift(values[i - 1]);
+            }
+        }
+        m_jso.unshift(value);
+
+        return this;
+    }
+
+    public final NArray unshift(final NHasJSO<? extends JavaScriptObject> value)
+    {
+        m_jso.unshift(value);
+
+        return this;
+    }
+
+    public final NArray remove(final NHasJSO<? extends JavaScriptObject> value)
     {
         m_jso.remove(value);
 
         return this;
     }
 
-    public final NArray splice(int beg, int removed, int value)
+    public final NArray splice(final int beg, final int removed, final int value)
     {
         m_jso.splice(beg, removed, value);
 
         return this;
     }
 
-    public final NArray splice(int beg, int removed, double value)
+    public final NArray splice(final int beg, final int removed, final double value)
     {
         m_jso.splice(beg, removed, value);
 
         return this;
     }
 
-    public final NArray splice(int beg, int removed, boolean value)
+    public final NArray splice(final int beg, final int removed, final boolean value)
     {
         m_jso.splice(beg, removed, value);
 
         return this;
     }
 
-    public final NArray splice(int beg, int removed, String value)
+    public final NArray splice(final int beg, final int removed, final String value)
     {
         m_jso.splice(beg, removed, value);
 
@@ -673,13 +673,13 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     @Override
     public final void clear()
     {
-        setSize(0);
+        m_jso.clear();
     }
 
     @Override
     public final boolean isEmpty()
     {
-        return (0 == size());
+        return m_jso.isEmpty();
     }
 
     @Override
@@ -722,6 +722,12 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     public final boolean isInteger(int index)
     {
         return isNumber(index);
+    }
+    
+    @Override
+    public final boolean isNativeFunction(final int index)
+    {
+        return is(index, NNativeType.FUNCTION);
     }
 
     @Override

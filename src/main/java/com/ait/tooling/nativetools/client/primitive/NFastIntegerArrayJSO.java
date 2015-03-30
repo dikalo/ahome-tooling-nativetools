@@ -26,7 +26,7 @@ public class NFastIntegerArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastIntege
 
         return jso;
     }
-    
+
     public static final NFastIntegerArrayJSO make()
     {
         return createNArrayBaseJSO();

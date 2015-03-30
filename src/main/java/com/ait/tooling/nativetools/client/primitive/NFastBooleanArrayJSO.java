@@ -26,7 +26,7 @@ public class NFastBooleanArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastBoolea
 
         return jso;
     }
-    
+
     public static final NFastBooleanArrayJSO make()
     {
         return createNArrayBaseJSO();

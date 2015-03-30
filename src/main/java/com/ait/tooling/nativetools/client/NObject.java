@@ -43,75 +43,75 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
         m_jso = NObjectJSO.make();
     }
 
-    public NObject(String name, int value)
+    public NObject(final String name, final int value)
     {
         this();
 
         put(name, value);
     }
 
-    public NObject(String name, double value)
+    public NObject(final String name, final double value)
     {
         this();
 
         put(name, value);
     }
 
-    public NObject(String name, boolean value)
+    public NObject(final String name, final boolean value)
     {
         this();
 
         put(name, value);
     }
 
-    public NObject(String name, String value)
+    public NObject(final String name, final String value)
     {
         this();
 
         put(name, value);
     }
 
-    public NObject(String name, NHasJSO<? extends JavaScriptObject> value)
+    public NObject(final String name, final NHasJSO<? extends JavaScriptObject> value)
     {
         this();
 
         put(name, value);
     }
-    
+
     public final JSONObject toJSONObject()
     {
         return m_jso.toJSONObject();
     }
 
-    public final NObject put(String name, int value)
+    public final NObject put(final String name, final int value)
     {
         m_jso.put(name, value);
 
         return this;
     }
 
-    public final NObject put(String name, double value)
+    public final NObject put(final String name, final double value)
     {
         m_jso.put(name, value);
 
         return this;
     }
 
-    public final NObject put(String name, boolean value)
+    public final NObject put(final String name, final boolean value)
     {
         m_jso.put(name, value);
 
         return this;
     }
 
-    public final NObject put(String name, String value)
+    public final NObject put(final String name, final String value)
     {
         m_jso.put(name, value);
 
         return this;
     }
 
-    public final NObject put(String name, NHasJSO<? extends JavaScriptObject> value)
+    public final NObject put(final String name, final NHasJSO<? extends JavaScriptObject> value)
     {
         m_jso.put(name, value);
 
@@ -119,7 +119,7 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     }
 
     @Override
-    public final void remove(String name)
+    public final void remove(final String name)
     {
         m_jso.remove(name);
     }
@@ -268,7 +268,7 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     {
         return this;
     }
-    
+
     @Override
     public final String toJSONString(final int indent)
     {
@@ -342,31 +342,37 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     @Override
     public final boolean isString(final String name)
     {
-        return is(name, NNativeType.STRING);
+        return m_jso.isString(name);
     }
 
     @Override
     public final boolean isBoolean(final String name)
     {
-        return is(name, NNativeType.BOOLEAN);
+        return m_jso.isBoolean(name);
     }
 
     @Override
     public final boolean isObject(final String name)
     {
-        return is(name, NNativeType.OBJECT);
+        return m_jso.isObject(name);
     }
 
     @Override
     public final boolean isArray(final String name)
     {
-        return is(name, NNativeType.ARRAY);
+        return m_jso.isArray(name);
     }
 
     @Override
     public final boolean isNumber(final String name)
     {
-        return is(name, NNativeType.NUMBER);
+        return m_jso.isNumber(name);
+    }
+
+    @Override
+    public final boolean isNativeFunction(final String name)
+    {
+        return m_jso.isNativeFunction(name);
     }
 
     @Override

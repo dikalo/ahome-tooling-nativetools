@@ -39,11 +39,4 @@ public final class NFastIntegerDictionary extends NFastPrimitiveDictionaryBase<N
     {
         return getJSO().get(name);
     }
-    
-    public final NFastIntegerDictionary clear()
-    {
-        getJSO().clear();
-        
-        return this;
-    }
 }

@@ -24,6 +24,7 @@ import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NUtils;
+import com.ait.tooling.nativetools.client.NUtils.JSON;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
@@ -165,37 +166,37 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
     @Override
     public final String toJSONString(final NJSONReplacer replacer, final int indent)
     {
-        return NUtils.JSON.toJSONString(m_jso, replacer, indent);
+        return JSON.toJSONString(m_jso, replacer, indent);
     }
 
     @Override
     public final String toJSONString(final NJSONReplacer replacer, final String indent)
     {
-        return NUtils.JSON.toJSONString(m_jso, replacer, indent);
+        return JSON.toJSONString(m_jso, replacer, indent);
     }
 
     @Override
     public final String toJSONString(final NJSONReplacer replacer)
     {
-        return NUtils.JSON.toJSONString(m_jso, replacer);
+        return JSON.toJSONString(m_jso, replacer);
     }
 
     @Override
     public final String toJSONString(final int indent)
     {
-        return NUtils.JSON.toJSONString(m_jso, indent);
+        return JSON.toJSONString(m_jso, indent);
     }
 
     @Override
     public final String toJSONString(final String indent)
     {
-        return NUtils.JSON.toJSONString(m_jso, indent);
+        return JSON.toJSONString(m_jso, indent);
     }
 
     @Override
     public final String toJSONString()
     {
-        return NUtils.JSON.toJSONString(m_jso);
+        return JSON.toJSONString(m_jso);
     }
 
     @Override

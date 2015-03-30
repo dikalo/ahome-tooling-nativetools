@@ -39,11 +39,4 @@ public final class NFastDoubleDictionary extends NFastPrimitiveDictionaryBase<NF
     {
         return getJSO().get(name);
     }
-    
-    public final NFastDoubleDictionary clear()
-    {
-        getJSO().clear();
-        
-        return this;
-    }
 }

@@ -126,6 +126,13 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
         return getAsString_0(NUtils.doKeyRepair(name, true));
     }
 
+    public final String getAsString(final String name, final String otherwise)
+    {
+        final String value = getAsString_0(NUtils.doKeyRepair(name, true));
+
+        return ((null != value) ? value : otherwise);
+    }
+
     private final NValue<?> getAsNValue_0(final String name)
     {
         return NUtils.Native.getAsNValue(this, name);

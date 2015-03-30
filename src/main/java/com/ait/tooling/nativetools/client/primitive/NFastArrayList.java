@@ -62,7 +62,7 @@ public final class NFastArrayList<M> implements Iterable<M>
             m_jso = jso;
         }
     }
-    
+
     public final boolean isEmpty()
     {
         return m_jso.isEmpty();

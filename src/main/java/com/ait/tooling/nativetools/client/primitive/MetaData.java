@@ -22,6 +22,7 @@ import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NNativeType;
 import com.ait.tooling.nativetools.client.NObjectJSO;
 import com.ait.tooling.nativetools.client.NUtils;
+import com.ait.tooling.nativetools.client.NUtils.Native;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
@@ -48,7 +49,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 
     public MetaData(final JavaScriptObject jso)
     {
-        if ((null != jso) && (NNativeType.OBJECT == NUtils.Native.getNativeTypeOfJSO(jso)))
+        if ((null != jso) && (Native.is(jso, NNativeType.OBJECT)))
         {
             m_jso = jso.cast();
         }
@@ -130,7 +131,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 
     public final NNativeType getNativeTypeOf(final String name)
     {
-        return NUtils.Native.getNativeTypeOfJSO(m_jso, NUtils.doKeyRepair(name, true));
+        return Native.getNativeTypeOfJSO(m_jso, NUtils.doKeyRepair(name, true));
     }
 
     public final boolean is(final String name, final NNativeType type)
