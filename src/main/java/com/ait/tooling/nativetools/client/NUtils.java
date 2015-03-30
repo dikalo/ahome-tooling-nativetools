@@ -73,6 +73,17 @@ public final class NUtils
 			return $wnd.JSON.parse(json);
         }-*/;
 
+        final static native JavaScriptObject parseJSON(String json, JavaScriptObject reviver)
+        /*-{
+			var f = reviver;
+			return $wnd.JSON.parse(json, function(k, v) {
+				if (k === '') {
+					return v;
+				}
+				return f(k, v);
+			});
+        }-*/;
+
         final static native String toJSONString(JavaScriptObject value)
         /*-{
 			return $wnd.JSON.stringify(value);
@@ -185,6 +196,11 @@ public final class NUtils
     {
         public static final NValue<?> parse(String json) throws Exception
         {
+            return parse(json, null);
+        }
+
+        public static final NValue<?> parse(String json, final NJSONReviver reviver) throws Exception
+        {
             if (null == json)
             {
                 return null;
@@ -203,7 +219,23 @@ public final class NUtils
 
             try
             {
-                root = Native.parseJSON(json);
+                if (null != reviver)
+                {
+                    final JavaScriptObject func = reviver.reviver();
+
+                    if (NNativeType.FUNCTION == Native.getNativeTypeOfJSO(func))
+                    {
+                        root = Native.parseJSON(json, func);
+                    }
+                    else
+                    {
+                        root = Native.parseJSON(json);
+                    }
+                }
+                else
+                {
+                    root = Native.parseJSON(json);
+                }
             }
             catch (Exception e)
             {
