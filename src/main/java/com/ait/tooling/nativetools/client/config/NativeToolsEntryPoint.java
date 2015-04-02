@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.6.1//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.6.1/distro-source/core/src/gwt-module.dtd">
- <!--
+/*
    Copyright (c) 2014,2015 Ahome' Innovation Technologies. All rights reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,13 +12,21 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
-   Author: Dean S. Jones
--->
-<module>
-	<inherits name='com.google.gwt.user.User' />
-	<inherits name='com.google.gwt.json.JSON' />
-	<inherits name='com.ait.tooling.common.Common' />
-	<entry-point class='com.ait.tooling.nativetools.client.config.NativeToolsEntryPoint' />
-	<source path='client' />
-</module>
+ */
+
+package com.ait.tooling.nativetools.client.config;
+
+import com.ait.tooling.common.api.config.CommonConfig;
+import com.ait.tooling.nativetools.client.util.Logging;
+import com.google.gwt.core.client.EntryPoint;
+
+public final class NativeToolsEntryPoint implements EntryPoint
+{
+    @Override
+    public final void onModuleLoad()
+    {
+        CommonConfig.get().setLogging(Logging.get());
+
+        CommonConfig.get().getPluginRegistry().addPlugin(new NativeToolsPlugin());
+    }
+}

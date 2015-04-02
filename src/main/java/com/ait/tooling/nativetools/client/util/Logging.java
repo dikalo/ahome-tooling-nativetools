@@ -19,9 +19,10 @@ package com.ait.tooling.nativetools.client.util;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.ait.tooling.common.api.logging.ILogging;
 import com.google.gwt.core.client.GWT;
 
-public final class Logging
+public final class Logging implements ILogging
 {
     private static Logging INSTANCE;
 
@@ -41,33 +42,45 @@ public final class Logging
         m_logger = Logger.getLogger(GWT.getModuleName() + "_logger");
     }
 
+    @Override
     public final void info(String message)
     {
         m_logger.log(Level.INFO, message);
     }
 
+    @Override
     public final void severe(String message)
     {
-        m_logger.log(Level.SEVERE, message);
+        m_logger.log(Level.SEVERE, "SEVERE: " + message);
     }
 
+    @Override
     public final void error(String message)
     {
-        m_logger.log(Level.SEVERE, "ERROR " + message);
+        m_logger.log(Level.SEVERE, "ERROR: " + message);
     }
 
+    @Override
     public final void error(String message, Throwable e)
     {
-        m_logger.log(Level.SEVERE, "ERROR " + message + " " + e.getMessage());
+        m_logger.log(Level.SEVERE, "ERROR: " + message + " " + e.getMessage());
     }
 
-    public final void warning(String message)
+    @Override
+    public final void fine(String message)
+    {
+        m_logger.log(Level.FINE, message);
+    }
+
+    @Override
+    public final void warn(String message)
     {
         m_logger.log(Level.WARNING, message);
     }
 
-    public final void fine(String message)
+    @Override
+    public final void severe(String message, Throwable e)
     {
-        m_logger.log(Level.FINE, message);
+        m_logger.log(Level.SEVERE, "SEVERE: " + message + " " + e.getMessage());
     }
 }
