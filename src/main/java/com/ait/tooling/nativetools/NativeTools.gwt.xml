@@ -21,6 +21,5 @@
 	<inherits name='com.google.gwt.user.User' />
 	<inherits name='com.google.gwt.json.JSON' />
 	<inherits name='com.ait.tooling.common.Common' />
-	<entry-point class='com.ait.tooling.nativetools.client.config.NativeToolsEntryPoint' />
 	<source path='client' />
 </module>
