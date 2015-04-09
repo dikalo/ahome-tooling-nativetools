@@ -16,70 +16,83 @@
 
 package com.ait.tooling.nativetools.client.util;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import com.google.gwt.core.client.GWT;
-
-public final class Logging implements ILogging
+public final class ComboLogging implements ILogging
 {
-    private static Logging INSTANCE;
+    private static ComboLogging INSTANCE;
 
-    private final Logger   m_logger;
+    private final Logging       m_logging;
 
-    public static final Logging get()
+    private final Console       m_console;
+
+    public static final ComboLogging get()
     {
         if (null == INSTANCE)
         {
-            INSTANCE = new Logging();
+            INSTANCE = new ComboLogging();
         }
         return INSTANCE;
     }
 
-    private Logging()
+    private ComboLogging()
     {
-        m_logger = Logger.getLogger(GWT.getModuleName() + "_logger");
+        m_logging = Logging.get();
+
+        m_console = Console.get();
     }
 
     @Override
     public final void info(final String message)
     {
-        m_logger.log(Level.INFO, message);
+        m_logging.info(message);
+
+        m_console.info(message);
     }
 
     @Override
     public final void severe(final String message)
     {
-        m_logger.log(Level.SEVERE, "SEVERE: " + message);
+        m_logging.severe(message);
+
+        m_console.severe(message);
     }
 
     @Override
     public final void error(final String message)
     {
-        m_logger.log(Level.SEVERE, "ERROR: " + message);
+        m_logging.error(message);
+
+        m_console.error(message);
     }
 
     @Override
     public final void error(final String message, final Throwable e)
     {
-        m_logger.log(Level.SEVERE, "ERROR: " + message + " " + e.getMessage());
+        m_logging.error(message, e);
+
+        m_console.error(message, e);
     }
 
     @Override
     public final void fine(final String message)
     {
-        m_logger.log(Level.FINE, message);
+        m_logging.fine(message);
+
+        m_console.fine(message);
     }
 
     @Override
     public final void warn(final String message)
     {
-        m_logger.log(Level.WARNING, message);
+        m_logging.warn(message);
+
+        m_console.warn(message);
     }
 
     @Override
     public final void severe(final String message, final Throwable e)
     {
-        m_logger.log(Level.SEVERE, "SEVERE: " + message + " " + e.getMessage());
+        m_logging.severe(message, e);
+
+        m_console.severe(message, e);
     }
 }

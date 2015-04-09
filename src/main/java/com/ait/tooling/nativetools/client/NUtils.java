@@ -17,7 +17,7 @@
 package com.ait.tooling.nativetools.client;
 
 import com.ait.tooling.common.api.java.util.StringOps;
-import com.ait.tooling.nativetools.client.util.Logging;
+import com.ait.tooling.nativetools.client.util.Client;
 import com.google.gwt.core.client.JavaScriptObject;
 
 public final class NUtils
@@ -114,7 +114,7 @@ public final class NUtils
 
 			return nops.getNativeTypeOf(jso[index]);
         }-*/;
-        
+
         public final static boolean is(final JavaScriptObject jso, final NNativeType type)
         {
             return (type == getNativeTypeOfJSO(jso));
@@ -129,9 +129,9 @@ public final class NUtils
 
         public final static boolean is(final NObjectJSO jso, final String name, final NNativeType type)
         {
-            return (type == getNativeTypeOf(jso, name)); 
+            return (type == getNativeTypeOf(jso, name));
         }
-        
+
         public final static NNativeType getNativeTypeOf(final NObjectJSO ojso, final String name)
         {
             return getNativeTypeOfJSO(ojso, name);
@@ -139,9 +139,9 @@ public final class NUtils
 
         public final static boolean is(final NArrayJSO jso, final int index, final NNativeType type)
         {
-            return (type == getNativeTypeOf(jso, index)); 
+            return (type == getNativeTypeOf(jso, index));
         }
-        
+
         public final static NNativeType getNativeTypeOf(final NArrayJSO array, final int index)
         {
             if ((index >= 0) && (index < array.size()))
@@ -241,7 +241,7 @@ public final class NUtils
             }
             catch (Exception e)
             {
-                Logging.get().error(e.getMessage());
+                Client.get().error(e.getMessage());
             }
             if (null == root)
             {

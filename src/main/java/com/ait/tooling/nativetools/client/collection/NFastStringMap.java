@@ -16,7 +16,9 @@
 
 package com.ait.tooling.nativetools.client.collection;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import com.ait.tooling.nativetools.client.NObjectBaseJSO;
 import com.ait.tooling.nativetools.client.NUtils;
@@ -43,7 +45,7 @@ public final class NFastStringMap<V>
     public final NFastStringMap<V> put(final String key, final V value)
     {
         m_jso.put(NUtils.doKeyRepair(key, true), value);
-        
+
         return this;
     }
 
@@ -64,7 +66,7 @@ public final class NFastStringMap<V>
     public final NFastStringMap<V> remove(final String key)
     {
         m_jso.remove(key);
-        
+
         return this;
     }
 
@@ -89,17 +91,26 @@ public final class NFastStringMap<V>
     {
         return m_jso.size();
     }
-    
+
     public final NFastStringMap<V> clear()
     {
         m_jso.clear();
-        
+
         return this;
     }
 
     public final Collection<String> keys()
     {
         return m_jso.keys();
+    }
+
+    public final Collection<V> values()
+    {
+        final ArrayList<V> list = new ArrayList<V>();
+
+        m_jso.values_0(list);
+
+        return Collections.unmodifiableList(list);
     }
 
     /**
@@ -129,6 +140,17 @@ public final class NFastStringMap<V>
         public final native V get(String key)
         /*-{
 			return this[key];
+        }-*/;
+
+        private final native void values_0(Collection<V> values)
+        /*-{
+			for ( var name in this) {
+				if (this.hasOwnProperty(String(name))) {
+					if (this[name] !== undefined) {
+						values.@java.util.Collection::add(Ljava/lang/Object;)(this[name]);
+					}
+				}
+			}
         }-*/;
     }
 }

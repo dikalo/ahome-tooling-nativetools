@@ -27,8 +27,7 @@ import com.ait.tooling.nativetools.client.NArray;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.ait.tooling.nativetools.client.NValue;
-import com.ait.tooling.nativetools.client.util.Console;
-import com.ait.tooling.nativetools.client.util.Logging;
+import com.ait.tooling.nativetools.client.util.Client;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.storage.client.StorageEvent;
 
@@ -56,7 +55,7 @@ abstract class AbstractStorage implements IClientStorage
             {
                 storage = null;
 
-                error(type + " is not enabled, Browser may be in private mode: " + e.getMessage());
+                Client.get().error(type + " is not enabled, Browser may be in private mode: ", e);
             }
         }
         m_storage = storage;
@@ -277,13 +276,6 @@ abstract class AbstractStorage implements IClientStorage
                 remove(Objects.requireNonNull(key));
             }
         }
-    }
-
-    private final void error(String message)
-    {
-        Console.get().error(message);
-
-        Logging.get().error(message);
     }
 
     public static final NObject toNObject(String string)

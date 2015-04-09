@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client.util;
 
-public final class Console
+public final class Console implements ILogging
 {
     private static Console INSTANCE;
 
@@ -33,48 +33,73 @@ public final class Console
     {
     }
 
-    public final void log(final String message)
-    {
-        if (null != message)
-        {
-            log_0(message);
-        }
-    }
-
-    public final void error(final String message)
-    {
-        if (null != message)
-        {
-            error_0(message);
-        }
-    }
-
-    public final void debug(final String message)
-    {
-        if (null != message)
-        {
-            debug_0(message);
-        }
-    }
-
     private static final native void log_0(String message)
     /*-{
-        if (!!$wnd.console) {
-            $wnd.console.log(message);
-        }
+		if (!!$wnd.console) {
+			$wnd.console.log(message);
+		}
     }-*/;
 
     private static final native void debug_0(String message)
     /*-{
-        if (!!$wnd.console) {
-            $wnd.console.debug(message);
-        }
+		if (!!$wnd.console) {
+			$wnd.console.debug(message);
+		}
     }-*/;
 
     private static final native void error_0(String message)
     /*-{
+		if (!!$wnd.console) {
+			$wnd.console.error(message);
+		}
+    }-*/;
+    
+    private static final native void warn_0(String message)
+    /*-{
         if (!!$wnd.console) {
-            $wnd.console.error(message);
+            $wnd.console.warn(message);
         }
     }-*/;
+
+    @Override
+    public void info(String message)
+    {
+        log_0("" + message);
+    }
+
+    @Override
+    public void severe(String message)
+    {
+        error_0("SEVERE: " + message);
+    }
+
+    @Override
+    public final void error(final String message)
+    {
+        error_0("ERROR: " + message);
+    }
+
+    @Override
+    public void error(String message, Throwable e)
+    {
+        error_0("ERROR: " + message + " " + e.getMessage());
+    }
+
+    @Override
+    public void fine(String message)
+    {
+        debug_0("" + message);
+    }
+
+    @Override
+    public void warn(String message)
+    {
+        warn_0("" + message);
+    }
+
+    @Override
+    public void severe(String message, Throwable e)
+    {
+        error_0("SEVERE: " + message + " " + e.getMessage());
+    }
 }
