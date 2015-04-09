@@ -43,7 +43,7 @@ public final class Client implements ILogging
 
     public final void setLogging(final ILogging logging)
     {
-        if (null != logging)
+        if ((null != logging) && (logging != this))
         {
             m_logging = logging;
         }
