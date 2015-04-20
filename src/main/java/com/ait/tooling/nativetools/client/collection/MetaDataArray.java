@@ -16,11 +16,11 @@
 
 package com.ait.tooling.nativetools.client.collection;
 
+import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.NArrayJSO;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
-import com.ait.tooling.nativetools.client.NNativeType;
 import com.ait.tooling.nativetools.client.NUtils.Native;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONArray;
@@ -48,7 +48,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public MetaDataArray(final JavaScriptObject jso)
     {
-        if ((null != jso) && (Native.is(jso, NNativeType.ARRAY)))
+        if ((null != jso) && (Native.is(jso, JSONType.ARRAY)))
         {
             m_jso = jso.cast();
         }
@@ -63,12 +63,12 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
         return m_jso.toJSONArray();
     }
 
-    public final NNativeType getNativeTypeOf(final int index)
+    public final JSONType getNativeTypeOf(final int index)
     {
         return Native.getNativeTypeOfJSO(m_jso, index);
     }
 
-    public final boolean is(final int index, final NNativeType type)
+    public final boolean is(final int index, final JSONType type)
     {
         return (type == getNativeTypeOf(index));
     }
@@ -223,27 +223,27 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public final boolean isString(final int index)
     {
-        return is(index, NNativeType.STRING);
+        return is(index, JSONType.STRING);
     }
 
     public final boolean isBoolean(final int index)
     {
-        return is(index, NNativeType.BOOLEAN);
+        return is(index, JSONType.BOOLEAN);
     }
 
     public final boolean isObject(final int index)
     {
-        return is(index, NNativeType.OBJECT);
+        return is(index, JSONType.OBJECT);
     }
 
     public final boolean isArray(final int index)
     {
-        return is(index, NNativeType.ARRAY);
+        return is(index, JSONType.ARRAY);
     }
 
     public final boolean isNumber(final int index)
     {
-        return is(index, NNativeType.NUMBER);
+        return is(index, JSONType.NUMBER);
     }
 
     @Override

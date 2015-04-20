@@ -17,6 +17,9 @@ limitations under the License.
 package com.ait.tooling.nativetools.client.util;
 
 import com.ait.tooling.common.api.java.util.UUID;
+import com.google.gwt.core.client.ScriptInjector;
+import com.google.gwt.dom.client.StyleInjector;
+import com.google.gwt.resources.client.TextResource;
 
 public final class Client implements ILogging
 {
@@ -102,5 +105,25 @@ public final class Client implements ILogging
     public final void severe(final String message, final Throwable e)
     {
         m_logging.severe(message, e);
+    }
+
+    public final void injectJs(final TextResource js)
+    {
+        injectJs(js.getText());
+    }
+
+    public final void injectJs(final String js)
+    {
+        ScriptInjector.fromString(js).setWindow(ScriptInjector.TOP_WINDOW).inject();
+    }
+
+    public final void injectStyle(final String css)
+    {
+        StyleInjector.inject(css);
+    }
+
+    public final void injectStyle(final TextResource css)
+    {
+        StyleInjector.inject(css.getText());
     }
 }

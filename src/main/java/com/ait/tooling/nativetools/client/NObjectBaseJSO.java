@@ -22,6 +22,7 @@ import java.util.Collections;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
+import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.NUtils.JSON;
 import com.ait.tooling.nativetools.client.NUtils.Native;
 
@@ -76,44 +77,44 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
         return (0 == size());
     }
 
-    public final NNativeType getNativeTypeOf(final String name)
+    public final JSONType getNativeTypeOf(final String name)
     {
         return Native.getNativeTypeOfJSO(this, NUtils.doKeyRepair(name, true));
     }
 
-    public final boolean is(final String name, final NNativeType type)
+    public final boolean is(final String name, final JSONType type)
     {
         return (type == getNativeTypeOf(name));
     }
 
     public final boolean isString(final String name)
     {
-        return is(name, NNativeType.STRING);
+        return is(name, JSONType.STRING);
     }
 
     public final boolean isNumber(final String name)
     {
-        return is(name, NNativeType.NUMBER);
+        return is(name, JSONType.NUMBER);
     }
 
     public final boolean isBoolean(final String name)
     {
-        return is(name, NNativeType.BOOLEAN);
+        return is(name, JSONType.BOOLEAN);
     }
 
     public final boolean isArray(final String name)
     {
-        return is(name, NNativeType.ARRAY);
+        return is(name, JSONType.ARRAY);
     }
 
     public final boolean isObject(final String name)
     {
-        return is(name, NNativeType.OBJECT);
+        return is(name, JSONType.OBJECT);
     }
 
     public final boolean isNativeFunction(final String name)
     {
-        return is(name, NNativeType.FUNCTION);
+        return is(name, JSONType.FUNCTION);
     }
 
     public final Collection<String> keys()

@@ -14,24 +14,13 @@
    limitations under the License.
  */
 
-package com.ait.tooling.nativetools.client;
+package com.ait.tooling.nativetools.client.polyfill;
 
-import com.ait.tooling.common.api.types.IStringValued;
+import com.google.gwt.resources.client.ClientBundle;
+import com.google.gwt.resources.client.TextResource;
 
-public enum NNativeType implements IStringValued
+public interface NativeToolsResources extends ClientBundle
 {
-    ARRAY("array"), OBJECT("object"), STRING("string"), NUMBER("number"), BOOLEAN("boolean"), FUNCTION("function"), UNDEFINED("undefined"), NULL("null");
-
-    private final String m_value;
-
-    private NNativeType(final String value)
-    {
-        m_value = value;
-    }
-
-    @Override
-    public final String getValue()
-    {
-        return m_value;
-    }
+    @Source("json2.js")
+    public TextResource json2();
 }

@@ -18,6 +18,7 @@ package com.ait.tooling.nativetools.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONArray;
+import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.NUtils.JSON;
 import com.ait.tooling.nativetools.client.NUtils.Native;
 
@@ -77,16 +78,16 @@ public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject
         return join(",");
     }
 
-    public final NNativeType getNativeTypeOf(final int index)
+    public final JSONType getNativeTypeOf(final int index)
     {
         if ((index < 0) || (index >= size()))
         {
-            return NNativeType.UNDEFINED;
+            return JSONType.UNDEFINED;
         }
         return Native.getNativeTypeOfJSO(this, index);
     }
 
-    public final boolean is(int index, final NNativeType type)
+    public final boolean is(int index, final JSONType type)
     {
         return (type == getNativeTypeOf(index));
     }

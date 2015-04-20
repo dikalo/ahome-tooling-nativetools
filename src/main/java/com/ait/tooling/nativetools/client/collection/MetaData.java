@@ -16,10 +16,10 @@
 
 package com.ait.tooling.nativetools.client.collection;
 
+import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
-import com.ait.tooling.nativetools.client.NNativeType;
 import com.ait.tooling.nativetools.client.NObjectJSO;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.ait.tooling.nativetools.client.NUtils.Native;
@@ -49,7 +49,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 
     public MetaData(final JavaScriptObject jso)
     {
-        if ((null != jso) && (Native.is(jso, NNativeType.OBJECT)))
+        if ((null != jso) && (Native.is(jso, JSONType.OBJECT)))
         {
             m_jso = jso.cast();
         }
@@ -129,39 +129,39 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
         return m_jso.isEmpty();
     }
 
-    public final NNativeType getNativeTypeOf(final String name)
+    public final JSONType getNativeTypeOf(final String name)
     {
         return Native.getNativeTypeOfJSO(m_jso, NUtils.doKeyRepair(name, true));
     }
 
-    public final boolean is(final String name, final NNativeType type)
+    public final boolean is(final String name, final JSONType type)
     {
         return (type == getNativeTypeOf(name));
     }
 
     public final boolean isString(final String name)
     {
-        return is(name, NNativeType.STRING);
+        return is(name, JSONType.STRING);
     }
 
     public final boolean isBoolean(final String name)
     {
-        return is(name, NNativeType.BOOLEAN);
+        return is(name, JSONType.BOOLEAN);
     }
 
     public final boolean isObject(final String name)
     {
-        return is(name, NNativeType.OBJECT);
+        return is(name, JSONType.OBJECT);
     }
 
     public final boolean isArray(final String name)
     {
-        return is(name, NNativeType.ARRAY);
+        return is(name, JSONType.ARRAY);
     }
 
     public final boolean isNumber(final String name)
     {
-        return is(name, NNativeType.NUMBER);
+        return is(name, JSONType.NUMBER);
     }
 
     public final int getAsInteger(final String name)

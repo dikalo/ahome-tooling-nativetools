@@ -18,6 +18,7 @@ package com.ait.tooling.nativetools.client;
 
 import java.util.Collection;
 
+import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.common.api.types.IMixedStringHashDefinition;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
@@ -143,12 +144,12 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
         return m_jso.size();
     }
 
-    public final NNativeType getNativeTypeOf(final String name)
+    public final JSONType getNativeTypeOf(final String name)
     {
         return m_jso.getNativeTypeOf(name);
     }
 
-    public final boolean is(final String name, final NNativeType type)
+    public final boolean is(final String name, final JSONType type)
     {
         return m_jso.is(name, type);
     }
@@ -240,15 +241,15 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     }
 
     @Override
-    public final NNativeType getNativeTypeOf()
+    public final JSONType getNativeTypeOf()
     {
-        return NNativeType.OBJECT;
+        return JSONType.OBJECT;
     }
 
     @Override
-    public final boolean is(final NNativeType type)
+    public final boolean is(final JSONType type)
     {
-        return (NNativeType.OBJECT == type);
+        return (JSONType.OBJECT == type);
     }
 
     @Override

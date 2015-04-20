@@ -18,10 +18,10 @@ package com.ait.tooling.nativetools.client.collection;
 
 import java.util.Objects;
 
+import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
-import com.ait.tooling.nativetools.client.NNativeType;
 import com.google.gwt.json.client.JSONObject;
 
 public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDictionarytBaseJSO<T>> implements NHasJSO<T>, NJSONStringify
@@ -91,12 +91,12 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
         return m_jso.isEmpty();
     }
 
-    public final NNativeType getNativeTypeOf(final String name)
+    public final JSONType getNativeTypeOf(final String name)
     {
         return m_jso.getNativeTypeOf(name);
     }
 
-    public final boolean is(final String name, final NNativeType type)
+    public final boolean is(final String name, final JSONType type)
     {
         return (type == getNativeTypeOf(name));
     }

@@ -16,13 +16,14 @@
 
 package com.ait.tooling.nativetools.client;
 
+import com.ait.tooling.common.api.json.JSONType;
 import com.google.gwt.core.client.JavaScriptObject;
 
 public interface NValue<T extends JavaScriptObject> extends NHasJSO<T>, NJSONStringify
 {
-    public NNativeType getNativeTypeOf();
+    public JSONType getNativeTypeOf();
 
-    public boolean is(NNativeType type);
+    public boolean is(JSONType type);
 
     public NValue<T> asNValue();
 

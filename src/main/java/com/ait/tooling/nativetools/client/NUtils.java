@@ -17,8 +17,11 @@
 package com.ait.tooling.nativetools.client;
 
 import com.ait.tooling.common.api.java.util.StringOps;
+import com.ait.tooling.common.api.json.JSONType;
+import com.ait.tooling.nativetools.client.polyfill.NativeToolsResources;
 import com.ait.tooling.nativetools.client.util.Client;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.shared.GWT;
 
 public final class NUtils
 {
@@ -49,10 +52,21 @@ public final class NUtils
 
     public static final class Native
     {
-        public static final NativeOps nops = NativeOps.make();
+        private static final NativeToolsResources rsrc = make();
+
+        private static final NativeOps            nops = NativeOps.make();
 
         private Native()
         {
+        }
+
+        private static final NativeToolsResources make()
+        {
+            NativeToolsResources make = GWT.create(NativeToolsResources.class);
+
+            Client.get().injectJs(make.json2());
+
+            return make;
         }
 
         final static native JavaScriptObject parseJSON(String json)
@@ -101,54 +115,54 @@ public final class NUtils
 			return $wnd.JSON.stringify(value, replacer, indent);
         }-*/;
 
-        public final static native NNativeType getNativeTypeOfJSO(JavaScriptObject jso, String name)
+        public final static native JSONType getNativeTypeOfJSO(JavaScriptObject jso, String name)
         /*-{
 			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
 			return nops.getNativeTypeOf(jso[name]);
         }-*/;
 
-        public final static native NNativeType getNativeTypeOfJSO(JavaScriptObject jso, int index)
+        public final static native JSONType getNativeTypeOfJSO(JavaScriptObject jso, int index)
         /*-{
 			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
 			return nops.getNativeTypeOf(jso[index]);
         }-*/;
 
-        public final static boolean is(final JavaScriptObject jso, final NNativeType type)
+        public final static boolean is(final JavaScriptObject jso, final JSONType type)
         {
             return (type == getNativeTypeOfJSO(jso));
         }
 
-        public final static native NNativeType getNativeTypeOfJSO(JavaScriptObject jso)
+        public final static native JSONType getNativeTypeOfJSO(JavaScriptObject jso)
         /*-{
 			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
 			return nops.getNativeTypeOf(jso);
         }-*/;
 
-        public final static boolean is(final NObjectJSO jso, final String name, final NNativeType type)
+        public final static boolean is(final NObjectJSO jso, final String name, final JSONType type)
         {
             return (type == getNativeTypeOf(jso, name));
         }
 
-        public final static NNativeType getNativeTypeOf(final NObjectJSO ojso, final String name)
+        public final static JSONType getNativeTypeOf(final NObjectJSO ojso, final String name)
         {
             return getNativeTypeOfJSO(ojso, name);
         }
 
-        public final static boolean is(final NArrayJSO jso, final int index, final NNativeType type)
+        public final static boolean is(final NArrayJSO jso, final int index, final JSONType type)
         {
             return (type == getNativeTypeOf(jso, index));
         }
 
-        public final static NNativeType getNativeTypeOf(final NArrayJSO array, final int index)
+        public final static JSONType getNativeTypeOf(final NArrayJSO array, final int index)
         {
             if ((index >= 0) && (index < array.size()))
             {
                 return getNativeTypeOfJSO(array, index);
             }
-            return NNativeType.UNDEFINED;
+            return JSONType.UNDEFINED;
         }
 
         public final static NValue<?> getAsNValue(final NArrayJSO array, final int index)
@@ -225,7 +239,7 @@ public final class NUtils
                 {
                     final JavaScriptObject func = reviver.reviver();
 
-                    if (Native.is(func, NNativeType.FUNCTION))
+                    if (Native.is(func, JSONType.FUNCTION))
                     {
                         root = Native.parseJSON(json, func);
                     }
@@ -285,7 +299,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (Native.is(func, NNativeType.FUNCTION))
+            if (Native.is(func, JSONType.FUNCTION))
             {
                 return Native.toJSONString(value, func);
             }
@@ -321,7 +335,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (Native.is(func, NNativeType.FUNCTION))
+            if (Native.is(func, JSONType.FUNCTION))
             {
                 if (null == indent)
                 {
@@ -357,7 +371,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (Native.is(func, NNativeType.FUNCTION))
+            if (Native.is(func, JSONType.FUNCTION))
             {
                 return Native.toJSONString(value, func, Math.max(0, indent));
             }
@@ -384,38 +398,38 @@ public final class NUtils
         /*-{
 			this.getNativeTypeOf = function(value) {
 				if (null == value) {
-					return @com.ait.tooling.nativetools.client.NNativeType::NULL;
+					return @com.ait.tooling.common.api.json.JSONType::NULL;
 				}
 				var type = typeof value;
 
 				switch (type) {
 				case 'string': {
-					return @com.ait.tooling.nativetools.client.NNativeType::STRING;
+					return @com.ait.tooling.common.api.json.JSONType::STRING;
 				}
 				case 'boolean': {
-					return @com.ait.tooling.nativetools.client.NNativeType::BOOLEAN;
+					return @com.ait.tooling.common.api.json.JSONType::BOOLEAN;
 				}
 				case 'number': {
 					if (isFinite(value)) {
-						return @com.ait.tooling.nativetools.client.NNativeType::NUMBER;
+						return @com.ait.tooling.common.api.json.JSONType::NUMBER;
 					}
-					return @com.ait.tooling.nativetools.client.NNativeType::UNDEFINED;
+					return @com.ait.tooling.common.api.json.JSONType::UNDEFINED;
 				}
 				case 'object': {
 					if ((value instanceof Array)
 							|| (value instanceof $wnd.Array)) {
-						return @com.ait.tooling.nativetools.client.NNativeType::ARRAY;
+						return @com.ait.tooling.common.api.json.JSONType::ARRAY;
 					}
 					if (value === Object(value)) {
-						return @com.ait.tooling.nativetools.client.NNativeType::OBJECT;
+						return @com.ait.tooling.common.api.json.JSONType::OBJECT;
 					}
-					return @com.ait.tooling.nativetools.client.NNativeType::UNDEFINED;
+					return @com.ait.tooling.common.api.json.JSONType::UNDEFINED;
 				}
 				case 'function': {
-					return @com.ait.tooling.nativetools.client.NNativeType::FUNCTION;
+					return @com.ait.tooling.common.api.json.JSONType::FUNCTION;
 				}
 				}
-				return @com.ait.tooling.nativetools.client.NNativeType::UNDEFINED;
+				return @com.ait.tooling.common.api.json.JSONType::UNDEFINED;
 			};
         }-*/;
     }

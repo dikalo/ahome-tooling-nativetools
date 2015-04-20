@@ -16,6 +16,7 @@
 
 package com.ait.tooling.nativetools.client;
 
+import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.common.api.types.IMixedListDefinition;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONArray;
@@ -476,12 +477,12 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return new NArray(m_jso.slice(beg, end));
     }
 
-    public final NNativeType getNativeTypeOf(int index)
+    public final JSONType getNativeTypeOf(int index)
     {
         return m_jso.getNativeTypeOf(index);
     }
 
-    public final boolean is(int index, NNativeType type)
+    public final boolean is(int index, JSONType type)
     {
         return m_jso.is(index, type);
     }
@@ -583,15 +584,15 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final NNativeType getNativeTypeOf()
+    public final JSONType getNativeTypeOf()
     {
-        return NNativeType.ARRAY;
+        return JSONType.ARRAY;
     }
 
     @Override
-    public final boolean is(NNativeType type)
+    public final boolean is(JSONType type)
     {
-        return (NNativeType.ARRAY == type);
+        return (JSONType.ARRAY == type);
     }
 
     @Override
@@ -685,31 +686,31 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     @Override
     public final boolean isString(int index)
     {
-        return is(index, NNativeType.STRING);
+        return is(index, JSONType.STRING);
     }
 
     @Override
     public final boolean isBoolean(int index)
     {
-        return is(index, NNativeType.BOOLEAN);
+        return is(index, JSONType.BOOLEAN);
     }
 
     @Override
     public final boolean isObject(int index)
     {
-        return is(index, NNativeType.OBJECT);
+        return is(index, JSONType.OBJECT);
     }
 
     @Override
     public final boolean isArray(int index)
     {
-        return is(index, NNativeType.ARRAY);
+        return is(index, JSONType.ARRAY);
     }
 
     @Override
     public final boolean isNumber(int index)
     {
-        return is(index, NNativeType.NUMBER);
+        return is(index, JSONType.NUMBER);
     }
 
     @Override
@@ -727,7 +728,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     @Override
     public final boolean isNativeFunction(final int index)
     {
-        return is(index, NNativeType.FUNCTION);
+        return is(index, JSONType.FUNCTION);
     }
 
     @Override
