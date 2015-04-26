@@ -14,19 +14,29 @@
    limitations under the License.
  */
 
-package com.ait.tooling.nativetools.client.polyfill;
+package com.ait.tooling.nativetools.client.security;
 
-import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.TextResource;
+import com.google.gwt.safehtml.shared.SimpleHtmlSanitizer;
 
-public interface NativeToolsResources extends ClientBundle
+public final class XSS
 {
-    @Source("json2.js")
-    public TextResource json2();
-    
-    @Source("sha_512.js")
-    public TextResource sha_512();
+    private static final XSS INSTANCE = new XSS();
 
-    @Source("enc_b64.js")
-    public TextResource enc_b64();
+    private XSS()
+    {
+    }
+
+    public static final XSS get()
+    {
+        return INSTANCE;
+    }
+
+    public final String clean(String html)
+    {
+        if ((null == html) || (html.isEmpty()))
+        {
+            return html;
+        }
+        return SimpleHtmlSanitizer.sanitizeHtml(html).asString();
+    }
 }

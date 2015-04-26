@@ -137,6 +137,13 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
         return 0;
     }
 
+    public final <T extends Collection<String>> T into(final T coll)
+    {
+        coll.addAll(keys());
+
+        return coll;
+    }
+
     public final Collection<String> keys()
     {
         final ArrayList<String> keys = new ArrayList<String>();

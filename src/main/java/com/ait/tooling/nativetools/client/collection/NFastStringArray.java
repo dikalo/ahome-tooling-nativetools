@@ -17,6 +17,7 @@
 package com.ait.tooling.nativetools.client.collection;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 
@@ -97,6 +98,17 @@ public final class NFastStringArray extends NFastPrimitiveArrayBase<NFastStringA
     public final NFastStringArray uniq()
     {
         return new NFastStringArray(getJSO().uniq());
+    }
+
+    public final <T extends Collection<String>> T into(final T coll)
+    {
+        final int size = size();
+
+        for (int i = 0; i < size; i++)
+        {
+            coll.add(get(i));
+        }
+        return coll;
     }
 
     @Override

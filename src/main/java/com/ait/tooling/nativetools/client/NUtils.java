@@ -62,12 +62,23 @@ public final class NUtils
 
         private static final NativeToolsResources make()
         {
-            NativeToolsResources make = GWT.create(NativeToolsResources.class);
+            final NativeToolsResources make = GWT.create(NativeToolsResources.class);
 
             Client.get().injectJs(make.json2());
 
+            Client.get().injectJs(make.enc_b64());
+
+            Client.get().injectJs(make.sha_512());
+
             return make;
         }
+
+        public static final native String SHA512(String text)
+        /*-{
+			var hash = $wnd.CryptoJS.SHA512(text);
+
+			return hash.toString();
+        }-*/;
 
         final static native JavaScriptObject parseJSON(String json)
         /*-{

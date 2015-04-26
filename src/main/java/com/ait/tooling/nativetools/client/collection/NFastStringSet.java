@@ -202,6 +202,13 @@ public final class NFastStringSet implements Iterable<String>, NHasJSO<NFastStri
         return NUtils.JSON.toJSONString(m_jso);
     }
 
+    public final <T extends Collection<String>> T into(final T coll)
+    {
+        coll.addAll(keys());
+
+        return coll;
+    }
+
     public final boolean any(final NFastStringSet look)
     {
         if (null == look)
