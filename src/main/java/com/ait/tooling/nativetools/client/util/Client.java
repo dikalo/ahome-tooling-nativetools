@@ -16,18 +16,23 @@ limitations under the License.
 
 package com.ait.tooling.nativetools.client.util;
 
+import com.ait.tooling.common.api.java.util.IHTTPConstants;
+import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.common.api.java.util.UUID;
+import com.ait.tooling.nativetools.client.security.XSS;
+import com.ait.tooling.nativetools.client.storage.ClientStorage;
+import com.ait.tooling.nativetools.client.storage.LocalStorage;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.StyleInjector;
 import com.google.gwt.resources.client.TextResource;
 
-public final class Client implements ILogging
+public final class Client implements ILogging, IHTTPConstants
 {
     private static Client INSTANCE;
 
-    private String        m_cliuuid;
-
     private ILogging      m_logging;
+
+    private String        m_cliuuid;
 
     private Client()
     {
@@ -56,11 +61,60 @@ public final class Client implements ILogging
         }
     }
 
+    /*
+     * This should uniquely identify the browser by UUID in ClientStorage till cache is cleared.
+     * There is no other way to do "user browser identification" without getting REALLY, REALLY,
+     * REALLY hacky!!! ( zombie cookies, Canvas Finger printing, etc. ), which are all nefarious
+     * and now well recieved, for good reason.
+     * 
+     * Extra checks to rule out LocalStorage cache poisoning ( OK Laugh, I have seen it happen )
+     * 
+     * DSJ
+     * 
+     */
     public final String getClientUUID()
     {
         if (null == m_cliuuid)
         {
-            m_cliuuid = UUID.uuid();
+            if (LocalStorage.get().isSupported())
+            {
+                m_cliuuid = StringOps.toTrimOrNull(LocalStorage.get().getString(X_CLIENT_UUID_HEADER));
+            }
+            if (null == m_cliuuid)
+            {
+                m_cliuuid = StringOps.toTrimOrNull(ClientStorage.get().getString(X_CLIENT_UUID_HEADER));
+            }
+            if (null == m_cliuuid)
+            {
+                m_cliuuid = UUID.uuid();
+
+                if (LocalStorage.get().isSupported())
+                {
+                    LocalStorage.get().putString(X_CLIENT_UUID_HEADER, m_cliuuid);
+                }
+                else
+                {
+                    ClientStorage.get().putString(X_CLIENT_UUID_HEADER, m_cliuuid);
+                }
+            }
+            else
+            {
+                final String temp = XSS.get().clean(m_cliuuid);
+
+                if (false == temp.equals(m_cliuuid))
+                {
+                    m_cliuuid = temp;
+
+                    if (LocalStorage.get().isSupported())
+                    {
+                        LocalStorage.get().putString(X_CLIENT_UUID_HEADER, m_cliuuid);
+                    }
+                    else
+                    {
+                        ClientStorage.get().putString(X_CLIENT_UUID_HEADER, m_cliuuid);
+                    }
+                }
+            }
         }
         return m_cliuuid;
     }
