@@ -205,9 +205,12 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     {
         if (isArray(name))
         {
-            NArrayJSO jso = getAsJSO(name).cast();
-
-            return new NArray(jso);
+            final NArrayJSO mjso = getAsJSO(name);
+            
+            if (null != mjso)
+            {
+                return new NArray(mjso);
+            }
         }
         return null;
     }
@@ -217,9 +220,12 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     {
         if (isObject(name))
         {
-            NObjectJSO jso = getAsJSO(name).cast();
+            final NObjectJSO mjso = getAsJSO(name);
 
-            return new NObject(jso);
+            if (null != mjso)
+            {
+                return new NObject(mjso);
+            }
         }
         return null;
     }
@@ -231,7 +237,13 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
 
     public final <T extends JavaScriptObject> T getAsJSO(final String name)
     {
-        return getAsJSO(name).cast();
+        final JavaScriptObject mjso = m_jso.getAsJSO(name);
+
+        if (null != mjso)
+        {
+            return mjso.cast();
+        }
+        return null;
     }
 
     @Override

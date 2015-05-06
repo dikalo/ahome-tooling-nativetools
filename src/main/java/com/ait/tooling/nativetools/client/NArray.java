@@ -532,7 +532,12 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     {
         if (isArray(index))
         {
-            return new NArray((NArrayJSO) getAsJSO(index).cast());
+            final NArrayJSO mjso = getAsJSO(index);
+
+            if (null != mjso)
+            {
+                return new NArray(mjso);
+            }
         }
         return null;
     }
@@ -542,7 +547,12 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     {
         if (isObject(index))
         {
-            return new NObject((NObjectJSO) getAsJSO(index).cast());
+            final NObjectJSO mjso = getAsJSO(index);
+
+            if (null != mjso)
+            {
+                return new NObject(mjso);
+            }
         }
         return null;
     }
@@ -552,11 +562,16 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return m_jso.getAsNValue(index);
     }
 
-    public final JavaScriptObject getAsJSO(int index)
+    public final <T extends JavaScriptObject> T getAsJSO(int index)
     {
         if ((index >= 0) && (index < size()))
         {
-            return m_jso.getAsJSO(index);
+            final JavaScriptObject mjso = m_jso.getAsJSO(index);
+
+            if (null != mjso)
+            {
+                return mjso.cast();
+            }
         }
         return null;
     }
@@ -724,7 +739,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     {
         return isNumber(index);
     }
-    
+
     @Override
     public final boolean isNativeFunction(final int index)
     {

@@ -64,11 +64,9 @@ public final class NUtils
         {
             final NativeToolsResources make = GWT.create(NativeToolsResources.class);
 
-            Client.get().injectJs(make.json2());
+            Client.get().injectJs(make.sha_512());
 
             Client.get().injectJs(make.enc_b64());
-
-            Client.get().injectJs(make.sha_512());
 
             return make;
         }
