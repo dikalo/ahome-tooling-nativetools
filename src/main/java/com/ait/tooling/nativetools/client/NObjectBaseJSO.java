@@ -19,12 +19,13 @@ package com.ait.tooling.nativetools.client;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.json.client.JSONObject;
 import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.NUtils.JSON;
 import com.ait.tooling.nativetools.client.NUtils.Native;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.json.client.JSONObject;
 
 public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObject
 {
@@ -117,7 +118,7 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
         return is(name, JSONType.FUNCTION);
     }
 
-    public final Collection<String> keys()
+    public final List<String> keys()
     {
         final ArrayList<String> list = new ArrayList<String>();
 

@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.common.api.types.IMixedStringHashDefinition;
@@ -126,7 +126,7 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     }
 
     @Override
-    public final Collection<String> keys()
+    public final List<String> keys()
     {
         return m_jso.keys();
     }

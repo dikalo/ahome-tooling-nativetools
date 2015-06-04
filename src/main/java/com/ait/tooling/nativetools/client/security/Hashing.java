@@ -17,15 +17,16 @@
 package com.ait.tooling.nativetools.client.security;
 
 import com.ait.tooling.common.api.hash.Hasher;
-import com.ait.tooling.common.api.hash.ISHA_512_HASH;
-import com.ait.tooling.common.api.hash.ISHA_512_HASH_SALT;
+import com.ait.tooling.common.api.hash.IHasher;
 import com.ait.tooling.nativetools.client.NUtils;
 
-public final class Hashing implements ISHA_512_HASH_SALT, ISHA_512_HASH
+public final class Hashing implements IHasher
 {
-    private static final Hashing INSTANCE = new Hashing();
+    private static final long    serialVersionUID = -8916814073033942414L;
 
-    private final Hasher         m_hash   = new Hasher(this);
+    private static final Hashing INSTANCE         = new Hashing();
+
+    private final Hasher         m_hash           = new Hasher(this);
 
     public static final Hashing get()
     {
@@ -37,20 +38,20 @@ public final class Hashing implements ISHA_512_HASH_SALT, ISHA_512_HASH
     }
 
     @Override
-    public final String SHA512(final String text, final String salt)
+    public final String sha512(final String text, final String salt)
     {
-        return m_hash.SHA512(text, salt);
+        return m_hash.sha512(text, salt);
     }
 
     @Override
-    public final String SHA512(final String text, final String salt, final int iter)
+    public final String sha512(final String text, final String salt, final int iter)
     {
-        return m_hash.SHA512(text, salt, iter);
+        return m_hash.sha512(text, salt, iter);
     }
 
     @Override
-    public final String SHA512(final String string)
+    public final String sha512(final String text)
     {
-        return NUtils.Native.SHA512(string);
+        return NUtils.Native.sha512(text);
     }
 }

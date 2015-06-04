@@ -71,7 +71,7 @@ public final class NUtils
             return make;
         }
 
-        public static final native String SHA512(String text)
+        public static final native String sha512(String text)
         /*-{
 			var hash = $wnd.CryptoJS.SHA512(text);
 
