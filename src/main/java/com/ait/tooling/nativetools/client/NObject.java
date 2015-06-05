@@ -120,9 +120,11 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     }
 
     @Override
-    public final void remove(final String name)
+    public final Object remove(final String name)
     {
         m_jso.remove(name);
+
+        return null;
     }
 
     @Override
@@ -206,7 +208,7 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
         if (isArray(name))
         {
             final NArrayJSO mjso = getAsJSO(name);
-            
+
             if (null != mjso)
             {
                 return new NArray(mjso);
