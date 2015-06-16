@@ -45,7 +45,6 @@ jar {
 
 repositories {
     mavenCentral()
-    maven { url "${sonatype_snapshotURL}" }
 }
 
 sourceSets {
