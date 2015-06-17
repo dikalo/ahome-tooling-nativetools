@@ -1,27 +1,33 @@
 /*
- Copyright (c) 2014,2015 Ahome' Innovation Technologies. All rights reserved.
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- http://www.apache.org/licenses/LICENSE-2.0
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ * Copyright (c) 2014,2015 Ahome' Innovation Technologies. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
 sourceCompatibility = 1.7
 
-version = '1.0.35-RC0'
+version = '1.0.35-RC1'
 
 group = 'com.ahome-it'
 
 task doJavaDocs(type: Javadoc) {
     source = sourceSets.main.allJava
+    failOnError = false
+    title = 'Ahome Tooling NativeTools - GWT high speed native collection, browser access, and JSON utilities.'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -57,7 +63,7 @@ sourceSets {
 
 dependencies {
     compile(group: 'com.google.gwt', name: 'gwt-user', version: '2.6.1')
-    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.33-RC0')
+    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.33-RC1')
 }
 
 artifacts {
@@ -80,12 +86,12 @@ uploadArchives {
             pom.project {
                 name 'Ahome-Tooling-NativeTools'
                 packaging 'jar'
-                description 'Ahome-Tooling-NativeTools is common integfaces and utility classes for Ahome Tooling GWT Projects'
+                description 'Ahome Tooling NativeTools - GWT high speed native collection, browser access, and JSON utilities.'
                 url 'https://github.com/ahome-it/ahome-tooling-nativetools'
                 scm {
                     url 'scm:git@github.com:ahome-it/ahome-tooling-nativetools.git'
-                    connection 'scm:ggit@github.com:ahome-it/ahome-tooling-nativetools.git'
-                    developerConnection 'git@github.com:ahome-it/ahome-tooling-nativetools.git'
+                    connection 'scm:git@github.com:ahome-it/ahome-tooling-nativetools.git'
+                    developerConnection 'scm:git@github.com:ahome-it/ahome-tooling-nativetools.git'
                 }
                 licenses {
                     license {
@@ -96,8 +102,10 @@ uploadArchives {
                 }
                 developers {
                     developer {
-                        id 'SprocketNYC'
-                        name 'Dean Jones'
+                        id 'sprocketnyc'
+                        name 'Dean S. Jones'
+                        email 'deansjones@gmail.com'
+                        url 'http://www.lienzo-core.com'
                     }
                 }
             }
