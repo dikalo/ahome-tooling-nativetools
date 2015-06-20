@@ -20,7 +20,7 @@ apply plugin: 'signing'
 
 sourceCompatibility = 1.7
 
-version = '1.0.35-RC1'
+version = '1.0.35-RELEASE'
 
 group = 'com.ahome-it'
 
@@ -63,7 +63,7 @@ sourceSets {
 
 dependencies {
     compile(group: 'com.google.gwt', name: 'gwt-user', version: '2.6.1')
-    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.33-RC1')
+    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.33-RELEASE')
 }
 
 artifacts {
