@@ -23,7 +23,7 @@ public interface NativeToolsResources extends ClientBundle
 {
     @Source("json2.js")
     public TextResource json2();
-    
+
     @Source("sha_512.js")
     public TextResource sha_512();
 

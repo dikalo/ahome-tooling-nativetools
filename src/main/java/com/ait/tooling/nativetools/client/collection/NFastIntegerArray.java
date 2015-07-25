@@ -18,6 +18,8 @@ package com.ait.tooling.nativetools.client.collection;
 
 public final class NFastIntegerArray extends NFastPrimitiveArrayBase<NFastIntegerArray, NFastIntegerArrayJSO>
 {
+    private static final long serialVersionUID = -3056428438870418887L;
+
     public NFastIntegerArray(final NFastIntegerArrayJSO jso)
     {
         super((null == jso) ? NFastIntegerArrayJSO.make() : jso);

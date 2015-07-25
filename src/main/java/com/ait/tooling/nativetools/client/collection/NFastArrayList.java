@@ -16,6 +16,7 @@
 
 package com.ait.tooling.nativetools.client.collection;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -26,8 +27,10 @@ import com.ait.tooling.nativetools.client.NArrayBaseJSO;
 /**
  * A facade implementation in JavaScript for fast Lists.
  */
-public final class NFastArrayList<M> implements Iterable<M>
+public final class NFastArrayList<M> implements Iterable<M>, Serializable
 {
+    private static final long         serialVersionUID = -1061291374765090890L;
+
     private final FastArrayListJSO<M> m_jso;
 
     public NFastArrayList()

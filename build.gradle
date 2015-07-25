@@ -20,7 +20,7 @@ apply plugin: 'signing'
 
 sourceCompatibility = 1.7
 
-version = '1.0.35-RELEASE'
+version = '1.0.36-RELEASE'
 
 group = 'com.ahome-it'
 
@@ -63,7 +63,7 @@ sourceSets {
 
 dependencies {
     compile(group: 'com.google.gwt', name: 'gwt-user', version: '2.6.1')
-    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.33-RELEASE')
+    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.34-RELEASE')
 }
 
 artifacts {
@@ -80,7 +80,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            repository(url: "${sonatype_staging_URL}") {
                 authentication(userName: "${sonatype_user}", password: "${sonatype_password}")
             }
             pom.project {

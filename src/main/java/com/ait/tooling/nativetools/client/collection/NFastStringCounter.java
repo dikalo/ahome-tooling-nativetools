@@ -30,7 +30,9 @@ import com.google.gwt.json.client.JSONObject;
 
 public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFastStringCounterJSO>, NJSONStringify
 {
-    private final NFastStringCounterJSO m_jso = NFastStringCounterJSO.make();
+    private static final long           serialVersionUID = -8270903993910958084L;
+
+    private final NFastStringCounterJSO m_jso            = NFastStringCounterJSO.make();
 
     public NFastStringCounter()
     {

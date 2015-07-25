@@ -21,8 +21,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 
-public final class NFastStringArray extends NFastPrimitiveArrayBase<NFastStringArray, NFastStringArrayJSO> implements Iterable<String>
+public final class NFastStringArray extends NFastPrimitiveArrayBase<NFastStringArray, NFastStringArrayJSO>implements Iterable<String>
 {
+    private static final long serialVersionUID = 4268942061658336077L;
+
     public NFastStringArray(final NFastStringArrayJSO jso)
     {
         super((null == jso) ? NFastStringArrayJSO.make() : jso);

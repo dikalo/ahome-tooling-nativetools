@@ -24,6 +24,7 @@ import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.google.gwt.json.client.JSONObject;
 
+@SuppressWarnings("serial")
 public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDictionarytBaseJSO<T>> implements NHasJSO<T>, NJSONStringify
 {
     private final T m_jso;
@@ -115,7 +116,7 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
     {
         return m_jso.size();
     }
-    
+
     public final void clear()
     {
         m_jso.clear();

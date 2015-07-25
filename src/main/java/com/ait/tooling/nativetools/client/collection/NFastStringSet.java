@@ -31,6 +31,8 @@ import com.google.gwt.json.client.JSONObject;
 
 public final class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.NFastStringSetJSO>, NJSONStringify
 {
+    private static final long       serialVersionUID = 812877730210073591L;
+
     private final NFastStringSetJSO m_jso;
 
     public NFastStringSet(final NFastStringSetJSO jso)

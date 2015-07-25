@@ -23,10 +23,10 @@ public interface NJSONStringify extends JSONStringify
     public String toJSONString(int indent);
 
     public String toJSONString(String indent);
-    
+
     public String toJSONString(NJSONReplacer replacer);
-    
+
     public String toJSONString(NJSONReplacer replacer, int indent);
-    
+
     public String toJSONString(NJSONReplacer replacer, String indent);
 }

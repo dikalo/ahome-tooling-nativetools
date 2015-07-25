@@ -18,6 +18,8 @@ package com.ait.tooling.nativetools.client.collection;
 
 public final class NFastBooleanArray extends NFastPrimitiveArrayBase<NFastBooleanArray, NFastBooleanArrayJSO>
 {
+    private static final long serialVersionUID = -5272892547568017467L;
+
     public NFastBooleanArray(final NFastBooleanArrayJSO jso)
     {
         super((null == jso) ? NFastBooleanArrayJSO.make() : jso);

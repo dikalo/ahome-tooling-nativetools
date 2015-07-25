@@ -28,6 +28,8 @@ import com.google.gwt.json.client.JSONObject;
 
 public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 {
+    private static final long serialVersionUID = 5064915579055040380L;
+    
     private final NObjectJSO m_jso;
 
     public MetaData()

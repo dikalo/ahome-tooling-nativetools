@@ -24,6 +24,7 @@ import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.google.gwt.json.client.JSONArray;
 
+@SuppressWarnings("serial")
 public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<A, T>, T extends NFastPrimitiveArrayBaseJSO<T>> implements NHasJSO<T>, NJSONStringify
 {
     private final T m_jso;
@@ -32,12 +33,12 @@ public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<
     {
         m_jso = Objects.requireNonNull(jso);
     }
-    
+
     public final JSONArray toJSONArray()
     {
         return m_jso.toJSONArray();
     }
-    
+
     @Override
     public final String toJSONString(final int indent)
     {
@@ -79,7 +80,7 @@ public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<
     {
         return m_jso;
     }
-    
+
     @SuppressWarnings("unchecked")
     protected final A cast()
     {
@@ -94,7 +95,7 @@ public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<
     public final A clear()
     {
         m_jso.clear();
-        
+
         return cast();
     }
 
@@ -131,21 +132,21 @@ public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<
     public final A setSize(final int size)
     {
         m_jso.setSize(size);
-        
+
         return cast();
     }
 
     public final A splice(final int beg, final int removed)
     {
         m_jso.splice(beg, removed);
-        
+
         return cast();
     }
 
     public final A reverse()
     {
         m_jso.reverse();
-        
+
         return cast();
     }
 
