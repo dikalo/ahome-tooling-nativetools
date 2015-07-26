@@ -15,18 +15,29 @@ Maven:
 <dependency>
   <groupId>com.ahome-it</groupId>
   <artifactId>ahome-tooling-nativetools</artifactId>
-  <version>1.0.36-RELEASE</version>
+  <version>1.0.45-RELEASE</version>
 </dependency>
 ```
 Gradle:
 
 ```
 dependencies {
-    compile(group:'com.ahome-it',name:'ahome-tooling-nativetools',version:'1.0.36-RELEASE')
+    compile(group:'com.ahome-it',name:'ahome-tooling-nativetools',version:'1.0.45-RELEASE')
 }
 ```
+Javadoc URL:
+
+http://lienzo-core.com/documents/javadoc/ahome-tooling-nativetools
+
 License:
 
-Ahome Tooling Common is released under version 2.0 of the Apache License.
+Copyright (c) 2014,2015 Ahome Innovation Technologies. All rights reserved.
+
+Ahome Tooling NativeTools is released under version 2.0 of the Apache License.
 
 http://www.apache.org/licenses/LICENSE-2.0.html
+
+Author(s):
+
+Dean S. Jones
+deansjones@gmail.com
