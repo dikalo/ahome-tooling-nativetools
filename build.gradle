@@ -14,11 +14,25 @@
  * limitations under the License.
  */
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(group: 'org.ajoberstar', name: 'grgit', version: '1.4.0')
+        classpath(group: 'commons-codec', name: 'commons-codec', version: '1.10')
+        classpath(group: 'commons-logging', name: 'commons-logging', version: '1.2')
+        classpath(group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5')
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-version = '1.0.45-RELEASE'
+compileJava.options.encoding = 'UTF-8'
+
+version = '1.0.55-RELEASE'
 
 group = 'com.ahome-it'
 
@@ -60,8 +74,8 @@ sourceSets {
 }
 
 dependencies {
-    compile(group: 'com.google.gwt', name: 'gwt-user', version: '2.6.1')
-    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.45-RELEASE')
+    compile(group: 'com.google.gwt', name: 'gwt-user', version: '2.7.0')
+    compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.55-RELEASE')
 }
 
 artifacts {
