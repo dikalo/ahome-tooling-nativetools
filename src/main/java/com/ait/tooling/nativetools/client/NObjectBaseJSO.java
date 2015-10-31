@@ -80,7 +80,7 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
 
     public final JSONType getNativeTypeOf(final String name)
     {
-        return Native.getNativeTypeOfJSO(this, NUtils.doKeyRepair(name, true));
+        return Native.getNativeTypeOfJSO(this, NUtils.doKeyRepair(name));
     }
 
     public final boolean is(final String name, final JSONType type)
@@ -164,12 +164,12 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
 
     public final boolean isDefined(final String name)
     {
-        return isDefined_0(NUtils.doKeyRepair(name, true));
+        return isDefined_0(NUtils.doKeyRepair(name));
     }
 
     public final boolean isNull(final String name)
     {
-        return isNull_0(NUtils.doKeyRepair(name, true));
+        return isNull_0(NUtils.doKeyRepair(name));
     }
 
     private final native boolean isDefined_0(String name)
@@ -194,7 +194,7 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
 
     public final void remove(final String name)
     {
-        remove_0(NUtils.doKeyRepair(name, true));
+        remove_0(NUtils.doKeyRepair(name));
     }
 
     private final native void remove_0(String name)

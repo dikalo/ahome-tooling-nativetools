@@ -31,12 +31,12 @@ public class NFastStringDictionaryJSO extends NFastPrimitiveDictionarytBaseJSO<N
 
     public final void put(final String name, final String value)
     {
-        put_0(NUtils.doKeyRepair(name, true), NUtils.doStringRepair(value));
+        put_0(NUtils.doKeyRepair(name), NUtils.doStringRepair(value));
     }
 
     public final String get(final String name)
     {
-        return get_0(NUtils.doKeyRepair(name, true));
+        return get_0(NUtils.doKeyRepair(name));
     }
 
     private final native void put_0(String name, String value)

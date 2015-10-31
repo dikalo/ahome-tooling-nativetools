@@ -31,44 +31,44 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
 
     public final void put(final String name, final int value)
     {
-        put_0(NUtils.doKeyRepair(name, true), value);
+        put_0(NUtils.doKeyRepair(name), value);
     }
 
     public final void put(final String name, final double value)
     {
-        put_0(NUtils.doKeyRepair(name, true), value);
+        put_0(NUtils.doKeyRepair(name), value);
     }
 
     public final void put(final String name, final boolean value)
     {
-        put_0(NUtils.doKeyRepair(name, true), value);
+        put_0(NUtils.doKeyRepair(name), value);
     }
 
     public final void put(final String name, final String value)
     {
-        put_0(NUtils.doKeyRepair(name, true), NUtils.doStringRepair(value));
+        put_0(NUtils.doKeyRepair(name), NUtils.doStringRepair(value));
     }
 
     public final void put(final String name, final NHasJSO<? extends JavaScriptObject> value)
     {
         if (null != value)
         {
-            put_0(NUtils.doKeyRepair(name, true), value.getJSO());
+            put_0(NUtils.doKeyRepair(name), value.getJSO());
         }
         else
         {
-            put_0(NUtils.doKeyRepair(name, true), (JavaScriptObject) null);
+            put_0(NUtils.doKeyRepair(name), (JavaScriptObject) null);
         }
     }
 
     public final void put(final String name, final NObjectBaseJSO<?> value)
     {
-        put_0(NUtils.doKeyRepair(name, true), value);
+        put_0(NUtils.doKeyRepair(name), value);
     }
 
     public final void put(final String name, final NArrayBaseJSO<?> value)
     {
-        put_0(NUtils.doKeyRepair(name, true), value);
+        put_0(NUtils.doKeyRepair(name), value);
     }
 
     private final native void put_0(String name, int value)
@@ -98,37 +98,37 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
 
     public final NValue<?> getAsNValue(final String name)
     {
-        return getAsNValue_0(NUtils.doKeyRepair(name, true));
+        return getAsNValue_0(NUtils.doKeyRepair(name));
     }
 
     public final JavaScriptObject getAsJSO(final String name)
     {
-        return getAsJSO_0(NUtils.doKeyRepair(name, true));
+        return getAsJSO_0(NUtils.doKeyRepair(name));
     }
 
     public final int getAsInteger(final String name)
     {
-        return getAsInteger_0(NUtils.doKeyRepair(name, true));
+        return getAsInteger_0(NUtils.doKeyRepair(name));
     }
 
     public final double getAsDouble(final String name)
     {
-        return getAsDouble_0(NUtils.doKeyRepair(name, true));
+        return getAsDouble_0(NUtils.doKeyRepair(name));
     }
 
     public final boolean getAsBoolean(final String name)
     {
-        return getAsBoolean_0(NUtils.doKeyRepair(name, true));
+        return getAsBoolean_0(NUtils.doKeyRepair(name));
     }
 
     public final String getAsString(final String name)
     {
-        return getAsString_0(NUtils.doKeyRepair(name, true));
+        return getAsString_0(NUtils.doKeyRepair(name));
     }
 
     public final String getAsString(final String name, final String otherwise)
     {
-        final String value = getAsString_0(NUtils.doKeyRepair(name, true));
+        final String value = getAsString_0(NUtils.doKeyRepair(name));
 
         return ((null != value) ? value : otherwise);
     }

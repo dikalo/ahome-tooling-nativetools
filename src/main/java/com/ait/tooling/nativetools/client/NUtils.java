@@ -40,14 +40,9 @@ public final class NUtils
 
     public final static String doKeyRepair(final String name)
     {
-        return doKeyRepair(name, true);
-    }
-
-    public final static String doKeyRepair(final String name, final boolean trimmed)
-    {
-        final String trim = StringOps.requireTrimOrNull(name);
-
-        return doStringRepair(((trimmed) ? trim : name));
+        StringOps.requireTrimOrNull(name);
+        
+        return doStringRepair(name);
     }
 
     public static final class Native

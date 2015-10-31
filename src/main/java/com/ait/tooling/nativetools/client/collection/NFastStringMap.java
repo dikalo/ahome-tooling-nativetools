@@ -44,7 +44,7 @@ public final class NFastStringMap<V>
      */
     public final NFastStringMap<V> put(final String key, final V value)
     {
-        m_jso.put(NUtils.doKeyRepair(key, true), value);
+        m_jso.put(NUtils.doKeyRepair(key), value);
 
         return this;
     }
@@ -56,7 +56,7 @@ public final class NFastStringMap<V>
      */
     public final V get(final String key)
     {
-        return m_jso.get(NUtils.doKeyRepair(key, true));
+        return m_jso.get(NUtils.doKeyRepair(key));
     }
 
     /**

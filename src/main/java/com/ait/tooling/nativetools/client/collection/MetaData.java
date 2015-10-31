@@ -133,7 +133,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 
     public final JSONType getNativeTypeOf(final String name)
     {
-        return Native.getNativeTypeOfJSO(m_jso, NUtils.doKeyRepair(name, true));
+        return Native.getNativeTypeOfJSO(m_jso, NUtils.doKeyRepair(name));
     }
 
     public final boolean is(final String name, final JSONType type)
