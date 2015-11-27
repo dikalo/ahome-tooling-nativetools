@@ -16,7 +16,6 @@
 
 package com.ait.tooling.nativetools.client;
 
-import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.polyfill.NativeToolsResources;
 import com.ait.tooling.nativetools.client.util.Client;
@@ -31,18 +30,23 @@ public final class NUtils
 
     public final static String doStringRepair(final String value)
     {
+        /*
         if (null == value)
         {
             return value;
         }
         return value.substring(0);
+        */
+        return value;
     }
 
     public final static String doKeyRepair(final String name)
     {
-        StringOps.requireTrimOrNull(name);
-        
-        return doStringRepair(name);
+        if (name.length() == 0)
+        {
+            throw new IllegalArgumentException("empty key");
+        }
+        return name;
     }
 
     public static final class Native
@@ -259,7 +263,7 @@ public final class NUtils
             }
             catch (Exception e)
             {
-                Client.get().error(e.getMessage());
+                Client.get().error("JSON.parse()", e);
             }
             if (null == root)
             {

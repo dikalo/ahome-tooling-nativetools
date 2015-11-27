@@ -46,14 +46,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 
     public final void push(final String value)
     {
-        if (null != value)
-        {
-            push_0(value.substring(0));
-        }
-        else
-        {
-            push_0(value);
-        }
+        push_0(NUtils.doStringRepair(value));
     }
 
     final native void push_0(String value)
@@ -95,14 +88,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 
     public final void set(final int index, final String value)
     {
-        if (null != value)
-        {
-            set_0(index, value.substring(0));
-        }
-        else
-        {
-            set_0(index, value);
-        }
+        set_0(index, NUtils.doStringRepair(value));
     };
 
     final native void set_0(int index, String value)
@@ -154,14 +140,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 
     public final void unshift(String value)
     {
-        if (null != value)
-        {
-            unshift_0(value.substring(0));
-        }
-        else
-        {
-            unshift_0(value);
-        }
+        unshift_0(NUtils.doStringRepair(value));
     }
 
     public final native void unshift_0(String value)
@@ -223,14 +202,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 
     public final void splice(final int beg, final int removed, final String value)
     {
-        if (null != value)
-        {
-            splice_0(beg, removed, value.substring(0));
-        }
-        else
-        {
-            splice_0(beg, removed, value);
-        }
+        splice_0(beg, removed, NUtils.doStringRepair(value));
     };
 
     public final native void splice_0(int beg, int removed, String value)
