@@ -30,13 +30,6 @@ public final class NUtils
 
     public final static String doStringRepair(final String value)
     {
-        /*
-        if (null == value)
-        {
-            return value;
-        }
-        return value.substring(0);
-        */
         return value;
     }
 
@@ -123,24 +116,19 @@ public final class NUtils
 			return $wnd.JSON.stringify(value, replacer, indent);
         }-*/;
 
-        public final static native JSONType getNativeTypeOfJSO(JavaScriptObject jso, String name)
+        public final static native JSONType getNativeTypeOf(JavaScriptObject jso, String name)
         /*-{
 			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
 			return nops.getNativeTypeOf(jso[name]);
         }-*/;
 
-        public final static native JSONType getNativeTypeOfJSO(JavaScriptObject jso, int index)
+        public final static native JSONType getNativeTypeOf(JavaScriptObject jso, int index)
         /*-{
 			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
 			return nops.getNativeTypeOf(jso[index]);
         }-*/;
-
-        public final static boolean is(final JavaScriptObject jso, final JSONType type)
-        {
-            return (type == getNativeTypeOfJSO(jso));
-        }
 
         public final static native JSONType getNativeTypeOfJSO(JavaScriptObject jso)
         /*-{
@@ -149,28 +137,64 @@ public final class NUtils
 			return nops.getNativeTypeOf(jso);
         }-*/;
 
-        public final static boolean is(final NObjectJSO jso, final String name, final JSONType type)
+        public static final boolean isObject(JavaScriptObject jso, String name)
         {
-            return (type == getNativeTypeOf(jso, name));
+            return (JSONType.OBJECT == getNativeTypeOf(jso, name));
         }
 
-        public final static JSONType getNativeTypeOf(final NObjectJSO ojso, final String name)
+        public static final boolean isArray(JavaScriptObject jso, String name)
         {
-            return getNativeTypeOfJSO(ojso, name);
+            return (JSONType.ARRAY == getNativeTypeOf(jso, name));
         }
 
-        public final static boolean is(final NArrayJSO jso, final int index, final JSONType type)
+        public static final boolean isBoolean(JavaScriptObject jso, String name)
         {
-            return (type == getNativeTypeOf(jso, index));
+            return (JSONType.BOOLEAN == getNativeTypeOf(jso, name));
         }
 
-        public final static JSONType getNativeTypeOf(final NArrayJSO array, final int index)
+        public static final boolean isNumber(JavaScriptObject jso, String name)
         {
-            if ((index >= 0) && (index < array.size()))
-            {
-                return getNativeTypeOfJSO(array, index);
-            }
-            return JSONType.UNDEFINED;
+            return (JSONType.NUMBER == getNativeTypeOf(jso, name));
+        }
+
+        public static final boolean isString(JavaScriptObject jso, String name)
+        {
+            return (JSONType.STRING == getNativeTypeOf(jso, name));
+        }
+
+        public static final boolean isFunction(JavaScriptObject jso, String name)
+        {
+            return (JSONType.FUNCTION == getNativeTypeOf(jso, name));
+        }
+
+        public static final boolean isObject(JavaScriptObject jso, int index)
+        {
+            return (JSONType.OBJECT == getNativeTypeOf(jso, index));
+        }
+
+        public static final boolean isArray(JavaScriptObject jso, int index)
+        {
+            return (JSONType.ARRAY == getNativeTypeOf(jso, index));
+        }
+
+        public static final boolean isBoolean(JavaScriptObject jso, int index)
+        {
+            return (JSONType.BOOLEAN == getNativeTypeOf(jso, index));
+        }
+
+        public static final boolean isNumber(JavaScriptObject jso, int index)
+        {
+            return (JSONType.NUMBER == getNativeTypeOf(jso, index));
+        }
+
+        public static final boolean isString(JavaScriptObject jso, int index)
+        {
+            return (JSONType.STRING == getNativeTypeOf(jso, index));
+        }
+
+        public static final boolean isFunction(JavaScriptObject jso, int index)
+        {
+            return (JSONType.FUNCTION == getNativeTypeOf(jso, index));
         }
 
         public final static NValue<?> getAsNValue(final NArrayJSO array, final int index)
@@ -247,7 +271,7 @@ public final class NUtils
                 {
                     final JavaScriptObject func = reviver.reviver();
 
-                    if (Native.is(func, JSONType.FUNCTION))
+                    if (JSONType.FUNCTION == Native.getNativeTypeOfJSO(func))
                     {
                         root = Native.parseJSON(json, func);
                     }
@@ -307,7 +331,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (Native.is(func, JSONType.FUNCTION))
+            if (JSONType.FUNCTION == Native.getNativeTypeOfJSO(func))
             {
                 return Native.toJSONString(value, func);
             }
@@ -343,7 +367,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (Native.is(func, JSONType.FUNCTION))
+            if (JSONType.FUNCTION == Native.getNativeTypeOfJSO(func))
             {
                 if (null == indent)
                 {
@@ -379,7 +403,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (Native.is(func, JSONType.FUNCTION))
+            if (JSONType.FUNCTION == Native.getNativeTypeOfJSO(func))
             {
                 return Native.toJSONString(value, func, Math.max(0, indent));
             }

@@ -80,42 +80,37 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
 
     public final JSONType getNativeTypeOf(final String name)
     {
-        return Native.getNativeTypeOfJSO(this, NUtils.doKeyRepair(name));
-    }
-
-    public final boolean is(final String name, final JSONType type)
-    {
-        return (type == getNativeTypeOf(name));
+        return Native.getNativeTypeOf(this, NUtils.doKeyRepair(name));
     }
 
     public final boolean isString(final String name)
     {
-        return is(name, JSONType.STRING);
+        return Native.isString(this, NUtils.doKeyRepair(name));
     }
 
     public final boolean isNumber(final String name)
     {
-        return is(name, JSONType.NUMBER);
+        return Native.isNumber(this, NUtils.doKeyRepair(name));
     }
 
     public final boolean isBoolean(final String name)
     {
-        return is(name, JSONType.BOOLEAN);
+        return Native.isBoolean(this, NUtils.doKeyRepair(name));
     }
 
     public final boolean isArray(final String name)
     {
-        return is(name, JSONType.ARRAY);
+        return Native.isArray(this, NUtils.doKeyRepair(name));
     }
 
     public final boolean isObject(final String name)
     {
-        return is(name, JSONType.OBJECT);
+        return Native.isObject(this, NUtils.doKeyRepair(name));
     }
 
     public final boolean isNativeFunction(final String name)
     {
-        return is(name, JSONType.FUNCTION);
+        return Native.isFunction(this, NUtils.doKeyRepair(name));
     }
 
     public final List<String> keys()

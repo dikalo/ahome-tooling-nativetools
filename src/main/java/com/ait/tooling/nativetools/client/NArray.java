@@ -18,6 +18,7 @@ package com.ait.tooling.nativetools.client;
 
 import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.common.api.types.IMixedListDefinition;
+import com.ait.tooling.nativetools.client.NUtils.Native;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONArray;
 
@@ -484,11 +485,6 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return m_jso.getNativeTypeOf(index);
     }
 
-    public final boolean is(int index, JSONType type)
-    {
-        return m_jso.is(index, type);
-    }
-
     @Override
     public final Integer getAsInteger(int index)
     {
@@ -703,31 +699,31 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     @Override
     public final boolean isString(int index)
     {
-        return is(index, JSONType.STRING);
+        return Native.isString(m_jso, index);
     }
 
     @Override
     public final boolean isBoolean(int index)
     {
-        return is(index, JSONType.BOOLEAN);
+        return Native.isBoolean(m_jso, index);
     }
 
     @Override
     public final boolean isObject(int index)
     {
-        return is(index, JSONType.OBJECT);
+        return Native.isObject(m_jso, index);
     }
 
     @Override
     public final boolean isArray(int index)
     {
-        return is(index, JSONType.ARRAY);
+        return Native.isArray(m_jso, index);
     }
 
     @Override
     public final boolean isNumber(int index)
     {
-        return is(index, JSONType.NUMBER);
+        return Native.isNumber(m_jso, index);
     }
 
     @Override
@@ -745,7 +741,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     @Override
     public final boolean isNativeFunction(final int index)
     {
-        return is(index, JSONType.FUNCTION);
+        return Native.isFunction(m_jso, index);
     }
 
     @Override

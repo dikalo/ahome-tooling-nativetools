@@ -153,11 +153,6 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
         return m_jso.getNativeTypeOf(name);
     }
 
-    public final boolean is(final String name, final JSONType type)
-    {
-        return m_jso.is(name, type);
-    }
-
     @Override
     public final boolean isDefined(final String name)
     {

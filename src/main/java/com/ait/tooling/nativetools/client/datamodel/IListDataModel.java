@@ -23,6 +23,4 @@ import com.ait.tooling.nativetools.client.NArray;
 public interface IListDataModel<T> extends ITypedListModel<NArray, T>, IJSONModel<NArray>
 {
     public JSONType getNativeTypeOf(int index);
-
-    public boolean is(int index, JSONType type);
 }

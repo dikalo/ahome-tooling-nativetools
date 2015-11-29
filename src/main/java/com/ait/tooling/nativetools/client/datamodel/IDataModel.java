@@ -23,7 +23,4 @@ import com.ait.tooling.nativetools.client.NJSONStringify;
 public interface IDataModel<T> extends IModel<T>, NJSONStringify
 {
     public JSONType getNativeTypeOf();
-
-    public boolean is(JSONType type);
-
 }

@@ -176,20 +176,8 @@ public abstract class AbstractJSONDataModel extends AbstractModelRepresentation<
     }
 
     @Override
-    public final boolean is(final String name, final JSONType type)
-    {
-        return getModel().is(name, type);
-    }
-
-    @Override
     public final JSONType getNativeTypeOf()
     {
         return JSONType.OBJECT;
-    }
-
-    @Override
-    public final boolean is(final JSONType type)
-    {
-        return (JSONType.OBJECT == type);
     }
 }

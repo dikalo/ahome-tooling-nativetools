@@ -22,6 +22,4 @@ import com.ait.tooling.nativetools.client.NValue;
 public interface IJSONDataModel<T extends NValue<?>> extends IJSONModel<T>
 {
     public JSONType getNativeTypeOf(String name);
-
-    public boolean is(String name, JSONType type);
 }

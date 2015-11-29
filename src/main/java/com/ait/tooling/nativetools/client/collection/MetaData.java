@@ -29,8 +29,8 @@ import com.google.gwt.json.client.JSONObject;
 public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 {
     private static final long serialVersionUID = 5064915579055040380L;
-    
-    private final NObjectJSO m_jso;
+
+    private final NObjectJSO  m_jso;
 
     public MetaData()
     {
@@ -51,7 +51,7 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 
     public MetaData(final JavaScriptObject jso)
     {
-        if ((null != jso) && (Native.is(jso, JSONType.OBJECT)))
+        if ((null != jso) && (JSONType.OBJECT == Native.getNativeTypeOfJSO(jso)))
         {
             m_jso = jso.cast();
         }
@@ -133,37 +133,32 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 
     public final JSONType getNativeTypeOf(final String name)
     {
-        return Native.getNativeTypeOfJSO(m_jso, NUtils.doKeyRepair(name));
-    }
-
-    public final boolean is(final String name, final JSONType type)
-    {
-        return (type == getNativeTypeOf(name));
+        return Native.getNativeTypeOf(m_jso, NUtils.doKeyRepair(name));
     }
 
     public final boolean isString(final String name)
     {
-        return is(name, JSONType.STRING);
+        return Native.isString(m_jso, NUtils.doKeyRepair(name));
     }
 
     public final boolean isBoolean(final String name)
     {
-        return is(name, JSONType.BOOLEAN);
+        return Native.isBoolean(m_jso, NUtils.doKeyRepair(name));
     }
 
     public final boolean isObject(final String name)
     {
-        return is(name, JSONType.OBJECT);
+        return Native.isObject(m_jso, NUtils.doKeyRepair(name));
     }
 
     public final boolean isArray(final String name)
     {
-        return is(name, JSONType.ARRAY);
+        return Native.isArray(m_jso, NUtils.doKeyRepair(name));
     }
 
     public final boolean isNumber(final String name)
     {
-        return is(name, JSONType.NUMBER);
+        return Native.isNumber(m_jso, NUtils.doKeyRepair(name));
     }
 
     public final int getAsInteger(final String name)

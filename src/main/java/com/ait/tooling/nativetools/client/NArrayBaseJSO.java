@@ -84,12 +84,7 @@ public class NArrayBaseJSO<T extends NArrayBaseJSO<T>> extends JavaScriptObject
         {
             return JSONType.UNDEFINED;
         }
-        return Native.getNativeTypeOfJSO(this, index);
-    }
-
-    public final boolean is(int index, final JSONType type)
-    {
-        return (type == getNativeTypeOf(index));
+        return Native.getNativeTypeOf(this, index);
     }
 
     public final boolean isNull(final int index)

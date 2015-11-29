@@ -50,7 +50,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public MetaDataArray(final JavaScriptObject jso)
     {
-        if ((null != jso) && (Native.is(jso, JSONType.ARRAY)))
+        if ((null != jso) && (JSONType.ARRAY == Native.getNativeTypeOfJSO(jso)))
         {
             m_jso = jso.cast();
         }
@@ -67,12 +67,11 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public final JSONType getNativeTypeOf(final int index)
     {
-        return Native.getNativeTypeOfJSO(m_jso, index);
-    }
-
-    public final boolean is(final int index, final JSONType type)
-    {
-        return (type == getNativeTypeOf(index));
+        if ((index < 0) || (index >= size()))
+        {
+            return JSONType.UNDEFINED;
+        }
+        return Native.getNativeTypeOf(m_jso, index);
     }
 
     public final boolean isEmpty()
@@ -225,27 +224,27 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public final boolean isString(final int index)
     {
-        return is(index, JSONType.STRING);
+        return Native.isString(m_jso, index);
     }
 
     public final boolean isBoolean(final int index)
     {
-        return is(index, JSONType.BOOLEAN);
+        return Native.isBoolean(m_jso, index);
     }
 
     public final boolean isObject(final int index)
     {
-        return is(index, JSONType.OBJECT);
+        return Native.isObject(m_jso, index);
     }
 
     public final boolean isArray(final int index)
     {
-        return is(index, JSONType.ARRAY);
+        return Native.isArray(m_jso, index);
     }
 
     public final boolean isNumber(final int index)
     {
-        return is(index, JSONType.NUMBER);
+        return Native.isNumber(m_jso, index);
     }
 
     @Override

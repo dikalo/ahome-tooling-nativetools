@@ -109,11 +109,6 @@ public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<
         return m_jso.getNativeTypeOf(index);
     }
 
-    public final boolean is(final int index, final JSONType type)
-    {
-        return (type == getNativeTypeOf(index));
-    }
-
     public final boolean isNull(final int index)
     {
         return m_jso.isNull(index);

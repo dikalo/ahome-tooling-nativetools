@@ -119,20 +119,8 @@ public abstract class AbstractListDataModel<T> extends AbstractModelRepresentati
     }
 
     @Override
-    public final boolean is(final int index, final JSONType type)
-    {
-        return getModel().is(index, type);
-    }
-
-    @Override
     public final JSONType getNativeTypeOf()
     {
         return JSONType.ARRAY;
-    }
-
-    @Override
-    public final boolean is(final JSONType type)
-    {
-        return (JSONType.ARRAY == type);
     }
 }
