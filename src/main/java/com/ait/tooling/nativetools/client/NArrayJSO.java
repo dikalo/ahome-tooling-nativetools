@@ -44,12 +44,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this[this.length] = value;
     }-*/;
 
-    public final void push(final String value)
-    {
-        push_0(NUtils.doStringRepair(value));
-    }
-
-    final native void push_0(String value)
+    public final native void push(String value)
     /*-{
 		this[this.length] = value;
     }-*/;
@@ -86,12 +81,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this[index] = value;
     }-*/;
 
-    public final void set(final int index, final String value)
-    {
-        set_0(index, NUtils.doStringRepair(value));
-    };
-
-    final native void set_0(int index, String value)
+    public final native void set(int index, String value)
     /*-{
 		this[index] = value;
     }-*/;
@@ -138,12 +128,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this.unshift(value);
     }-*/;
 
-    public final void unshift(String value)
-    {
-        unshift_0(NUtils.doStringRepair(value));
-    }
-
-    public final native void unshift_0(String value)
+    public final native void unshift(String value)
     /*-{
 		this.unshift(value);
     }-*/;
@@ -200,12 +185,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		this.splice(beg, removed, value);
     }-*/;
 
-    public final void splice(final int beg, final int removed, final String value)
-    {
-        splice_0(beg, removed, NUtils.doStringRepair(value));
-    };
-
-    public final native void splice_0(int beg, int removed, String value)
+    public final native void splice(int beg, int removed, String value)
     /*-{
 		this.splice(beg, removed, value);
     }-*/;

@@ -46,7 +46,7 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
 
     public final void put(final String name, final String value)
     {
-        put_0(NUtils.doKeyRepair(name), NUtils.doStringRepair(value));
+        put_0(NUtils.doKeyRepair(name), value);
     }
 
     public final void put(final String name, final NHasJSO<? extends JavaScriptObject> value)

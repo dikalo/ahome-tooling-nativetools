@@ -16,8 +16,6 @@
 
 package com.ait.tooling.nativetools.client.collection;
 
-import com.ait.tooling.nativetools.client.NUtils;
-
 public class NFastStringArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastStringArrayJSO>
 {
     public static final NFastStringArrayJSO make(final String s, final String... list)
@@ -63,12 +61,7 @@ public class NFastStringArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastStringA
         }
     }
 
-    public final void push(final String value)
-    {
-        push_0(NUtils.doStringRepair(value));
-    }
-
-    private final native void push_0(String value)
+    public final native void push(String value)
     /*-{
 		this[this.length] = value;
     }-*/;
@@ -78,12 +71,7 @@ public class NFastStringArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastStringA
 		return this[indx];
     }-*/;
 
-    public final void set(final int indx, final String value)
-    {
-        set_0(indx, NUtils.doStringRepair(value));
-    }
-
-    private final native void set_0(int indx, String value)
+    public final native void set(int indx, String value)
     /*-{
 		this[indx] = value;
     }-*/;
@@ -98,12 +86,7 @@ public class NFastStringArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastStringA
 		return this.shift();
     }-*/;
 
-    public final boolean contains(final String value)
-    {
-        return contains_0(NUtils.doStringRepair(value));
-    }
-
-    private final native boolean contains_0(String value)
+    public final native boolean contains(String value)
     /*-{
 		return (value in this);
     }-*/;

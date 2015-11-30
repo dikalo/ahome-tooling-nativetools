@@ -28,11 +28,6 @@ public final class NUtils
     {
     }
 
-    public final static String doStringRepair(final String value)
-    {
-        return value;
-    }
-
     public final static String doKeyRepair(final String name)
     {
         if (name.length() == 0)
@@ -137,65 +132,89 @@ public final class NUtils
 			return nops.getNativeTypeOf(jso);
         }-*/;
 
-        public static final boolean isObject(JavaScriptObject jso, String name)
-        {
-            return (JSONType.OBJECT == getNativeTypeOf(jso, name));
-        }
+        public static final native boolean isObject(JavaScriptObject jso, String name)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-        public static final boolean isArray(JavaScriptObject jso, String name)
-        {
-            return (JSONType.ARRAY == getNativeTypeOf(jso, name));
-        }
+			return nops.isObject(jso[name]);
+        }-*/;
 
-        public static final boolean isBoolean(JavaScriptObject jso, String name)
-        {
-            return (JSONType.BOOLEAN == getNativeTypeOf(jso, name));
-        }
+        public static final native boolean isArray(JavaScriptObject jso, String name)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-        public static final boolean isNumber(JavaScriptObject jso, String name)
-        {
-            return (JSONType.NUMBER == getNativeTypeOf(jso, name));
-        }
+			return nops.isArray(jso[name]);
+        }-*/;
 
-        public static final boolean isString(JavaScriptObject jso, String name)
-        {
-            return (JSONType.STRING == getNativeTypeOf(jso, name));
-        }
+        public static final native boolean isBoolean(JavaScriptObject jso, String name)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-        public static final boolean isFunction(JavaScriptObject jso, String name)
-        {
-            return (JSONType.FUNCTION == getNativeTypeOf(jso, name));
-        }
+			return nops.isBoolean(jso[name]);
+        }-*/;
 
-        public static final boolean isObject(JavaScriptObject jso, int index)
-        {
-            return (JSONType.OBJECT == getNativeTypeOf(jso, index));
-        }
+        public static final native boolean isNumber(JavaScriptObject jso, String name)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-        public static final boolean isArray(JavaScriptObject jso, int index)
-        {
-            return (JSONType.ARRAY == getNativeTypeOf(jso, index));
-        }
+			return nops.isNumber(jso[name]);
+        }-*/;
 
-        public static final boolean isBoolean(JavaScriptObject jso, int index)
-        {
-            return (JSONType.BOOLEAN == getNativeTypeOf(jso, index));
-        }
+        public static final native boolean isString(JavaScriptObject jso, String name)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-        public static final boolean isNumber(JavaScriptObject jso, int index)
-        {
-            return (JSONType.NUMBER == getNativeTypeOf(jso, index));
-        }
+			return nops.isString(jso[name]);
+        }-*/;
 
-        public static final boolean isString(JavaScriptObject jso, int index)
-        {
-            return (JSONType.STRING == getNativeTypeOf(jso, index));
-        }
+        public static final native boolean isFunction(JavaScriptObject jso, String name)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-        public static final boolean isFunction(JavaScriptObject jso, int index)
-        {
-            return (JSONType.FUNCTION == getNativeTypeOf(jso, index));
-        }
+			return nops.isFunction(jso[name]);
+        }-*/;
+
+        public static final native boolean isObject(JavaScriptObject jso, int index)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isObject(jso[index]);
+        }-*/;
+
+        public static final native boolean isArray(JavaScriptObject jso, int index)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isArray(jso[index]);
+        }-*/;
+
+        public static final native boolean isBoolean(JavaScriptObject jso, int index)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isBoolean(jso[index]);
+        }-*/;
+
+        public static final native boolean isNumber(JavaScriptObject jso, int index)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isNumber(jso[index]);
+        }-*/;
+
+        public static final native boolean isString(JavaScriptObject jso, int index)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isString(jso[index]);
+        }-*/;
+
+        public static final native boolean isFunction(JavaScriptObject jso, int index)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isFunction(jso[index]);
+        }-*/;
 
         public final static NValue<?> getAsNValue(final NArrayJSO array, final int index)
         {
@@ -462,6 +481,51 @@ public final class NUtils
 				}
 				}
 				return @com.ait.tooling.common.api.json.JSONType::UNDEFINED;
+			};
+			this.isBoolean = function(value) {
+				if (null == value) {
+					return false;
+				}
+				return ((typeof value) == 'boolean');
+			};
+			this.isString = function(value) {
+				if (null == value) {
+					return false;
+				}
+				return ((typeof value) == 'string');
+			};
+			this.isFunction = function(value) {
+				if (null == value) {
+					return false;
+				}
+				return ((typeof value) == 'function');
+			};
+			this.isNumber = function(value) {
+				if (null == value) {
+					return false;
+				}
+				if ((typeof value) == 'number') {
+					return isFinite(value);
+				}
+				return false;
+			};
+			this.isArrayType = function(value) {
+				return ((value instanceof Array) || (value instanceof $wnd.Array))
+			};
+			this.isArray = function(value) {
+				if (null == value) {
+					return false;
+				}
+				return (((typeof value) == 'object') && isArrayType(value));
+			};
+			this.isObject = function(value) {
+				if (null == value) {
+					return false;
+				}
+				if (((typeof value) == 'object') && (false == isArrayType(value))) {
+					return (value === Object(value));
+				}
+				return false;
 			};
         }-*/;
     }

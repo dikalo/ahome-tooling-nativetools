@@ -23,7 +23,6 @@ import java.util.Collections;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
-import com.ait.tooling.nativetools.client.NUtils;
 import com.ait.tooling.nativetools.client.NUtils.JSON;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
@@ -57,7 +56,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
     {
         if (null != key)
         {
-            m_jso.inc(NUtils.doStringRepair(key));
+            m_jso.inc(key);
         }
         return this;
     }
@@ -91,7 +90,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
     {
         if (null != key)
         {
-            m_jso.dec(NUtils.doStringRepair(key));
+            m_jso.dec(key);
         }
         return this;
     }
@@ -120,7 +119,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
     {
         if (null != key)
         {
-            return m_jso.contains(NUtils.doStringRepair(key));
+            return m_jso.contains(key);
         }
         return false;
     }
@@ -134,7 +133,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
     {
         if (null != key)
         {
-            return m_jso.total(NUtils.doStringRepair(key));
+            return m_jso.total(key);
         }
         return 0;
     }
