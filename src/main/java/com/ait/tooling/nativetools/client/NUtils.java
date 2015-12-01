@@ -509,23 +509,28 @@ public final class NUtils
 				}
 				return false;
 			};
-			this.isArrayType = function(value) {
-				return ((value instanceof Array) || (value instanceof $wnd.Array))
-			};
 			this.isArray = function(value) {
 				if (null == value) {
 					return false;
 				}
-				return (((typeof value) == 'object') && isArrayType(value));
+				if ((typeof value) == 'object') {
+					if ((value instanceof Array) || (value instanceof $wnd.Array)) {
+						return true;
+					}
+				}
+				return flase;
 			};
 			this.isObject = function(value) {
-				if (null == value) {
-					return false;
-				}
-				if (((typeof value) == 'object') && (false == isArrayType(value))) {
-					return (value === Object(value));
-				}
-				return false;
+			    if (null == value) {
+                    return false;
+                }
+                if ((typeof value) == 'object') {
+                    if ((value instanceof Array) || (value instanceof $wnd.Array)) {
+                        return false;
+                    }
+                    return (value === Object(value));
+                }
+                return flase;
 			};
         }-*/;
     }
