@@ -24,33 +24,33 @@ import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.collection.MetaData;
 import com.google.gwt.core.client.JavaScriptObject;
 
-public final class UserMediaConfig implements NHasJSO<JavaScriptObject>, JSONStringify
+public final class UserMediaConfiguration implements NHasJSO<JavaScriptObject>, JSONStringify
 {
     private static final long serialVersionUID = -7747428614079062125L;
 
     private final MetaData    m_meta;
 
-    public UserMediaConfig()
+    public UserMediaConfiguration()
     {
         this(new MetaData());
     }
 
-    public UserMediaConfig(final boolean video, final boolean audio)
+    public UserMediaConfiguration(final boolean video, final boolean audio)
     {
         this(new MetaData().put("video", true).put("audio", audio));
     }
 
-    public UserMediaConfig(final NObject nobj)
+    public UserMediaConfiguration(final NObject nobj)
     {
         this(new MetaData(Objects.requireNonNull(nobj).getJSO()));
     }
 
-    public UserMediaConfig(final JavaScriptObject meta)
+    public UserMediaConfiguration(final JavaScriptObject meta)
     {
         this(new MetaData(Objects.requireNonNull(meta)));
     }
 
-    public UserMediaConfig(final MetaData meta)
+    public UserMediaConfiguration(final MetaData meta)
     {
         m_meta = Objects.requireNonNull(meta);
     }

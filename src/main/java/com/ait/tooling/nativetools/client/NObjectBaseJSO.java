@@ -93,6 +93,11 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
         return Native.isNumber(this, NUtils.doKeyRepair(name));
     }
 
+    public final boolean isInteger(final String name)
+    {
+        return Native.isInteger(this, NUtils.doKeyRepair(name));
+    }
+
     public final boolean isBoolean(final String name)
     {
         return Native.isBoolean(this, NUtils.doKeyRepair(name));
@@ -110,7 +115,7 @@ public class NObjectBaseJSO<T extends NObjectBaseJSO<T>> extends JavaScriptObjec
 
     public final boolean isNativeFunction(final String name)
     {
-        return Native.isFunction(this, NUtils.doKeyRepair(name));
+        return Native.isNativeFunction(this, NUtils.doKeyRepair(name));
     }
 
     public final List<String> keys()

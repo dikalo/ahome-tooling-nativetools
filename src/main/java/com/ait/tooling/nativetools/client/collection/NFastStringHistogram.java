@@ -27,32 +27,32 @@ import com.ait.tooling.nativetools.client.NUtils.JSON;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
-public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFastStringCounterJSO>, NJSONStringify
+public final class NFastStringHistogram implements NHasJSO<NFastStringHistogram.NFastStringHistogramJSO>, NJSONStringify
 {
     private static final long           serialVersionUID = -8270903993910958084L;
 
-    private final NFastStringCounterJSO m_jso            = NFastStringCounterJSO.make();
+    private final NFastStringHistogramJSO m_jso            = NFastStringHistogramJSO.make();
 
-    public NFastStringCounter()
+    public NFastStringHistogram()
     {
     }
 
-    public NFastStringCounter(final String key)
+    public NFastStringHistogram(final String key)
     {
         inc(key);
     }
 
-    public NFastStringCounter(final String key, final String... keys)
+    public NFastStringHistogram(final String key, final String... keys)
     {
         inc(key, keys);
     }
 
-    public NFastStringCounter(final Iterable<String> keys)
+    public NFastStringHistogram(final Iterable<String> keys)
     {
         inc(keys);
     }
 
-    public final NFastStringCounter inc(final String key)
+    public final NFastStringHistogram inc(final String key)
     {
         if (null != key)
         {
@@ -66,7 +66,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
         return new JSONObject(m_jso);
     }
 
-    public final NFastStringCounter inc(final String key, final String... keys)
+    public final NFastStringHistogram inc(final String key, final String... keys)
     {
         inc(key);
 
@@ -77,7 +77,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
         return this;
     }
 
-    public final NFastStringCounter inc(final Iterable<String> keys)
+    public final NFastStringHistogram inc(final Iterable<String> keys)
     {
         for (String k : keys)
         {
@@ -86,7 +86,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
         return this;
     }
 
-    public final NFastStringCounter dec(final String key)
+    public final NFastStringHistogram dec(final String key)
     {
         if (null != key)
         {
@@ -95,7 +95,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
         return this;
     }
 
-    public final NFastStringCounter dec(final String key, final String... keys)
+    public final NFastStringHistogram dec(final String key, final String... keys)
     {
         dec(key);
 
@@ -106,7 +106,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
         return this;
     }
 
-    public final NFastStringCounter dec(final Iterable<String> keys)
+    public final NFastStringHistogram dec(final Iterable<String> keys)
     {
         for (String k : keys)
         {
@@ -159,7 +159,7 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
         return m_jso.size();
     }
 
-    public final NFastStringCounter clear()
+    public final NFastStringHistogram clear()
     {
         m_jso.clear();
 
@@ -214,18 +214,18 @@ public final class NFastStringCounter implements NHasJSO<NFastStringCounter.NFas
     }
 
     @Override
-    public final NFastStringCounterJSO getJSO()
+    public final NFastStringHistogramJSO getJSO()
     {
         return m_jso;
     }
 
-    public static final class NFastStringCounterJSO extends JavaScriptObject
+    public static final class NFastStringHistogramJSO extends JavaScriptObject
     {
-        protected NFastStringCounterJSO()
+        protected NFastStringHistogramJSO()
         {
         }
 
-        static final NFastStringCounterJSO make()
+        static final NFastStringHistogramJSO make()
         {
             return JavaScriptObject.createObject().cast();
         }

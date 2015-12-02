@@ -170,7 +170,7 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 
     public final int getAsInteger(final int index)
     {
-        if (isNumber(index))
+        if (isInteger(index))
         {
             return m_jso.getAsInteger(index);
         }
@@ -245,6 +245,11 @@ public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
     public final boolean isNumber(final int index)
     {
         return Native.isNumber(m_jso, index);
+    }
+
+    public final boolean isInteger(final int index)
+    {
+        return Native.isInteger(m_jso, index);
     }
 
     @Override

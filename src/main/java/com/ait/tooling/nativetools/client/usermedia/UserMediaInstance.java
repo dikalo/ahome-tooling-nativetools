@@ -37,20 +37,20 @@ public final class UserMediaInstance
 
     public final void getUserMedia(final Video video, final UserMediaCallback mediacb)
     {
-        getUserMedia(Objects.requireNonNull(video).getVideoElement(), new UserMediaConfig(true, true), Objects.requireNonNull(mediacb));
+        getUserMedia(Objects.requireNonNull(video).getVideoElement(), new UserMediaConfiguration(true, true), Objects.requireNonNull(mediacb));
     }
 
     public final void getUserMedia(final VideoElement element, final UserMediaCallback mediacb)
     {
-        getUserMedia(Objects.requireNonNull(element), new UserMediaConfig(true, true), Objects.requireNonNull(mediacb));
+        getUserMedia(Objects.requireNonNull(element), new UserMediaConfiguration(true, true), Objects.requireNonNull(mediacb));
     }
 
-    public final void getUserMedia(final Video video, final UserMediaConfig configs, final UserMediaCallback mediacb)
+    public final void getUserMedia(final Video video, final UserMediaConfiguration configs, final UserMediaCallback mediacb)
     {
         getUserMedia(Objects.requireNonNull(video).getVideoElement(), Objects.requireNonNull(configs), Objects.requireNonNull(mediacb));
     }
 
-    public final void getUserMedia(VideoElement element, UserMediaConfig configs, UserMediaCallback mediacb)
+    public final void getUserMedia(VideoElement element, UserMediaConfiguration configs, UserMediaCallback mediacb)
     {
         element = Objects.requireNonNull(element);
 

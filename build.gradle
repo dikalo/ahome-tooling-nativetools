@@ -41,7 +41,7 @@ apply plugin: 'eclipse'
 
 compileJava.options.encoding = 'UTF-8'
 
-version = '1.0.94-SNAPSHOT'
+version = '1.0.95-SNAPSHOT'
 
 group = 'com.ahome-it'
 

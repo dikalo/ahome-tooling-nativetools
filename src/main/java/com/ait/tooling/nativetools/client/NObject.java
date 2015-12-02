@@ -20,6 +20,7 @@ import java.util.List;
 
 import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.common.api.types.IMixedStringHashDefinition;
+import com.ait.tooling.nativetools.client.NUtils.Native;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
@@ -402,7 +403,7 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     @Override
     public final boolean isInteger(final String name)
     {
-        return isNumber(name);
+        return Native.isInteger(m_jso, name);
     }
 
     @Override

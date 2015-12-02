@@ -102,27 +102,15 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
 
     public final MetaData put(final String name, final MetaData value)
     {
-        if (null != value)
-        {
-            m_jso.put(name, value.getJSO());
-        }
-        else
-        {
-            m_jso.remove(name);
-        }
+        m_jso.put(name, value);
+
         return this;
     }
 
     public final MetaData put(final String name, final MetaDataArray value)
     {
-        if (null != value)
-        {
-            m_jso.put(name, value.getJSO());
-        }
-        else
-        {
-            m_jso.remove(name);
-        }
+        m_jso.put(name, value);
+
         return this;
     }
 
@@ -161,9 +149,14 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
         return Native.isNumber(m_jso, NUtils.doKeyRepair(name));
     }
 
+    public final boolean isInteger(final String name)
+    {
+        return Native.isInteger(m_jso, NUtils.doKeyRepair(name));
+    }
+
     public final int getAsInteger(final String name)
     {
-        if (isNumber(name))
+        if (isInteger(name))
         {
             return m_jso.getAsInteger(name);
         }

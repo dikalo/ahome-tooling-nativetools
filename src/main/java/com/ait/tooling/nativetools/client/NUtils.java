@@ -159,6 +159,13 @@ public final class NUtils
 
 			return nops.isNumber(jso[name]);
         }-*/;
+        
+        public static final native boolean isInteger(JavaScriptObject jso, String name)
+        /*-{
+            var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+            return nops.isInteger(jso[name]);
+        }-*/;
 
         public static final native boolean isString(JavaScriptObject jso, String name)
         /*-{
@@ -167,11 +174,11 @@ public final class NUtils
 			return nops.isString(jso[name]);
         }-*/;
 
-        public static final native boolean isFunction(JavaScriptObject jso, String name)
+        public static final native boolean isNativeFunction(JavaScriptObject jso, String name)
         /*-{
 			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-			return nops.isFunction(jso[name]);
+			return nops.isNativeFunction(jso[name]);
         }-*/;
 
         public static final native boolean isObject(JavaScriptObject jso, int index)
@@ -201,6 +208,13 @@ public final class NUtils
 
 			return nops.isNumber(jso[index]);
         }-*/;
+        
+        public static final native boolean isInteger(JavaScriptObject jso, int index)
+        /*-{
+            var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+            return nops.isInteger(jso[index]);
+        }-*/;
 
         public static final native boolean isString(JavaScriptObject jso, int index)
         /*-{
@@ -209,11 +223,11 @@ public final class NUtils
 			return nops.isString(jso[index]);
         }-*/;
 
-        public static final native boolean isFunction(JavaScriptObject jso, int index)
+        public static final native boolean isNativeFunction(JavaScriptObject jso, int index)
         /*-{
 			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-			return nops.isFunction(jso[index]);
+			return nops.isNativeFunction(jso[index]);
         }-*/;
 
         public final static NValue<?> getAsNValue(final NArrayJSO array, final int index)
@@ -370,7 +384,7 @@ public final class NUtils
             return Native.toJSONString(value, indent);
         }
 
-        public static final String toJSONString(final JavaScriptObject value, final NJSONReplacer replacer, String indent)
+        public static final String toJSONString(final JavaScriptObject value, final NJSONReplacer replacer, final String indent)
         {
             if (null == value)
             {
@@ -467,8 +481,7 @@ public final class NUtils
 					return @com.ait.tooling.common.api.json.JSONType::UNDEFINED;
 				}
 				case 'object': {
-					if ((value instanceof Array)
-							|| (value instanceof $wnd.Array)) {
+					if (Object.prototype.toString.apply(value) === '[object Array]') {
 						return @com.ait.tooling.common.api.json.JSONType::ARRAY;
 					}
 					if (value === Object(value)) {
@@ -486,26 +499,39 @@ public final class NUtils
 				if (null == value) {
 					return false;
 				}
-				return ((typeof value) == 'boolean');
+				return ((typeof value) === 'boolean');
 			};
 			this.isString = function(value) {
 				if (null == value) {
 					return false;
 				}
-				return ((typeof value) == 'string');
+				return ((typeof value) === 'string');
 			};
-			this.isFunction = function(value) {
+			this.isNativeFunction = function(value) {
 				if (null == value) {
 					return false;
 				}
-				return ((typeof value) == 'function');
+				return ((typeof value) === 'function');
 			};
 			this.isNumber = function(value) {
 				if (null == value) {
 					return false;
 				}
-				if ((typeof value) == 'number') {
+				if ((typeof value) === 'number') {
 					return isFinite(value);
+				}
+				return false;
+			};
+			this.isInteger = function(value) {
+				if (null == value) {
+					return false;
+				}
+				if ((typeof value) === 'number') {
+					if (isFinite(value)) {
+						if ((value >= @java.lang.Integer::MIN_VALUE) && (value <= @java.lang.Integer::MAX_VALUE)) {
+							return ((value | 0) == value);
+						}
+					}
 				}
 				return false;
 			};
@@ -513,24 +539,24 @@ public final class NUtils
 				if (null == value) {
 					return false;
 				}
-				if ((typeof value) == 'object') {
-					if ((value instanceof Array) || (value instanceof $wnd.Array)) {
+				if ((typeof value) === 'object') {
+                    if (Object.prototype.toString.apply(value) === '[object Array]') {
 						return true;
 					}
 				}
-				return flase;
+				return false;
 			};
 			this.isObject = function(value) {
-			    if (null == value) {
-                    return false;
-                }
-                if ((typeof value) == 'object') {
-                    if ((value instanceof Array) || (value instanceof $wnd.Array)) {
-                        return false;
-                    }
-                    return (value === Object(value));
-                }
-                return flase;
+				if (null == value) {
+					return false;
+				}
+				if ((typeof value) === 'object') {
+                    if (Object.prototype.toString.apply(value) === '[object Array]') {
+						return false;
+					}
+					return (value === Object(value));
+				}
+				return false;
 			};
         }-*/;
     }

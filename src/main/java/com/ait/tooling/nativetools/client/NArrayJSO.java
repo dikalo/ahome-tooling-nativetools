@@ -61,7 +61,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
         }
     }
 
-    private final native void push(JavaScriptObject value)
+    public final native void push(JavaScriptObject value)
     /*-{
 		this[this.length] = value;
     }-*/;
@@ -98,7 +98,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
         }
     }
 
-    private final native void set(int index, JavaScriptObject value)
+    public final native void set(int index, JavaScriptObject value)
     /*-{
 		this[index] = value;
     }-*/;
@@ -228,7 +228,7 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 
     public final native int getAsInteger(int index)
     /*-{
-		return Math.round(this[index]);
+		return (this[index] | 0);
     }-*/;
 
     public final native double getAsDouble(int index)

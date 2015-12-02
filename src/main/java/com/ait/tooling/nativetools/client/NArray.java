@@ -415,21 +415,21 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return this;
     }
 
-    public final NArray splice(int beg, int removed, NHasJSO<? extends JavaScriptObject> value)
+    public final NArray splice(final int beg, final int removed, final NHasJSO<? extends JavaScriptObject> value)
     {
         m_jso.splice(beg, removed, value);
 
         return this;
     }
 
-    public final NArray splice(int beg, int removed)
+    public final NArray splice(final int beg, final int removed)
     {
         m_jso.splice(beg, removed);
 
         return this;
     }
 
-    public final NArray spliceValueOf(int beg, int removed, NArray value)
+    public final NArray spliceValueOf(final int beg, final int removed, final NArray value)
     {
         if (null == value)
         {
@@ -461,7 +461,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return value.asNArray();
     }
 
-    public final NArray concat(NArray value)
+    public final NArray concat(final NArray value)
     {
         if (null == value)
         {
@@ -470,23 +470,23 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return new NArray(m_jso.concat(value.getJSO()));
     }
 
-    public final NArray slice(int beg)
+    public final NArray slice(final int beg)
     {
         return new NArray(m_jso.slice(beg));
     }
 
-    public final NArray slice(int beg, int end)
+    public final NArray slice(final int beg, final int end)
     {
         return new NArray(m_jso.slice(beg, end));
     }
 
-    public final JSONType getNativeTypeOf(int index)
+    public final JSONType getNativeTypeOf(final int index)
     {
         return m_jso.getNativeTypeOf(index);
     }
 
     @Override
-    public final Integer getAsInteger(int index)
+    public final Integer getAsInteger(final int index)
     {
         if (isInteger(index))
         {
@@ -496,7 +496,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final Double getAsDouble(int index)
+    public final Double getAsDouble(final int index)
     {
         if (isDouble(index))
         {
@@ -506,7 +506,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final String getAsString(int index)
+    public final String getAsString(final int index)
     {
         if (isString(index))
         {
@@ -516,7 +516,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final Boolean getAsBoolean(int index)
+    public final Boolean getAsBoolean(final int index)
     {
         if (isBoolean(index))
         {
@@ -526,7 +526,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final NArray getAsArray(int index)
+    public final NArray getAsArray(final int index)
     {
         if (isArray(index))
         {
@@ -541,7 +541,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final NObject getAsObject(int index)
+    public final NObject getAsObject(final int index)
     {
         if (isObject(index))
         {
@@ -555,12 +555,12 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return null;
     }
 
-    public final NValue<?> getAsNValue(int index)
+    public final NValue<?> getAsNValue(final int index)
     {
         return m_jso.getAsNValue(index);
     }
 
-    public final <T extends JavaScriptObject> T getAsJSO(int index)
+    public final <T extends JavaScriptObject> T getAsJSO(final int index)
     {
         if ((index >= 0) && (index < size()))
         {
@@ -575,7 +575,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final boolean isNull(int index)
+    public final boolean isNull(final int index)
     {
         return m_jso.isNull(index);
     }
@@ -585,7 +585,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return m_jso.join();
     }
 
-    public final String join(String separator)
+    public final String join(final String separator)
     {
         return m_jso.join(separator);
     }
@@ -603,7 +603,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final boolean is(JSONType type)
+    public final boolean is(final JSONType type)
     {
         return (JSONType.ARRAY == type);
     }
@@ -663,7 +663,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final boolean equals(Object other)
+    public final boolean equals(final Object other)
     {
         if ((null != other) && (other instanceof NArray))
         {
@@ -697,55 +697,55 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     }
 
     @Override
-    public final boolean isString(int index)
+    public final boolean isString(final int index)
     {
         return Native.isString(m_jso, index);
     }
 
     @Override
-    public final boolean isBoolean(int index)
+    public final boolean isBoolean(final int index)
     {
         return Native.isBoolean(m_jso, index);
     }
 
     @Override
-    public final boolean isObject(int index)
+    public final boolean isObject(final int index)
     {
         return Native.isObject(m_jso, index);
     }
 
     @Override
-    public final boolean isArray(int index)
+    public final boolean isArray(final int index)
     {
         return Native.isArray(m_jso, index);
     }
 
     @Override
-    public final boolean isNumber(int index)
+    public final boolean isNumber(final int index)
     {
         return Native.isNumber(m_jso, index);
     }
 
     @Override
-    public final boolean isDouble(int index)
+    public final boolean isDouble(final int index)
     {
         return isNumber(index);
     }
 
     @Override
-    public final boolean isInteger(int index)
+    public final boolean isInteger(final int index)
     {
-        return isNumber(index);
+        return Native.isInteger(m_jso, index);
     }
 
     @Override
     public final boolean isNativeFunction(final int index)
     {
-        return Native.isFunction(m_jso, index);
+        return Native.isNativeFunction(m_jso, index);
     }
 
     @Override
-    public final Number getAsNumber(int index)
+    public final Number getAsNumber(final int index)
     {
         return getAsDouble(index);
     }

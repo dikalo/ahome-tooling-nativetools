@@ -61,12 +61,7 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
         }
     }
 
-    public final void put(final String name, final NObjectBaseJSO<?> value)
-    {
-        put_0(NUtils.doKeyRepair(name), value);
-    }
-
-    public final void put(final String name, final NArrayBaseJSO<?> value)
+    public final void put(final String name, final JavaScriptObject value)
     {
         put_0(NUtils.doKeyRepair(name), value);
     }
@@ -145,7 +140,7 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
 
     private final native int getAsInteger_0(String name)
     /*-{
-		return Math.round(this[name]);
+		return (this[name] | 0);
     }-*/;
 
     private final native double getAsDouble_0(String name)
