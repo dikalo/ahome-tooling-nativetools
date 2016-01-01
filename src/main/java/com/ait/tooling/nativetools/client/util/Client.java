@@ -31,15 +31,15 @@ import com.google.gwt.resources.client.TextResource;
 
 public final class Client implements ILogging, IHTTPConstants
 {
-    private static Client INSTANCE;
+    private static final Client INSTANCE = new Client();
 
-    private ILogging      m_logging;
+    private ILogging            m_logging = ComboLogging.get();
 
-    private String        m_cliuuid;
+    private String              m_cliuuid = null;
 
-    private boolean       m_unwraps;
+    private boolean             m_unwraps = true;
 
-    private boolean       m_dostack;
+    private boolean             m_dostack = true;
 
     private Client()
     {
@@ -47,12 +47,6 @@ public final class Client implements ILogging, IHTTPConstants
 
     public static final Client get()
     {
-        if (null == INSTANCE)
-        {
-            INSTANCE = new Client();
-
-            INSTANCE.setLogging(ComboLogging.get());
-        }
         return INSTANCE;
     }
 
@@ -60,6 +54,7 @@ public final class Client implements ILogging, IHTTPConstants
     {
         GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler()
         {
+            @Override
             public void onUncaughtException(final Throwable e)
             {
                 error("Uncaught Exception:", e);
@@ -246,9 +241,21 @@ public final class Client implements ILogging, IHTTPConstants
         return injectJs(js.getText());
     }
 
+    public final Client injectJs(final TextResource js, final boolean removeTag)
+    {
+        return injectJs(js.getText(), removeTag);
+    }
+
     public final Client injectJs(final String js)
     {
         ScriptInjector.fromString(js).setWindow(ScriptInjector.TOP_WINDOW).inject();
+
+        return this;
+    }
+
+    public final Client injectJs(final String js, final boolean removeTag)
+    {
+        ScriptInjector.fromString(js).setRemoveTag(removeTag).setWindow(ScriptInjector.TOP_WINDOW).inject();
 
         return this;
     }

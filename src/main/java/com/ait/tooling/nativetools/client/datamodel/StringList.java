@@ -217,6 +217,12 @@ public class StringList extends AbstractListDataModel<String>implements Iterable
         }
         return false;
     }
+    
+    @Override
+    public int hashCode()
+    {
+        return toJSONString().hashCode();
+    }
 
     @Override
     public final String[] toArray()

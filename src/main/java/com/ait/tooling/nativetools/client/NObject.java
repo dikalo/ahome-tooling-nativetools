@@ -197,7 +197,7 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
         {
             return m_jso.getAsBoolean(name);
         }
-        return null;
+        return NUtils.NULLIFY();
     }
 
     @Override

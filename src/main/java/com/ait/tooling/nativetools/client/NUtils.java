@@ -37,6 +37,35 @@ public final class NUtils
         return name;
     }
 
+    public static final <T> T NULLIFY()
+    {
+        return null;
+    }
+
+    /*
+     * These are static methods to throw common exceptions from inside JSNI code.
+     */
+
+    public final static void throwNullPointerException()
+    {
+        throw new NullPointerException();
+    }
+
+    public final static void throwNullPointerException(final String message)
+    {
+        throw new NullPointerException("" + message);
+    }
+
+    public final static void throwIllegalArgumentException(final String message)
+    {
+        throw new IllegalArgumentException("" + message);
+    }
+
+    public final static void throwUnsupportedOperationException(final String message)
+    {
+        throw new UnsupportedOperationException("" + message);
+    }
+
     public static final class Native
     {
         private static final NativeToolsResources rsrc = make();
@@ -159,12 +188,12 @@ public final class NUtils
 
 			return nops.isNumber(jso[name]);
         }-*/;
-        
+
         public static final native boolean isInteger(JavaScriptObject jso, String name)
         /*-{
-            var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-            return nops.isInteger(jso[name]);
+			return nops.isInteger(jso[name]);
         }-*/;
 
         public static final native boolean isString(JavaScriptObject jso, String name)
@@ -208,12 +237,12 @@ public final class NUtils
 
 			return nops.isNumber(jso[index]);
         }-*/;
-        
+
         public static final native boolean isInteger(JavaScriptObject jso, int index)
         /*-{
-            var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
 
-            return nops.isInteger(jso[index]);
+			return nops.isInteger(jso[index]);
         }-*/;
 
         public static final native boolean isString(JavaScriptObject jso, int index)
@@ -528,7 +557,8 @@ public final class NUtils
 				}
 				if ((typeof value) === 'number') {
 					if (isFinite(value)) {
-						if ((value >= @java.lang.Integer::MIN_VALUE) && (value <= @java.lang.Integer::MAX_VALUE)) {
+						if ((value >= @java.lang.Integer::MIN_VALUE)
+								&& (value <= @java.lang.Integer::MAX_VALUE)) {
 							return ((value | 0) == value);
 						}
 					}
@@ -540,7 +570,7 @@ public final class NUtils
 					return false;
 				}
 				if ((typeof value) === 'object') {
-                    if (Object.prototype.toString.apply(value) === '[object Array]') {
+					if (Object.prototype.toString.apply(value) === '[object Array]') {
 						return true;
 					}
 				}
@@ -551,7 +581,7 @@ public final class NUtils
 					return false;
 				}
 				if ((typeof value) === 'object') {
-                    if (Object.prototype.toString.apply(value) === '[object Array]') {
+					if (Object.prototype.toString.apply(value) === '[object Array]') {
 						return false;
 					}
 					return (value === Object(value));

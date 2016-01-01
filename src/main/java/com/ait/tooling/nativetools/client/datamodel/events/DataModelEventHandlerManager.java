@@ -16,7 +16,6 @@
 
 package com.ait.tooling.nativetools.client.datamodel.events;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import com.google.gwt.core.client.Scheduler;
@@ -26,10 +25,8 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 
-public class DataModelEventHandlerManager implements Serializable
+public class DataModelEventHandlerManager
 {
-    private static final long    serialVersionUID = 3862403257430241883L;
-
     private final HandlerManager m_events         = new HandlerManager(this);
 
     public DataModelEventHandlerManager()

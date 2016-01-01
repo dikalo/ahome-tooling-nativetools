@@ -522,7 +522,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         {
             return m_jso.getAsBoolean(index);
         }
-        return null;
+        return NUtils.NULLIFY();
     }
 
     @Override
