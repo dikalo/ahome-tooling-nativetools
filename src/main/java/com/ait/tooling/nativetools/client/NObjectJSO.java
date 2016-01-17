@@ -29,6 +29,15 @@ public class NObjectJSO extends NObjectBaseJSO<NObjectJSO>
     {
     }
 
+    public static final NObjectJSO cast(final JavaScriptObject jso)
+    {
+        if (null != jso)
+        {
+            return jso.cast();
+        }
+        return null;
+    }
+
     public final void put(final String name, final int value)
     {
         put_0(NUtils.doKeyRepair(name), value);

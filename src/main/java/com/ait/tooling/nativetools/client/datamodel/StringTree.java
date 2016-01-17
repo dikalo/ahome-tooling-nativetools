@@ -21,8 +21,6 @@ import com.ait.tooling.nativetools.client.NObject;
 
 public final class StringTree extends AbstractJSONDataModel implements IValued<String>
 {
-    private static final long serialVersionUID = 422892771272696194L;
-
     public StringTree()
     {
         this(new NObject());

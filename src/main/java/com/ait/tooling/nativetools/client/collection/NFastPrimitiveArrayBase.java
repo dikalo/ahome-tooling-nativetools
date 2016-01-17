@@ -24,7 +24,6 @@ import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.google.gwt.json.client.JSONArray;
 
-@SuppressWarnings("serial")
 public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<A, T>, T extends NFastPrimitiveArrayBaseJSO<T>> implements NHasJSO<T>, NJSONStringify
 {
     private final T m_jso;

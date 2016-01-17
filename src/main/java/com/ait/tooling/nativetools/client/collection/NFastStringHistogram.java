@@ -29,9 +29,7 @@ import com.google.gwt.json.client.JSONObject;
 
 public final class NFastStringHistogram implements NHasJSO<NFastStringHistogram.NFastStringHistogramJSO>, NJSONStringify
 {
-    private static final long           serialVersionUID = -8270903993910958084L;
-
-    private final NFastStringHistogramJSO m_jso            = NFastStringHistogramJSO.make();
+    private final NFastStringHistogramJSO m_jso = NFastStringHistogramJSO.make();
 
     public NFastStringHistogram()
     {

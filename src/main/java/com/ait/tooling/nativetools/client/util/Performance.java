@@ -74,7 +74,6 @@ public final class Performance
         m_jso.clearMarks_0(Objects.requireNonNull(name));
     }
 
-    @SuppressWarnings("serial")
     public static final class PerformanceEntry implements NJSONStringify
     {
         private final PerformanceEntryJSO m_jso;
@@ -168,7 +167,6 @@ public final class Performance
         }-*/;
     }
 
-    @SuppressWarnings("serial")
     public static final class PerformanceEntryList implements NJSONStringify
     {
         private final PerformanceEntryListJSO m_jso;

@@ -25,8 +25,6 @@ import com.ait.tooling.nativetools.client.NArray;
 
 public class StringList extends AbstractListDataModel<String>implements Iterable<String>
 {
-    private static final long serialVersionUID = 4017999766126481761L;
-
     public StringList()
     {
         super(new NArray());

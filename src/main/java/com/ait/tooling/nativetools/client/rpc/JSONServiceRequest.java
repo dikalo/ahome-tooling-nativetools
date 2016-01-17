@@ -20,8 +20,6 @@ import com.ait.tooling.common.api.java.util.StringOps;
 
 public class JSONServiceRequest extends JSONNamedCommandRequest implements IJSONServiceRequest
 {
-    private static final long serialVersionUID = 2200005939440500262L;
-
     private static final String commandNameFromURL(String name)
     {
         name = StringOps.toTrimOrNull(name);

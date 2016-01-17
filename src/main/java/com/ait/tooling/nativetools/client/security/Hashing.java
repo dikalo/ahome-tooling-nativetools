@@ -22,11 +22,9 @@ import com.ait.tooling.nativetools.client.NUtils;
 
 public final class Hashing implements IHasher
 {
-    private static final long    serialVersionUID = -8916814073033942414L;
+    private static final Hashing INSTANCE = new Hashing();
 
-    private static final Hashing INSTANCE         = new Hashing();
-
-    private final Hasher         m_hash           = new Hasher(this);
+    private final Hasher         m_hash   = new Hasher(this);
 
     public static final Hashing get()
     {

@@ -18,8 +18,6 @@ package com.ait.tooling.nativetools.client.collection;
 
 public final class NFastDoubleArray extends NFastPrimitiveArrayBase<NFastDoubleArray, NFastDoubleArrayJSO>
 {
-    private static final long serialVersionUID = 3893592157619221558L;
-
     public NFastDoubleArray(final NFastDoubleArrayJSO jso)
     {
         super((null == jso) ? NFastDoubleArrayJSO.make() : jso);

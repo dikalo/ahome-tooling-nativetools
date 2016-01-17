@@ -31,7 +31,6 @@ import com.ait.tooling.nativetools.client.datamodel.ModelIDList;
 import com.ait.tooling.nativetools.client.rpc.IJSONNamedCommandRequest;
 import com.ait.tooling.nativetools.client.rpc.JSONCommandCallback;
 
-@SuppressWarnings("serial")
 public abstract class AbstractDataModelIDController<T extends AbstractDataModelID<T> & Comparable<T>> extends AbstractModelController<T>implements IDataModelIDController<T>, ISearcher<T>
 {
     protected AbstractDataModelIDController()

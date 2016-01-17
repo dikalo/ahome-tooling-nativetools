@@ -22,8 +22,6 @@ import com.ait.tooling.nativetools.client.NArray;
 
 public final class HashTagList extends StringList
 {
-    private static final long serialVersionUID = -3508093169807231441L;
-
     public HashTagList()
     {
     }

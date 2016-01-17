@@ -31,9 +31,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class JSONNamedCommandRequest extends JSONCommandRequest implements IJSONNamedCommandRequest
 {
-    private static final long serialVersionUID = -7289813801190168288L;
-
-    private final String      m_name;
+    private final String m_name;
 
     public JSONNamedCommandRequest(final String url, final String command)
     {

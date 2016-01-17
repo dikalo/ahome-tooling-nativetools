@@ -25,8 +25,6 @@ import com.ait.tooling.nativetools.client.NArray;
 
 public final class StringTreeList extends AbstractJSONListDataModel<StringTree>implements Iterable<StringTree>
 {
-    private static final long serialVersionUID = -9190832615032351522L;
-
     public StringTreeList()
     {
         super(new NArray());
@@ -37,6 +35,7 @@ public final class StringTreeList extends AbstractJSONListDataModel<StringTree>i
         super((null == array) ? (new NArray()) : (array));
     }
 
+    @Override
     public final StringTree get(final int index)
     {
         return new StringTree(getModel().getAsObject(index));

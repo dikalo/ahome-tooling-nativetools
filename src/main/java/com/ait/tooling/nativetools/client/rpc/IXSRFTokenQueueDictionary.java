@@ -16,9 +16,7 @@
 
 package com.ait.tooling.nativetools.client.rpc;
 
-import java.io.Serializable;
-
-public interface IXSRFTokenQueueDictionary extends Serializable
+public interface IXSRFTokenQueueDictionary
 {
     public IXSRFTokenQueue getXSRFTokenQueue(String url);
 }

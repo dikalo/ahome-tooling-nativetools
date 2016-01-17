@@ -22,8 +22,6 @@ import com.ait.tooling.nativetools.client.collection.NFastStringMap;
 
 public class DefaultXSRFTokenQueueDictionary implements IXSRFTokenQueueDictionary
 {
-    private static final long                      serialVersionUID = -8679801686406683859L;
-
     private static DefaultXSRFTokenQueueDictionary INSTANCE;
 
     private final NFastStringMap<IXSRFTokenQueue>  m_urlmap;

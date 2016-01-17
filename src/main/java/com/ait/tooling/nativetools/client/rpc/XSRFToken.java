@@ -16,16 +16,12 @@
 
 package com.ait.tooling.nativetools.client.rpc;
 
-import java.io.Serializable;
-
 import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.common.api.types.IStringValued;
 
-public final class XSRFToken implements IStringValued, Serializable
+public final class XSRFToken implements IStringValued
 {
-    private static final long serialVersionUID = -2948980036709167583L;
-
-    private final String      m_token;
+    private final String m_token;
 
     public XSRFToken(final String token)
     {

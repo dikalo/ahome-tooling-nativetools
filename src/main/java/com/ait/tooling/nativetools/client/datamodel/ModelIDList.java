@@ -22,8 +22,6 @@ import com.ait.tooling.nativetools.client.NArray;
 
 public final class ModelIDList extends StringList
 {
-    private static final long serialVersionUID = -1080559841434530016L;
-
     public ModelIDList()
     {
     }

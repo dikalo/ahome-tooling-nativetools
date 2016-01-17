@@ -14,19 +14,9 @@
    limitations under the License.
  */
 
-package com.ait.tooling.nativetools.client.rpc;
+package com.ait.tooling.nativetools.client.webworker;
 
-import com.ait.tooling.common.api.java.util.function.Supplier;
-
-public interface IXSRFTokenQueue
+public interface OnMessageHandler<T>
 {
-    public int size();
-
-    public String getURL();
-
-    public void push(XSRFToken token);
-
-    public Supplier<XSRFToken> take();
-
-    public Supplier<XSRFToken> onEmpty();
+    public void onMessage(WebWorker<T> worker, T message);
 }

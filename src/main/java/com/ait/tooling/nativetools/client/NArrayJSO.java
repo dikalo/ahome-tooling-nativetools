@@ -29,6 +29,15 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
     {
     }
 
+    public static final NArrayJSO cast(final JavaScriptObject jso)
+    {
+        if (null != jso)
+        {
+            return jso.cast();
+        }
+        return null;
+    }
+
     public final native void push(int value)
     /*-{
 		this[this.length] = value;

@@ -267,11 +267,11 @@ public final class NUtils
                 {
                     case ARRAY:
                     {
-                        return new NArray((NArrayJSO) array.getAsJSO(index).cast());
+                        return new NArray(NArrayJSO.cast(array.getAsJSO(index)));
                     }
                     case OBJECT:
                     {
-                        return new NObject((NObjectJSO) array.getAsJSO(index).cast());
+                        return new NObject(NObjectJSO.cast(array.getAsJSO(index)));
                     }
                     default:
                     {
@@ -288,11 +288,11 @@ public final class NUtils
             {
                 case ARRAY:
                 {
-                    return new NArray((NArrayJSO) ojso.getAsJSO(name).cast());
+                    return new NArray(NArrayJSO.cast(ojso.getAsJSO(name)));
                 }
                 case OBJECT:
                 {
-                    return new NObject((NObjectJSO) ojso.getAsJSO(name).cast());
+                    return new NObject(NObjectJSO.cast(ojso.getAsJSO(name)));
                 }
                 default:
                 {
@@ -309,19 +309,13 @@ public final class NUtils
             return parse(json, null);
         }
 
-        public static final NValue<?> parse(String json, final NJSONReviver reviver) throws Exception
+        public static final NValue<?> parse(final String json, final NJSONReviver reviver) throws Exception
         {
             if (null == json)
             {
                 return null;
             }
-            json = json.trim();
-
             if (json.isEmpty())
-            {
-                return null;
-            }
-            if ("null".equals(json))
             {
                 return null;
             }
@@ -359,11 +353,11 @@ public final class NUtils
             {
                 case OBJECT:
                 {
-                    return new NObject((NObjectJSO) root.cast());
+                    return new NObject(NObjectJSO.cast(root));
                 }
                 case ARRAY:
                 {
-                    return new NArray((NArrayJSO) root.cast());
+                    return new NArray(NArrayJSO.cast(root));
                 }
                 default:
                 {

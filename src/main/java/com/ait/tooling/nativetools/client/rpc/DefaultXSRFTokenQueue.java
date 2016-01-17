@@ -24,11 +24,9 @@ import com.ait.tooling.nativetools.client.collection.NFastArrayList;
 
 public class DefaultXSRFTokenQueue implements IXSRFTokenQueue
 {
-    private static final long               serialVersionUID = -6537303945644834701L;
-
     private final String                    m_xurl;
 
-    private final NFastArrayList<XSRFToken> m_list           = new NFastArrayList<XSRFToken>();
+    private final NFastArrayList<XSRFToken> m_list = new NFastArrayList<XSRFToken>();
 
     public DefaultXSRFTokenQueue(final String url)
     {

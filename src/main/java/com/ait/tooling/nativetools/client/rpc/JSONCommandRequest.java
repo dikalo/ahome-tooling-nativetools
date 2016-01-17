@@ -51,8 +51,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class JSONCommandRequest extends Activatable implements IJSONCommandRequest
 {
-    private static final long    serialVersionUID = 1493983316974589122L;
-
     private static long          s_counter;
 
     private final RequestBuilder m_builder;

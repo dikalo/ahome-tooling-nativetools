@@ -24,7 +24,6 @@ import com.ait.tooling.common.api.types.IMixedStringHash;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NObject;
 
-@SuppressWarnings("serial")
 public abstract class AbstractJSONDataModel extends AbstractModelRepresentation<NObject>implements IJSONDataModel<NObject>, IMixedStringHash
 {
     protected AbstractJSONDataModel()

@@ -18,7 +18,6 @@ package com.ait.tooling.nativetools.client.datamodel;
 
 import com.ait.tooling.nativetools.client.NObject;
 
-@SuppressWarnings("serial")
 public abstract class AbstractDataModelID<T extends AbstractDataModelID<T>> extends AbstractJSONDataModel implements IDataModelID<T>
 {
     protected AbstractDataModelID()

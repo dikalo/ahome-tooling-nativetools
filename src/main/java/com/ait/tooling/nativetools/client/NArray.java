@@ -24,9 +24,7 @@ import com.google.gwt.json.client.JSONArray;
 
 public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NArray, NObject>
 {
-    private static final long serialVersionUID = 2148774350319842890L;
-
-    private final NArrayJSO   m_jso;
+    private final NArrayJSO m_jso;
 
     public NArray(final NArrayJSO jso)
     {

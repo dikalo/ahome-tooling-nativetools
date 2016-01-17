@@ -26,9 +26,7 @@ import com.google.gwt.json.client.JSONObject;
 
 public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefinition<NArray, NObject>
 {
-    private static final long serialVersionUID = 2781015680111819539L;
-
-    private final NObjectJSO  m_jso;
+    private final NObjectJSO m_jso;
 
     public NObject(final NObjectJSO jso)
     {

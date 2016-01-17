@@ -23,7 +23,6 @@ import com.ait.tooling.nativetools.client.collection.NFastStringSet;
 import com.ait.tooling.nativetools.client.datamodel.AbstractDataModelWithIDList;
 import com.ait.tooling.nativetools.client.datamodel.ModelIDList;
 
-@SuppressWarnings("serial")
 public abstract class AbstractDataModelWithIDListController<T extends AbstractDataModelWithIDList<T> & Comparable<T>> extends AbstractDataModelIDController<T> implements IDataModelWithIDListController<T>
 {
     protected AbstractDataModelWithIDListController()

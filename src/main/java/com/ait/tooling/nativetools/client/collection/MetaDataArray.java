@@ -27,9 +27,7 @@ import com.google.gwt.json.client.JSONArray;
 
 public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
 {
-    private static final long serialVersionUID = 2580039223524685321L;
-
-    private final NArrayJSO   m_jso;
+    private final NArrayJSO m_jso;
 
     public MetaDataArray()
     {

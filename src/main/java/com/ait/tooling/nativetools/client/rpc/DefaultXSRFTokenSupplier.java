@@ -16,16 +16,13 @@
 
 package com.ait.tooling.nativetools.client.rpc;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import com.ait.tooling.common.api.java.util.function.Supplier;
 
-public class DefaultXSRFTokenSupplier implements Supplier<XSRFToken>, Serializable
+public class DefaultXSRFTokenSupplier implements Supplier<XSRFToken>
 {
-    private static final long serialVersionUID = -1388063018819886642L;
-
-    private final XSRFToken   m_token;
+    private final XSRFToken m_token;
 
     public DefaultXSRFTokenSupplier(final XSRFToken token)
     {

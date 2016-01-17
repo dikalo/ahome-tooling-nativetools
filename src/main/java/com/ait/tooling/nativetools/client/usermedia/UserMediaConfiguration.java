@@ -26,9 +26,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public final class UserMediaConfiguration implements NHasJSO<JavaScriptObject>, JSONStringify
 {
-    private static final long serialVersionUID = -7747428614079062125L;
-
-    private final MetaData    m_meta;
+    private final MetaData m_meta;
 
     public UserMediaConfiguration()
     {

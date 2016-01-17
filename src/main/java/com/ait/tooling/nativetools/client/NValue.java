@@ -19,7 +19,7 @@ package com.ait.tooling.nativetools.client;
 import com.ait.tooling.common.api.json.JSONType;
 import com.google.gwt.core.client.JavaScriptObject;
 
-public interface NValue<T extends JavaScriptObject>extends NHasJSO<T>, NJSONStringify
+public interface NValue<T extends JavaScriptObject> extends NHasJSO<T>, NJSONStringify
 {
     public JSONType getNativeTypeOf();
 

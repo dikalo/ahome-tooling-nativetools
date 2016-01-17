@@ -18,8 +18,6 @@ package com.ait.tooling.nativetools.client.collection;
 
 public final class NFastDoubleDictionary extends NFastPrimitiveDictionaryBase<NFastDoubleDictionaryJSO>
 {
-    private static final long serialVersionUID = 1L;
-
     public NFastDoubleDictionary(final NFastDoubleDictionaryJSO jso)
     {
         super((null == jso) ? NFastDoubleDictionaryJSO.make() : jso);

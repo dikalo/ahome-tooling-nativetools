@@ -22,8 +22,6 @@ import com.ait.tooling.nativetools.client.NArray;
 
 public final class AttachmentList extends StringList
 {
-    private static final long serialVersionUID = -6126720793271305703L;
-
     public AttachmentList()
     {
     }

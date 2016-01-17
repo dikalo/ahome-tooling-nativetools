@@ -21,7 +21,6 @@ import com.ait.tooling.common.api.model.AbstractModelRepresentation;
 import com.ait.tooling.nativetools.client.NArray;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 
-@SuppressWarnings("serial")
 public abstract class AbstractListDataModel<T> extends AbstractModelRepresentation<NArray>implements IListDataModel<T>
 {
     protected AbstractListDataModel()
