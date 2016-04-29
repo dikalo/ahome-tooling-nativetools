@@ -16,6 +16,7 @@
 
 package com.ait.tooling.nativetools.client.collection;
 
+import java.util.List;
 import java.util.Objects;
 
 import com.ait.tooling.common.api.json.JSONType;
@@ -119,5 +120,10 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
     public final void clear()
     {
         m_jso.clear();
+    }
+
+    public final List<String> keys()
+    {
+        return m_jso.keys();
     }
 }
