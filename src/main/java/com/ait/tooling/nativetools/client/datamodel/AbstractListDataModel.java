@@ -20,6 +20,7 @@ import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.common.api.model.AbstractModelRepresentation;
 import com.ait.tooling.nativetools.client.NArray;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
+import com.ait.tooling.nativetools.client.NObject;
 
 public abstract class AbstractListDataModel<T> extends AbstractModelRepresentation<NArray>implements IListDataModel<T>
 {
@@ -121,5 +122,11 @@ public abstract class AbstractListDataModel<T> extends AbstractModelRepresentati
     public final JSONType getNativeTypeOf()
     {
         return JSONType.ARRAY;
+    }
+    
+    @Override
+    public final NObject onWire()
+    {
+        return new NObject("list", getModel());
     }
 }

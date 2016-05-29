@@ -14,14 +14,9 @@
    limitations under the License.
  */
 
-package com.ait.tooling.nativetools.client.datamodel;
+package com.ait.tooling.nativetools.client;
 
-import com.ait.tooling.common.api.json.JSONType;
-import com.ait.tooling.common.api.model.IModel;
-import com.ait.tooling.nativetools.client.NJSONStringify;
-import com.ait.tooling.nativetools.client.NObjectOnWire;
-
-public interface IDataModel<T> extends IModel<T>, NObjectOnWire, NJSONStringify
+public interface NObjectOnWire
 {
-    public JSONType getNativeTypeOf();
+    public NObject onWire();
 }

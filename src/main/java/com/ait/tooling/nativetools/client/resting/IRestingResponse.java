@@ -18,11 +18,15 @@ package com.ait.tooling.nativetools.client.resting;
 
 import com.ait.tooling.nativetools.client.NObject;
 
-public interface IRestingResponse
+public interface IRestingResponse extends IRestingCommon
 {
     public int code();
+    
+    public long time();
 
     public String body();
+
+    public boolean good();
 
     public NObject json();
 

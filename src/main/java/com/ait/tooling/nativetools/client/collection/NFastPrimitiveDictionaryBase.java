@@ -23,9 +23,11 @@ import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
+import com.ait.tooling.nativetools.client.NObject;
+import com.ait.tooling.nativetools.client.NObjectJSO;
 import com.google.gwt.json.client.JSONObject;
 
-public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDictionarytBaseJSO<T>> implements NHasJSO<T>, NJSONStringify
+public abstract class NFastPrimitiveDictionaryBase <T extends NFastPrimitiveDictionarytBaseJSO<T>> implements NHasJSO<T>, NJSONStringify
 {
     private final T m_jso;
 
@@ -125,5 +127,13 @@ public abstract class NFastPrimitiveDictionaryBase<T extends NFastPrimitiveDicti
     public final List<String> keys()
     {
         return m_jso.keys();
+    }
+
+    @Override
+    public final NObject onWire()
+    {
+        final NObjectJSO jso = m_jso.cast();
+
+        return new NObject(jso);
     }
 }

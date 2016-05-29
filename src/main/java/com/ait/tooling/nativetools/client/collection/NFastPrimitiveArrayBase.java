@@ -22,6 +22,7 @@ import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
+import com.ait.tooling.nativetools.client.NObject;
 import com.google.gwt.json.client.JSONArray;
 
 public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<A, T>, T extends NFastPrimitiveArrayBaseJSO<T>> implements NHasJSO<T>, NJSONStringify
@@ -147,5 +148,11 @@ public abstract class NFastPrimitiveArrayBase<A extends NFastPrimitiveArrayBase<
     public final String join(final String separator)
     {
         return m_jso.join(separator);
+    }
+    
+    @Override
+    public final NObject onWire()
+    {
+        return new NObject("list", this);
     }
 }

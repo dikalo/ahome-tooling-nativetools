@@ -14,14 +14,14 @@
    limitations under the License.
  */
 
-package com.ait.tooling.nativetools.client.datamodel;
+package com.ait.tooling.nativetools.client.resting;
 
-import com.ait.tooling.common.api.json.JSONType;
-import com.ait.tooling.common.api.model.IModel;
-import com.ait.tooling.nativetools.client.NJSONStringify;
-import com.ait.tooling.nativetools.client.NObjectOnWire;
-
-public interface IDataModel<T> extends IModel<T>, NObjectOnWire, NJSONStringify
+public class InactiveRestingException extends RestingException
 {
-    public JSONType getNativeTypeOf();
+    private static final long serialVersionUID = 2891756861169701591L;
+
+    public InactiveRestingException(final NMethod type, final String url, final long cntr, final long time)
+    {
+        super("Inative: " + type.toString() + " to url [" + url + "] count [" + cntr + "] time [" + time + "]", type, url, cntr, time);
+    }
 }

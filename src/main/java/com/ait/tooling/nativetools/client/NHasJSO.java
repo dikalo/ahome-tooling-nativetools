@@ -18,7 +18,7 @@ package com.ait.tooling.nativetools.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-public interface NHasJSO<T extends JavaScriptObject>
+public interface NHasJSO<T extends JavaScriptObject> extends NObjectOnWire
 {
     public T getJSO();
 }

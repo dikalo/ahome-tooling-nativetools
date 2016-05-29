@@ -20,16 +20,6 @@ import com.google.gwt.http.client.RequestBuilder;
 
 public class NRequestBuilder extends RequestBuilder
 {
-    public NRequestBuilder(final Method type, final String url)
-    {
-        super(type, url);
-    }
-
-    public NRequestBuilder(final String type, final String url)
-    {
-        super(type, url);
-    }
-
     public NRequestBuilder(final NMethod type, final String url)
     {
         super(type.getValue(), url);

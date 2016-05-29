@@ -16,9 +16,13 @@
 
 package com.ait.tooling.nativetools.client.resting;
 
-public interface IRestingRequest
+public interface IRestingRequest extends IRestingCommon
 {
     public String url();
+
+    public long start();
+
+    public long count();
 
     public void cancel();
 

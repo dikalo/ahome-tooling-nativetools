@@ -747,4 +747,10 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
     {
         return getAsDouble(index);
     }
+
+    @Override
+    public final NObject onWire()
+    {
+        return new NObject("list", this);
+    }
 }

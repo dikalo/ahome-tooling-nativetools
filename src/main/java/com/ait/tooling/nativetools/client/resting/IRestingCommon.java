@@ -14,14 +14,23 @@
    limitations under the License.
  */
 
-package com.ait.tooling.nativetools.client.datamodel;
+package com.ait.tooling.nativetools.client.resting;
 
-import com.ait.tooling.common.api.json.JSONType;
-import com.ait.tooling.common.api.model.IModel;
-import com.ait.tooling.nativetools.client.NJSONStringify;
-import com.ait.tooling.nativetools.client.NObjectOnWire;
+import com.ait.tooling.nativetools.client.security.XSS;
 
-public interface IDataModel<T> extends IModel<T>, NObjectOnWire, NJSONStringify
+public interface IRestingCommon
 {
-    public JSONType getNativeTypeOf();
+    public static final class Operations
+    {
+        private static final XSS CLEANER = XSS.get();
+
+        private Operations()
+        {
+        }
+
+        public static final String clean(final String string)
+        {
+            return CLEANER.clean(string);
+        }
+    }
 }

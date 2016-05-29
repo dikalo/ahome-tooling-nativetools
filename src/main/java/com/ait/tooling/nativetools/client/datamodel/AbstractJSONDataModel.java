@@ -179,4 +179,10 @@ public abstract class AbstractJSONDataModel extends AbstractModelRepresentation<
     {
         return JSONType.OBJECT;
     }
+    
+    @Override
+    public final NObject onWire()
+    {
+        return getModel();
+    }
 }

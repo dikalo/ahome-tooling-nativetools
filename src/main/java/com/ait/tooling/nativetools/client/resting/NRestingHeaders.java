@@ -27,18 +27,15 @@ import com.ait.tooling.common.api.java.util.IHTTPConstants;
 import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.nativetools.client.collection.NFastStringDictionary;
 import com.ait.tooling.nativetools.client.collection.NFastStringMap;
-import com.ait.tooling.nativetools.client.security.XSS;
 import com.ait.tooling.nativetools.client.storage.ClientStorage;
 import com.ait.tooling.nativetools.client.storage.LocalStorage;
 import com.ait.tooling.nativetools.client.storage.SessionStorage;
 import com.ait.tooling.nativetools.client.util.Client;
 import com.google.gwt.http.client.Header;
 
-public class NRestingHeaders extends LinkedHashMap<String, String>implements IHTTPConstants
+public class NRestingHeaders extends LinkedHashMap<String, String> implements IRestingCommon, IHTTPConstants
 {
     private static final long serialVersionUID = -4981722542774013096L;
-
-    private static final XSS  CLEANER          = XSS.get();
 
     public NRestingHeaders()
     {
@@ -50,11 +47,11 @@ public class NRestingHeaders extends LinkedHashMap<String, String>implements IHT
 
         for (String s : hmap.keySet())
         {
-            final String k = StringOps.toTrimOrNull(CLEANER.clean(s));
+            final String k = StringOps.toTrimOrNull(Operations.clean(s));
 
             if (null != k)
             {
-                final String v = StringOps.toTrimOrNull(CLEANER.clean(hmap.get(k)));
+                final String v = StringOps.toTrimOrNull(Operations.clean(hmap.get(k)));
 
                 if (null != v)
                 {
@@ -70,11 +67,11 @@ public class NRestingHeaders extends LinkedHashMap<String, String>implements IHT
 
         for (String s : hmap.keys())
         {
-            final String k = StringOps.toTrimOrNull(CLEANER.clean(s));
+            final String k = StringOps.toTrimOrNull(Operations.clean(s));
 
             if (null != k)
             {
-                final String v = StringOps.toTrimOrNull(CLEANER.clean(hmap.get(k)));
+                final String v = StringOps.toTrimOrNull(Operations.clean(hmap.get(k)));
 
                 if (null != v)
                 {
@@ -90,11 +87,11 @@ public class NRestingHeaders extends LinkedHashMap<String, String>implements IHT
 
         for (String s : hmap.keys())
         {
-            final String k = StringOps.toTrimOrNull(CLEANER.clean(s));
+            final String k = StringOps.toTrimOrNull(Operations.clean(s));
 
             if (null != k)
             {
-                final String v = StringOps.toTrimOrNull(CLEANER.clean(hmap.get(k)));
+                final String v = StringOps.toTrimOrNull(Operations.clean(hmap.get(k)));
 
                 if (null != v)
                 {
@@ -110,11 +107,11 @@ public class NRestingHeaders extends LinkedHashMap<String, String>implements IHT
 
         for (Header head : hmap)
         {
-            final String k = StringOps.toTrimOrNull(CLEANER.clean(head.getName()));
+            final String k = StringOps.toTrimOrNull(Operations.clean(head.getName()));
 
             if (null != k)
             {
-                final String v = StringOps.toTrimOrNull(CLEANER.clean(head.getValue()));
+                final String v = StringOps.toTrimOrNull(Operations.clean(head.getValue()));
 
                 if (null != v)
                 {
@@ -181,11 +178,11 @@ public class NRestingHeaders extends LinkedHashMap<String, String>implements IHT
 
         for (String name : hmap.getStorageHeaderNames())
         {
-            final String head = StringOps.toTrimOrNull(CLEANER.clean(name));
+            final String head = StringOps.toTrimOrNull(Operations.clean(name));
 
             if (null != head)
             {
-                final String valu = StringOps.toTrimOrNull(CLEANER.clean(hmap.getHeaderFromStorage(head)));
+                final String valu = StringOps.toTrimOrNull(Operations.clean(hmap.getHeaderFromStorage(head)));
 
                 if (null != valu)
                 {

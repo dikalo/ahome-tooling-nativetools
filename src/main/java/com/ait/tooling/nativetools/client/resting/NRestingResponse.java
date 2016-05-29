@@ -21,13 +21,17 @@ import com.ait.tooling.nativetools.client.NUtils;
 import com.ait.tooling.nativetools.client.NValue;
 import com.ait.tooling.nativetools.client.util.Client;
 
-public class NRestingResponse implements IRestingResponse
+public final class NRestingResponse implements IRestingResponse
 {
     private NObject               m_json;
 
     private final int             m_code;
 
+    private final long            m_time;
+
     private final String          m_body;
+
+    private final boolean         m_good;
 
     private final NMethod         m_type;
 
@@ -35,7 +39,7 @@ public class NRestingResponse implements IRestingResponse
 
     private final IRestingRequest m_requ;
 
-    public NRestingResponse(final int code, final String body, final NRestingHeaders head, final NMethod type, final IRestingRequest requ)
+    public NRestingResponse(final int code, final String body, final NRestingHeaders head, final NMethod type, final IRestingRequest requ, final long time)
     {
         m_code = code;
 
@@ -46,41 +50,48 @@ public class NRestingResponse implements IRestingResponse
         m_type = type;
 
         m_requ = requ;
+
+        m_time = time;
+
+        m_good = ((code >= 200) && (code < 300));
     }
 
     @Override
-    public int code()
+    public final int code()
     {
         return m_code;
     }
 
     @Override
-    public String body()
+    public final String body()
     {
         return m_body;
     }
 
     @Override
-    public NObject json()
+    public final NObject json()
     {
         if (null == m_json)
         {
-            final String body = body();
-
-            if (null != body)
+            if (good())
             {
-                try
-                {
-                    final NValue<?> parsed = NUtils.JSON.parse(body);
+                final String body = Operations.clean(body());
 
-                    if (null != parsed)
-                    {
-                        m_json = parsed.asNObject();
-                    }
-                }
-                catch (Exception e)
+                if (null != body)
                 {
-                    Client.get().error("NResponse.json()", e);
+                    try
+                    {
+                        final NValue<?> parsed = NUtils.JSON.parse(body);
+
+                        if (null != parsed)
+                        {
+                            m_json = parsed.asNObject();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Client.get().error("NResponse.json()", e);
+                    }
                 }
             }
         }
@@ -88,20 +99,32 @@ public class NRestingResponse implements IRestingResponse
     }
 
     @Override
-    public NRestingHeaders headers()
+    public final NRestingHeaders headers()
     {
         return m_head;
     }
 
     @Override
-    public NMethod method()
+    public final NMethod method()
     {
         return m_type;
     }
 
     @Override
-    public IRestingRequest getRequest()
+    public final IRestingRequest getRequest()
     {
         return m_requ;
+    }
+
+    @Override
+    public final boolean good()
+    {
+        return m_good;
+    }
+
+    @Override
+    public final long time()
+    {
+        return m_time;
     }
 }

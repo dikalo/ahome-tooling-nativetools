@@ -20,6 +20,7 @@ import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
+import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.NObjectJSO;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.ait.tooling.nativetools.client.NUtils.Native;
@@ -278,5 +279,11 @@ public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
     public final int hashCode()
     {
         return toJSONString().hashCode();
+    }
+
+    @Override
+    public final NObject onWire()
+    {
+        return new NObject(m_jso);
     }
 }

@@ -23,6 +23,8 @@ import java.util.Collections;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
+import com.ait.tooling.nativetools.client.NObject;
+import com.ait.tooling.nativetools.client.NObjectJSO;
 import com.ait.tooling.nativetools.client.NUtils.JSON;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
@@ -215,6 +217,14 @@ public final class NFastStringHistogram implements NHasJSO<NFastStringHistogram.
     public final NFastStringHistogramJSO getJSO()
     {
         return m_jso;
+    }
+
+    @Override
+    public final NObject onWire()
+    {
+        final NObjectJSO jso = m_jso.cast();
+
+        return new NObject(jso);
     }
 
     public static final class NFastStringHistogramJSO extends JavaScriptObject

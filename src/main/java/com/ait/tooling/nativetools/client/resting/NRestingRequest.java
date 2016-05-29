@@ -18,17 +18,21 @@ package com.ait.tooling.nativetools.client.resting;
 
 import com.google.gwt.http.client.Request;
 
-public class NRestingRequest implements IRestingRequest
+public final class NRestingRequest implements IRestingRequest
 {
+    private final long            m_cntr;
+
+    private final long            m_time;
+
     private final String          m_rurl;
 
     private final Request         m_rqst;
 
-    private final NMethod          m_type;
+    private final NMethod         m_type;
 
     private final NRestingHeaders m_head;
 
-    public NRestingRequest(final String rurl, final NRestingHeaders head, final NMethod type, final Request rqst)
+    public NRestingRequest(final String rurl, final NRestingHeaders head, final NMethod type, final long cntr, final long time, final Request rqst)
     {
         m_rqst = rqst;
 
@@ -37,35 +41,51 @@ public class NRestingRequest implements IRestingRequest
         m_head = head;
 
         m_type = type;
+
+        m_cntr = cntr;
+
+        m_time = time;
     }
 
     @Override
-    public String url()
+    public final String url()
     {
         return m_rurl;
     }
 
     @Override
-    public void cancel()
+    public final void cancel()
     {
         m_rqst.cancel();
     }
 
     @Override
-    public boolean isPending()
+    public final boolean isPending()
     {
         return m_rqst.isPending();
     }
 
     @Override
-    public NMethod method()
+    public final NMethod method()
     {
         return m_type;
     }
 
     @Override
-    public NRestingHeaders headers()
+    public final NRestingHeaders headers()
     {
         return m_head;
+    }
+
+    @Override
+    public final long start()
+    {
+        return m_time;
+    }
+
+    @Override
+    public final long count()
+    {
+        return m_cntr;
     }
 }

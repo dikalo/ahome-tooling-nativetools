@@ -69,4 +69,10 @@ public final class UserMediaConfiguration implements NHasJSO<JavaScriptObject>, 
     {
         return getAsMetaData().getJSO();
     }
+
+    @Override
+    public final NObject onWire()
+    {
+        return getAsMetaData().onWire();
+    }
 }

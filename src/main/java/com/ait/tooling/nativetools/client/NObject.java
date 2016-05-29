@@ -409,4 +409,10 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
     {
         return getAsDouble(name);
     }
+
+    @Override
+    public final NObject onWire()
+    {
+        return this;
+    }
 }

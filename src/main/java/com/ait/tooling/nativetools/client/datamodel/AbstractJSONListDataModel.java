@@ -20,8 +20,9 @@ import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.common.api.model.AbstractModelRepresentation;
 import com.ait.tooling.nativetools.client.NArray;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
+import com.ait.tooling.nativetools.client.NObject;
 
-public abstract class AbstractJSONListDataModel<T extends IJSONDataModel<?>> extends AbstractModelRepresentation<NArray>implements IJSONListDataModel<T>
+public abstract class AbstractJSONListDataModel <T extends IJSONDataModel<?>> extends AbstractModelRepresentation<NArray>implements IJSONListDataModel<T>
 {
     protected AbstractJSONListDataModel()
     {
@@ -139,5 +140,11 @@ public abstract class AbstractJSONListDataModel<T extends IJSONDataModel<?>> ext
     public final JSONType getNativeTypeOf()
     {
         return JSONType.ARRAY;
+    }
+
+    @Override
+    public final NObject onWire()
+    {
+        return new NObject("list", getModel());
     }
 }
