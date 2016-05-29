@@ -75,7 +75,7 @@ public final class NRestingResponse implements IRestingResponse
         {
             if (good())
             {
-                final String body = Operations.clean(body());
+                final String body = body();
 
                 if (null != body)
                 {

@@ -189,12 +189,12 @@ public class NResting extends Activatable implements IResting
         }
         try
         {
-            return new NRestingRequest(builder.getUrl(), headers, type, cntr, time, builder.sendRequest(Operations.clean(data), new RequestCallback()
+            return new NRestingRequest(builder.getUrl(), headers, type, cntr, time, builder.sendRequest(data, new RequestCallback()
             {
                 @Override
                 public void onResponseReceived(final Request request, final Response response)
                 {
-                    callback.onResponse(new NRestingResponse(response.getStatusCode(), Operations.clean(response.getText()), new NRestingHeaders(response.getHeaders()), type, new NRestingRequest(builder.getUrl(), headers, type, cntr, time, request), System.currentTimeMillis() - time));
+                    callback.onResponse(new NRestingResponse(response.getStatusCode(), response.getText(), new NRestingHeaders(response.getHeaders()), type, new NRestingRequest(builder.getUrl(), headers, type, cntr, time, request), System.currentTimeMillis() - time));
                 }
 
                 @Override
