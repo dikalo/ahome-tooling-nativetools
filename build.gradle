@@ -17,6 +17,7 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'http://repo.spring.io/plugins-release' }
     }
     dependencies {
         classpath(group: 'org.ajoberstar', name: 'grgit', version: '1.7.0')
@@ -25,6 +26,7 @@ buildscript {
         classpath(group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2')
         classpath(group: 'org.fusesource.jansi', name: 'jansi', version: '1.11')
         classpath(group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.6', classifier: 'indy')
+        classpath(group: 'org.springframework.build.gradle', name: 'propdeps-plugin', version: '0.0.7')
     }
 }
 
@@ -38,12 +40,26 @@ apply plugin: 'groovy'
 apply plugin: 'jacoco'
 apply plugin: 'signing'
 apply plugin: 'eclipse'
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-maven'
+apply plugin: 'propdeps-eclipse'
 
 compileJava.options.encoding = 'UTF-8'
 
-version = '1.0.165-RELEASE'
+sourceCompatibility = 1.7
+
+targetCompatibility = 1.7
+
+version = '1.0.170-RELEASE'
 
 group = 'com.ahome-it'
+
+eclipse {
+    classpath {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
 
 task doJavaDocs(type: Groovydoc) {
     source = sourceSets.main.allSource
@@ -83,14 +99,14 @@ repositories {
 sourceSets {
     main {
         resources {
-             srcDir 'src/main/java'
+            srcDir 'src/main/java'
         }
     }
 }
 
 dependencies {
-    compile(group: 'com.google.gwt', name: 'gwt-user', version: '2.7.0')
     compile(group: 'com.ahome-it', name: 'ahome-tooling-common', version: '1.0.150-RELEASE')
+    provided(group: 'com.google.gwt', name: 'gwt-user', version: '2.7.0')
 }
 
 artifacts {
