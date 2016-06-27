@@ -16,18 +16,27 @@
 
 package com.ait.tooling.nativetools.client.websocket;
 
-import com.ait.tooling.nativetools.client.NArray;
-import com.ait.tooling.nativetools.client.NObject;
+import com.ait.tooling.nativetools.client.util.Client;
 
-public interface JSONWebSocketCallback
+public abstract class WebSocketCallbackSimple implements WebSocketCallback
 {
-    public void onOpen(JSONWebSocket ws);
+    public WebSocketCallbackSimple()
+    {
+    }
 
-    public void onClose(JSONWebSocket ws);
+    @Override
+    public void onOpen(WebSocket ws)
+    {        
+    }
 
-    public void onError(JSONWebSocket ws, String error);
+    @Override
+    public void onClose(WebSocket ws)
+    {        
+    }
 
-    public void onMessage(JSONWebSocket ws, NObject message);
-    
-    public void onMessage(JSONWebSocket ws, NArray message);
+    @Override
+    public void onError(WebSocket ws, final String error)
+    {
+        Client.get().error("" + error);
+    }
 }

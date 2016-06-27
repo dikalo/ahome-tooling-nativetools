@@ -20,10 +20,11 @@ import java.util.Objects;
 
 import com.ait.tooling.nativetools.client.NArray;
 import com.ait.tooling.nativetools.client.NObject;
+import com.ait.tooling.nativetools.client.NObjectOnWire;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.ait.tooling.nativetools.client.NValue;
 
-public class JSONWebSocket implements IWebSocket<NObject>
+public class JSONWebSocket implements IWebSocket<NObjectOnWire>
 {
     private final WebSocket             m_wssocket;
 
@@ -80,17 +81,11 @@ public class JSONWebSocket implements IWebSocket<NObject>
 
                             if (null != array)
                             {
-                                final int size = array.size();
-
-                                for (int i = 0; i < size; i++)
-                                {
-                                    final NObject value = array.getAsObject(i);
-
-                                    if (null != value)
-                                    {
-                                        m_callback.onMessage(self, value);
-                                    }
-                                }
+                                m_callback.onMessage(self, array);
+                            }
+                            else
+                            {
+                                m_callback.onError(self, "Error parsing JSON");
                             }
                         }
                     }
@@ -104,9 +99,9 @@ public class JSONWebSocket implements IWebSocket<NObject>
     }
 
     @Override
-    public void send(final NObject message)
+    public void send(final NObjectOnWire message)
     {
-        m_wssocket.send(toJSONString(Objects.requireNonNull(message)));
+        m_wssocket.send(Objects.requireNonNull(message).onWire().toJSONString());
     }
 
     @Override
@@ -137,10 +132,5 @@ public class JSONWebSocket implements IWebSocket<NObject>
     public String getProtocol()
     {
         return m_wssocket.getProtocol();
-    }
-
-    protected String toJSONString(final NObject message)
-    {
-        return Objects.requireNonNull(message).toJSONString();
     }
 }

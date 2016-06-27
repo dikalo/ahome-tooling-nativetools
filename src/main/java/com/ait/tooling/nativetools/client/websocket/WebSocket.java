@@ -33,7 +33,7 @@ public class WebSocket implements IWebSocket<String>
         }
         m_callback = Objects.requireNonNull(callback, "WebSocketCallback is null");
 
-        connect_0(URL.encode(StringOps.requireTrimOrNull(url)));
+        connect_0(URL.encode(StringOps.requireTrimOrNull(WebSocketUtils.path(url))));
     }
 
     @Override
