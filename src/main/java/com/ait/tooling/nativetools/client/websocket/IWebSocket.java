@@ -37,4 +37,6 @@ public interface IWebSocket<T>
     public String getURL();
 
     public String getProtocol();
+    
+    public boolean isOpen();
 }

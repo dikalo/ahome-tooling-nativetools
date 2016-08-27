@@ -27,6 +27,15 @@ public class NFastStringArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastStringA
         return jso;
     }
 
+    public static final NFastStringArrayJSO make(final Iterable<String> list)
+    {
+        final NFastStringArrayJSO jso = make();
+
+        jso.push(list);
+
+        return jso;
+    }
+
     public static final NFastStringArrayJSO make()
     {
         return createNArrayBaseJSO();
@@ -58,6 +67,14 @@ public class NFastStringArrayJSO extends NFastPrimitiveArrayBaseJSO<NFastStringA
         for (int i = 0; i < size; i++)
         {
             push(list[i]);
+        }
+    }
+
+    public final void push(final Iterable<String> list)
+    {
+        for (String s : list)
+        {
+            push(s);
         }
     }
 

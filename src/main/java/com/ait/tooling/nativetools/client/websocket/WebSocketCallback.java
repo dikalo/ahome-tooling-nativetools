@@ -22,7 +22,7 @@ public interface WebSocketCallback
 
     public void onClose(WebSocket ws);
 
-    public void onError(WebSocket ws, String error);
+    public void onError(WebSocket ws, Throwable error);
 
     public void onMessage(WebSocket ws, String message);
 }

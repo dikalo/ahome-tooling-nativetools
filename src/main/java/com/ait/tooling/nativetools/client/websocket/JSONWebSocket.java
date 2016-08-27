@@ -18,11 +18,13 @@ package com.ait.tooling.nativetools.client.websocket;
 
 import java.util.Objects;
 
+import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.nativetools.client.NArray;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.NObjectOnWire;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.ait.tooling.nativetools.client.NValue;
+import com.ait.tooling.nativetools.client.collection.NFastStringArray;
 
 public class JSONWebSocket implements IWebSocket<NObjectOnWire>
 {
@@ -32,11 +34,21 @@ public class JSONWebSocket implements IWebSocket<NObjectOnWire>
 
     public JSONWebSocket(final String url, final JSONWebSocketCallback callback)
     {
+        this(url, (NFastStringArray) null, callback);
+    }
+
+    public JSONWebSocket(final String url, final String protocol, final JSONWebSocketCallback callback)
+    {
+        this(url, new NFastStringArray(StringOps.requireTrimOrNull(protocol)), callback);
+    }
+
+    public JSONWebSocket(final String url, final NFastStringArray protocols, final JSONWebSocketCallback callback)
+    {
         final JSONWebSocket self = this;
 
         m_callback = Objects.requireNonNull(callback, "JSONWebSocketCallback is null");
 
-        m_wssocket = new WebSocket(url, new WebSocketCallback()
+        m_wssocket = new WebSocket(url, protocols, new WebSocketCallback()
         {
             @Override
             public void onOpen(WebSocket ws)
@@ -51,7 +63,7 @@ public class JSONWebSocket implements IWebSocket<NObjectOnWire>
             }
 
             @Override
-            public void onError(WebSocket ws, final String error)
+            public void onError(WebSocket ws, final Throwable error)
             {
                 m_callback.onError(self, error);
             }
@@ -65,7 +77,7 @@ public class JSONWebSocket implements IWebSocket<NObjectOnWire>
 
                     if (null == parsed)
                     {
-                        m_callback.onError(self, "Error parsing JSON");
+                        m_callback.onError(self, new Exception("Error parsing JSON"));
                     }
                     else
                     {
@@ -85,17 +97,23 @@ public class JSONWebSocket implements IWebSocket<NObjectOnWire>
                             }
                             else
                             {
-                                m_callback.onError(self, "Error parsing JSON");
+                                m_callback.onError(self, new Exception("Error parsing JSON"));
                             }
                         }
                     }
                 }
                 catch (Exception e)
                 {
-                    m_callback.onError(self, "Error parsing JSON");
+                    m_callback.onError(self, e);
                 }
             }
         });
+    }
+
+    @Override
+    public boolean isOpen()
+    {
+        return m_wssocket.isOpen();
     }
 
     @Override

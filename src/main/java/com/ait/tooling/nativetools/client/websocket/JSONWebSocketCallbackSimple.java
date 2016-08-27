@@ -37,9 +37,9 @@ public abstract class JSONWebSocketCallbackSimple implements JSONWebSocketCallba
     }
 
     @Override
-    public void onError(JSONWebSocket ws, final String error)
+    public void onError(JSONWebSocket ws, final Throwable error)
     {
-        Client.get().error("" + error);
+        Client.get().error("JSONWebSocket", error);
     }
 
     @Override

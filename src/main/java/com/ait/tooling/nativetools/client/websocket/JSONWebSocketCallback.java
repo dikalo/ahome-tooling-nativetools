@@ -25,7 +25,7 @@ public interface JSONWebSocketCallback
 
     public void onClose(JSONWebSocket ws);
 
-    public void onError(JSONWebSocket ws, String error);
+    public void onError(JSONWebSocket ws, Throwable error);
 
     public void onMessage(JSONWebSocket ws, NObject message);
     

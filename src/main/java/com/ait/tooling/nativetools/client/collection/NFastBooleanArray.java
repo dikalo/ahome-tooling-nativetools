@@ -40,14 +40,8 @@ public final class NFastBooleanArray extends NFastPrimitiveArrayBase<NFastBoolea
 
     public final NFastBooleanArray push(final boolean d, final boolean... list)
     {
-        push(d);
+        getJSO().push(d, list);
 
-        final int size = list.length;
-
-        for (int i = 0; i < size; i++)
-        {
-            push(list[i]);
-        }
         return this;
     }
 

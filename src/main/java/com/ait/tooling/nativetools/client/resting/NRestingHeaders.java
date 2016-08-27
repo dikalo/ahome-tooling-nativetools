@@ -162,10 +162,13 @@ public class NRestingHeaders extends LinkedHashMap<String, String> implements IR
         return header;
     }
 
-    public static final NRestingHeaders makeDefaultRESTHeaders(final NRestingHeaders hmap)
+    public NRestingHeaders doRESTHeaders()
     {
-        Objects.requireNonNull(hmap);
+        return doRESTHeaders(this);
+    }
 
+    public static final NRestingHeaders doRESTHeaders(final NRestingHeaders hmap)
+    {
         final NRestingHeaders make = new NRestingHeaders(hmap);
 
         make.put(ACCEPT_HEADER, CONTENT_TYPE_APPLICATION_JSON);

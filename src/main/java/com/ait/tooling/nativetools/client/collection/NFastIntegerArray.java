@@ -40,14 +40,8 @@ public final class NFastIntegerArray extends NFastPrimitiveArrayBase<NFastIntege
 
     public final NFastIntegerArray push(final int d, final int... list)
     {
-        push(d);
+        getJSO().push(d, list);
 
-        final int size = list.length;
-
-        for (int i = 0; i < size; i++)
-        {
-            push(list[i]);
-        }
         return this;
     }
 

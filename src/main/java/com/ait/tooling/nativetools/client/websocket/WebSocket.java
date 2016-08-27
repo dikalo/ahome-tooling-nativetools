@@ -19,6 +19,8 @@ package com.ait.tooling.nativetools.client.websocket;
 import java.util.Objects;
 
 import com.ait.tooling.common.api.java.util.StringOps;
+import com.ait.tooling.nativetools.client.collection.NFastStringArray;
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.http.client.URL;
 
 public class WebSocket implements IWebSocket<String>
@@ -27,13 +29,36 @@ public class WebSocket implements IWebSocket<String>
 
     public WebSocket(final String url, final WebSocketCallback callback)
     {
+        this(url, (NFastStringArray) null, callback);
+    }
+
+    public WebSocket(final String url, final String protocol, final WebSocketCallback callback)
+    {
+        this(url, new NFastStringArray(StringOps.requireTrimOrNull(protocol)), callback);
+    }
+
+    public WebSocket(final String url, final NFastStringArray protocols, final WebSocketCallback callback)
+    {
         if (false == isSupported())
         {
             throw new IllegalStateException("WebSocket is not supported");
         }
         m_callback = Objects.requireNonNull(callback, "WebSocketCallback is null");
 
-        connect_0(URL.encode(StringOps.requireTrimOrNull(WebSocketUtils.path(url))));
+        if ((null == protocols) || (protocols.isEmpty()))
+        {
+            connect_0(URL.encode(StringOps.requireTrimOrNull(WebSocketUtils.path(url))), null);
+        }
+        else
+        {
+            connect_0(URL.encode(StringOps.requireTrimOrNull(WebSocketUtils.path(url))), protocols.getJSO());
+        }
+    }
+
+    @Override
+    public boolean isOpen()
+    {
+        return (STATE_OPEN == getReadyState());
     }
 
     @Override
@@ -43,13 +68,30 @@ public class WebSocket implements IWebSocket<String>
         {
             throw new NullPointerException("message is null");
         }
-        send_0(message);
+        if (isOpen())
+        {
+            try
+            {
+                send_0(message);
+            }
+            catch (Exception e)
+            {
+                m_callback.onError(this, e);
+            }
+        }
+        else
+        {
+            m_callback.onError(this, new Exception("not open"));
+        }
     }
 
     @Override
     public void close()
     {
-        close_0();
+        if (isOpen())
+        {
+            close_0();
+        }
     }
 
     @Override
@@ -93,7 +135,7 @@ public class WebSocket implements IWebSocket<String>
 
     private final void onErrorHelper(String error)
     {
-        m_callback.onError(this, error);
+        m_callback.onError(this, new Exception(error));
     }
 
     public static final native boolean isSupported()
@@ -104,12 +146,17 @@ public class WebSocket implements IWebSocket<String>
 		return true;
     }-*/;
 
-    private final native void connect_0(String url)
+    private final native void connect_0(String url, JavaScriptObject protocols)
     /*-{
 		var self = this;
 
-		self.socket = new $wnd.WebSocket(url);
+		var list = protocols;
 
+		if ((list) && (list.length > 0)) {
+			self.socket = new $wnd.WebSocket(url, list);
+		} else {
+			self.socket = new $wnd.WebSocket(url);
+		}
 		self.socket.onopen = function() {
 			if (!self.socket) {
 				self.@com.ait.tooling.nativetools.client.websocket.WebSocket::onErrorHelper(Ljava/lang/String;)("WebSocket connections not supported by this browser");

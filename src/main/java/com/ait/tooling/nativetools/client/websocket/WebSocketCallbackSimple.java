@@ -26,17 +26,17 @@ public abstract class WebSocketCallbackSimple implements WebSocketCallback
 
     @Override
     public void onOpen(WebSocket ws)
-    {        
+    {
     }
 
     @Override
     public void onClose(WebSocket ws)
-    {        
+    {
     }
 
     @Override
-    public void onError(WebSocket ws, final String error)
+    public void onError(WebSocket ws, final Throwable error)
     {
-        Client.get().error("" + error);
+        Client.get().error("WebSocket", error);
     }
 }

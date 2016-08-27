@@ -40,14 +40,8 @@ public final class NFastDoubleArray extends NFastPrimitiveArrayBase<NFastDoubleA
 
     public final NFastDoubleArray push(final double d, final double... list)
     {
-        push(d);
+        getJSO().push(d, list);
 
-        final int size = list.length;
-
-        for (int i = 0; i < size; i++)
-        {
-            push(list[i]);
-        }
         return this;
     }
 

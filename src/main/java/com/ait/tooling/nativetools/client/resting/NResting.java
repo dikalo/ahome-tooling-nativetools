@@ -181,7 +181,7 @@ public class NResting extends Activatable implements IResting
 
             return null;
         }
-        final NRestingHeaders head = NRestingHeaders.makeDefaultRESTHeaders(Objects.requireNonNull(headers));
+        final NRestingHeaders head = headers.doRESTHeaders();
 
         for (String k : head.keys())
         {
@@ -189,12 +189,12 @@ public class NResting extends Activatable implements IResting
         }
         try
         {
-            return new NRestingRequest(builder.getUrl(), headers, type, cntr, time, builder.sendRequest(data, new RequestCallback()
+            return new NRestingRequest(builder.getUrl(), head, type, cntr, time, builder.sendRequest(data, new RequestCallback()
             {
                 @Override
                 public void onResponseReceived(final Request request, final Response response)
                 {
-                    callback.onResponse(new NRestingResponse(response.getStatusCode(), response.getText(), new NRestingHeaders(response.getHeaders()), type, new NRestingRequest(builder.getUrl(), headers, type, cntr, time, request), System.currentTimeMillis() - time));
+                    callback.onResponse(new NRestingResponse(response.getStatusCode(), response.getText(), new NRestingHeaders(response.getHeaders()), type, new NRestingRequest(builder.getUrl(), head, type, cntr, time, request), System.currentTimeMillis() - time));
                 }
 
                 @Override
