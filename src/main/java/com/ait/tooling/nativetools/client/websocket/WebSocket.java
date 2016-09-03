@@ -56,42 +56,26 @@ public class WebSocket implements IWebSocket<String>
     }
 
     @Override
-    public boolean isOpen()
-    {
-        return (STATE_OPEN == getReadyState());
-    }
-
-    @Override
     public void send(final String message)
     {
         if (null == message)
         {
             throw new NullPointerException("message is null");
         }
-        if (isOpen())
+        try
         {
-            try
-            {
-                send_0(message);
-            }
-            catch (Exception e)
-            {
-                m_callback.onError(this, e);
-            }
+            send_0(message);
         }
-        else
+        catch (Exception e)
         {
-            m_callback.onError(this, new Exception("not open"));
+            m_callback.onError(this, e);
         }
     }
 
     @Override
     public void close()
     {
-        if (isOpen())
-        {
-            close_0();
-        }
+        close_0();
     }
 
     @Override

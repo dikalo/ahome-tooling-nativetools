@@ -111,12 +111,6 @@ public class JSONWebSocket implements IWebSocket<NObjectOnWire>
     }
 
     @Override
-    public boolean isOpen()
-    {
-        return m_wssocket.isOpen();
-    }
-
-    @Override
     public void send(final NObjectOnWire message)
     {
         m_wssocket.send(Objects.requireNonNull(message).onWire().toJSONString());
