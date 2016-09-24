@@ -15,14 +15,14 @@ Maven:
 <dependency>
   <groupId>com.ahome-it</groupId>
   <artifactId>ahome-tooling-nativetools</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <version>2.0.1-SNAPSHOT</version>
 </dependency>
 ```
 Gradle:
 
 ```
 dependencies {
-    compile(group:'com.ahome-it',name:'ahome-tooling-nativetools',version:'2.0.0-SNAPSHOT')
+    compile(group:'com.ahome-it',name:'ahome-tooling-nativetools',version:'2.0.1-SNAPSHOT')
 }
 ```
 Javadoc URL:
