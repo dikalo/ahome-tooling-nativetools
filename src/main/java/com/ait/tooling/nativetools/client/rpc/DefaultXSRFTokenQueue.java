@@ -17,9 +17,9 @@
 package com.ait.tooling.nativetools.client.rpc;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import com.ait.tooling.common.api.java.util.StringOps;
-import com.ait.tooling.common.api.java.util.function.Supplier;
 import com.ait.tooling.nativetools.client.collection.NFastArrayList;
 
 public class DefaultXSRFTokenQueue implements IXSRFTokenQueue

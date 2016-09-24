@@ -18,8 +18,8 @@ package com.ait.tooling.nativetools.client.datamodel.controller;
 
 import java.util.Collection;
 import java.util.Set;
+import java.util.function.Consumer;
 
-import com.ait.tooling.common.api.java.util.function.Consumer;
 import com.ait.tooling.nativetools.client.datamodel.AbstractDataModelID;
 
 public interface IDataModelIDController<T extends AbstractDataModelID<T>> extends IDataModelController<T>

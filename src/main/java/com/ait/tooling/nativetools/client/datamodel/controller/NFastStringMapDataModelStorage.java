@@ -19,10 +19,10 @@ package com.ait.tooling.nativetools.client.datamodel.controller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import com.ait.tooling.common.api.java.util.StringOps;
-import com.ait.tooling.common.api.java.util.function.Consumer;
-import com.ait.tooling.common.api.java.util.function.Function;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.collection.NFastStringMap;
 import com.ait.tooling.nativetools.client.datamodel.AbstractJSONDataModel;

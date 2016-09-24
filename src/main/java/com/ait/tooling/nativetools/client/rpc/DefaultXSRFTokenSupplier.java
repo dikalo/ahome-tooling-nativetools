@@ -17,8 +17,7 @@
 package com.ait.tooling.nativetools.client.rpc;
 
 import java.util.Objects;
-
-import com.ait.tooling.common.api.java.util.function.Supplier;
+import java.util.function.Supplier;
 
 public class DefaultXSRFTokenSupplier implements Supplier<XSRFToken>
 {

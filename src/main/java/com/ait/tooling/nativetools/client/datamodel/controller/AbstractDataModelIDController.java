@@ -19,9 +19,9 @@ package com.ait.tooling.nativetools.client.datamodel.controller;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
-import com.ait.tooling.common.api.java.util.function.Consumer;
-import com.ait.tooling.common.api.java.util.function.Predicate;
 import com.ait.tooling.common.api.types.ISearchResult;
 import com.ait.tooling.common.api.types.ISearcher;
 import com.ait.tooling.nativetools.client.NArray;

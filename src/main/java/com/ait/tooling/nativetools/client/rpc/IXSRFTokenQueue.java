@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client.rpc;
 
-import com.ait.tooling.common.api.java.util.function.Supplier;
+import java.util.function.Supplier;
 
 public interface IXSRFTokenQueue
 {

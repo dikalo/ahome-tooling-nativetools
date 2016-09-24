@@ -17,8 +17,8 @@
 package com.ait.tooling.nativetools.client.datamodel.controller;
 
 import java.util.Collection;
+import java.util.function.Consumer;
 
-import com.ait.tooling.common.api.java.util.function.Consumer;
 import com.ait.tooling.nativetools.client.collection.NFastStringSet;
 import com.ait.tooling.nativetools.client.datamodel.AbstractDataModelWithIDList;
 import com.ait.tooling.nativetools.client.datamodel.ModelIDList;

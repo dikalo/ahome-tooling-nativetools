@@ -14,9 +14,25 @@
    limitations under the License.
  */
 
-package com.ait.tooling.nativetools.client.webworker;
+package com.ait.tooling.nativetools.client.websocket;
 
-public interface OnMessageHandler<T>
+import com.ait.tooling.nativetools.client.util.Client;
+
+public abstract class AbstractWebSocketCallback implements WebSocketCallback
 {
-    public void onMessage(WebWorker<T> worker, T message);
+    @Override
+    public void onOpen(WebSocket ws)
+    {
+    }
+
+    @Override
+    public void onClose(WebSocket ws)
+    {
+    }
+
+    @Override
+    public void onError(WebSocket ws, final Throwable error)
+    {
+        Client.get().error("WebSocket", error);
+    }
 }

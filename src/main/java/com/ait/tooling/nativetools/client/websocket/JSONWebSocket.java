@@ -16,9 +16,9 @@
 
 package com.ait.tooling.nativetools.client.websocket;
 
+import java.util.Collection;
 import java.util.Objects;
 
-import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.nativetools.client.NArray;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.NObjectOnWire;
@@ -39,7 +39,12 @@ public class JSONWebSocket implements IWebSocket<NObjectOnWire>
 
     public JSONWebSocket(final String url, final String protocol, final JSONWebSocketCallback callback)
     {
-        this(url, new NFastStringArray(StringOps.requireTrimOrNull(protocol)), callback);
+        this(url, new NFastStringArray(Objects.requireNonNull(protocol)), callback);
+    }
+
+    public JSONWebSocket(final String url, final Collection<String> protocols, final JSONWebSocketCallback callback)
+    {
+        this(url, new NFastStringArray(Objects.requireNonNull(protocols)), callback);
     }
 
     public JSONWebSocket(final String url, final NFastStringArray protocols, final JSONWebSocketCallback callback)
@@ -144,5 +149,11 @@ public class JSONWebSocket implements IWebSocket<NObjectOnWire>
     public String getProtocol()
     {
         return m_wssocket.getProtocol();
+    }
+
+    @Override
+    public boolean isOpen()
+    {
+        return m_wssocket.isOpen();
     }
 }

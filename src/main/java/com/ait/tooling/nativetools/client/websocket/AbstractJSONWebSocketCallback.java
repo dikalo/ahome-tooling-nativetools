@@ -20,12 +20,8 @@ import com.ait.tooling.nativetools.client.NArray;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.util.Client;
 
-public abstract class JSONWebSocketCallbackSimple implements JSONWebSocketCallback
+public abstract class AbstractJSONWebSocketCallback implements JSONWebSocketCallback
 {
-    public JSONWebSocketCallbackSimple()
-    {
-    }
-
     @Override
     public void onOpen(JSONWebSocket ws)
     {

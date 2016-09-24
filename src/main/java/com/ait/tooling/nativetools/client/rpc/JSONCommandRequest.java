@@ -20,9 +20,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import com.ait.tooling.common.api.java.util.StringOps;
-import com.ait.tooling.common.api.java.util.function.Supplier;
 import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.common.api.model.AbstractModelRepresentation;
 import com.ait.tooling.common.api.types.Activatable;

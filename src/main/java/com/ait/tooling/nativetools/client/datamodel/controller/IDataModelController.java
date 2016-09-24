@@ -18,12 +18,12 @@ package com.ait.tooling.nativetools.client.datamodel.controller;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import com.ait.tooling.common.api.java.util.IAsyncFilter;
 import com.ait.tooling.common.api.java.util.IFilter;
 import com.ait.tooling.common.api.java.util.NoOpConsumer;
-import com.ait.tooling.common.api.java.util.function.Consumer;
-import com.ait.tooling.common.api.java.util.function.Predicate;
 import com.ait.tooling.nativetools.client.datamodel.AbstractJSONDataModel;
 import com.ait.tooling.nativetools.client.datamodel.ModelIDList;
 
