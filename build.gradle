@@ -46,7 +46,7 @@ apply plugin: 'propdeps-eclipse'
 
 compileJava.options.encoding = 'UTF-8'
 
-version = '1.0.190-RELEASE'
+version = '1.0.195-RELEASE'
 
 group = 'com.ahome-it'
 

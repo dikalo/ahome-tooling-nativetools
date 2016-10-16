@@ -16,7 +16,7 @@
 
 package com.ait.tooling.nativetools.client.websocket;
 
-public interface IWebSocket <T>
+public interface IWebSocket<T>
 {
     public static final int STATE_CONNECTING = 0;
 
@@ -37,4 +37,6 @@ public interface IWebSocket <T>
     public String getURL();
 
     public String getProtocol();
+
+    public boolean isOpen();
 }

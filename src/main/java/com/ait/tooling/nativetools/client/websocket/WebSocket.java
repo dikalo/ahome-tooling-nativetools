@@ -16,15 +16,19 @@
 
 package com.ait.tooling.nativetools.client.websocket;
 
+import java.util.Collection;
 import java.util.Objects;
 
 import com.ait.tooling.common.api.java.util.StringOps;
 import com.ait.tooling.nativetools.client.collection.NFastStringArray;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.http.client.URL;
 
 public class WebSocket implements IWebSocket<String>
 {
+    private boolean                 m_isopened;
+
     private final WebSocketCallback m_callback;
 
     public WebSocket(final String url, final WebSocketCallback callback)
@@ -34,7 +38,12 @@ public class WebSocket implements IWebSocket<String>
 
     public WebSocket(final String url, final String protocol, final WebSocketCallback callback)
     {
-        this(url, new NFastStringArray(StringOps.requireTrimOrNull(protocol)), callback);
+        this(url, new NFastStringArray(Objects.requireNonNull(protocol)), callback);
+    }
+
+    public WebSocket(final String url, final Collection<String> protocols, final WebSocketCallback callback)
+    {
+        this(url, new NFastStringArray(protocols), callback);
     }
 
     public WebSocket(final String url, final NFastStringArray protocols, final WebSocketCallback callback)
@@ -47,11 +56,11 @@ public class WebSocket implements IWebSocket<String>
 
         if ((null == protocols) || (protocols.isEmpty()))
         {
-            connect_0(URL.encode(StringOps.requireTrimOrNull(WebSocketUtils.path(url))), null);
+            connect_0(URL.encode(StringOps.requireTrimOrNull(wsPath(url))), null);
         }
         else
         {
-            connect_0(URL.encode(StringOps.requireTrimOrNull(WebSocketUtils.path(url))), protocols.getJSO());
+            connect_0(URL.encode(StringOps.requireTrimOrNull(wsPath(url))), protocols.getJSO());
         }
     }
 
@@ -75,6 +84,8 @@ public class WebSocket implements IWebSocket<String>
     @Override
     public void close()
     {
+        m_isopened = false;
+
         close_0();
     }
 
@@ -102,32 +113,73 @@ public class WebSocket implements IWebSocket<String>
         return getProtocol_0();
     }
 
+    @Override
+    public boolean isOpen()
+    {
+        return m_isopened;
+    }
+
     private final void onOpenHelper()
     {
+        m_isopened = true;
+
         m_callback.onOpen(this);
     }
 
     private final void onCloseHelper()
     {
+        m_isopened = false;
+
         m_callback.onClose(this);
     }
 
-    private final void onMessageHelper(String message)
+    private final void onMessageHelper(final String message)
     {
         m_callback.onMessage(this, message);
     }
 
-    private final void onErrorHelper(String error)
+    private final void onErrorHelper(final String error)
     {
         m_callback.onError(this, new Exception(error));
     }
 
+    public static final String wsPath(String path)
+    {
+        path = StringOps.requireTrimOrNull(path);
+
+        if (path.startsWith("ws://") || path.startsWith("wss://"))
+        {
+            return path;
+        }
+        String host = GWT.getHostPageBaseURL().replaceFirst("http", "ws").trim();
+
+        while (host.endsWith("/"))
+        {
+            if (host.length() > 0)
+            {
+                host = host.substring(0, host.length() - 1).trim();
+            }
+        }
+        while (path.endsWith("/"))
+        {
+            if (path.length() > 0)
+            {
+                path = path.substring(0, path.length() - 1).trim();
+            }
+        }
+        while (path.startsWith("/"))
+        {
+            if (path.length() > 0)
+            {
+                path = path.substring(1).trim();
+            }
+        }
+        return host + "/" + path;
+    }
+
     public static final native boolean isSupported()
     /*-{
-		if (!$wnd.WebSocket) {
-			return false;
-		}
-		return true;
+		return (!!$wnd.WebSocket);
     }-*/;
 
     private final native void connect_0(String url, JavaScriptObject protocols)
@@ -149,7 +201,7 @@ public class WebSocket implements IWebSocket<String>
 			self.@com.ait.tooling.nativetools.client.websocket.WebSocket::onOpenHelper()();
 		};
 		self.socket.onmessage = function(response) {
-			if (response.data) {
+			if ((response) && (response.data)) {
 				self.@com.ait.tooling.nativetools.client.websocket.WebSocket::onMessageHelper(Ljava/lang/String;)(response.data);
 			}
 		};

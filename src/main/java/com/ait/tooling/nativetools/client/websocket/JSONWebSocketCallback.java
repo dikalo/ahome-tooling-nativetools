@@ -28,6 +28,6 @@ public interface JSONWebSocketCallback
     public void onError(JSONWebSocket ws, Throwable error);
 
     public void onMessage(JSONWebSocket ws, NObject message);
-    
+
     public void onMessage(JSONWebSocket ws, NArray message);
 }
