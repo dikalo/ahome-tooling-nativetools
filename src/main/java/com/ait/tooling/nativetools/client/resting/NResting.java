@@ -181,6 +181,26 @@ public class NResting extends Activatable implements IResting
         {
             builder.setHeader(k, head.get(k));
         }
+        int mils = head.getTimeout();
+
+        if (mils > 0)
+        {
+            builder.setTimeoutMillis(mils);
+        }
+        String user = head.getUsername();
+
+        if ((null != user) && (false == user.isEmpty()))
+        {
+            builder.setUser(user);
+
+            String pass = head.getPassword();
+
+            if ((null != pass) && (false == pass.isEmpty()))
+            {
+                builder.setPassword(pass);
+            }
+            builder.setIncludeCredentials(head.getIncludeCredentials());
+        }
         try
         {
             return new NRestingRequest(builder.getUrl(), head, type, cntr, time, builder.sendRequest(data, new RequestCallback()
