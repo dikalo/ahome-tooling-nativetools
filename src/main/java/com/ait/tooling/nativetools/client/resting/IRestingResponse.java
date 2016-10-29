@@ -16,9 +16,10 @@
 
 package com.ait.tooling.nativetools.client.resting;
 
+import com.ait.tooling.common.api.java.util.IHTTPConstants;
 import com.ait.tooling.nativetools.client.NObject;
 
-public interface IRestingResponse extends IRestingCommon
+public interface IRestingResponse extends IRestingCommon, IHTTPConstants
 {
     public int code();
     
@@ -34,5 +35,7 @@ public interface IRestingResponse extends IRestingCommon
 
     public NMethod method();
 
-    public IRestingRequest getRequest();
+    public IRestingRequest request();
+    
+    public String reason();
 }

@@ -60,7 +60,7 @@ public final class NRestingRequest implements IRestingRequest
     }
 
     @Override
-    public final boolean isPending()
+    public final boolean pending()
     {
         return m_rqst.isPending();
     }

@@ -111,7 +111,7 @@ public final class NRestingResponse implements IRestingResponse
     }
 
     @Override
-    public final IRestingRequest getRequest()
+    public final IRestingRequest request()
     {
         return m_requ;
     }
@@ -126,5 +126,11 @@ public final class NRestingResponse implements IRestingResponse
     public final long time()
     {
         return m_time;
+    }
+
+    @Override
+    public final String reason()
+    {
+        return headers().get(WWW_AUTHENTICATE);
     }
 }

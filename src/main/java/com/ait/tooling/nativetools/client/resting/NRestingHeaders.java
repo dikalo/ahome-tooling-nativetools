@@ -37,6 +37,14 @@ public class NRestingHeaders extends LinkedHashMap<String, String> implements IR
 {
     private static final long serialVersionUID = -4981722542774013096L;
 
+    private int               m_time           = -1;
+
+    private String            m_user           = null;
+
+    private String            m_pass           = null;
+
+    private boolean           m_cred           = false;
+
     public NRestingHeaders()
     {
     }
@@ -124,6 +132,59 @@ public class NRestingHeaders extends LinkedHashMap<String, String> implements IR
     public Collection<String> keys()
     {
         return keySet();
+    }
+    
+    public NRestingHeaders setOptions(final NRestingHeaders head)
+    {
+        return setTimeout(head.getTimeout()).setUsername(head.getUsername()).setPassword(head.getPassword()).setIncludeCredentials(head.getIncludeCredentials());
+    }
+
+    public int getTimeout()
+    {
+        return m_time;
+    }
+
+    public NRestingHeaders setTimeout(final int time)
+    {
+        m_time = time;
+
+        return this;
+    }
+    
+    public boolean getIncludeCredentials()
+    {
+        return m_cred;
+    }
+
+    public NRestingHeaders setIncludeCredentials(final boolean cred)
+    {
+        m_cred = cred;
+
+        return this;
+    }
+
+    public String getUsername()
+    {
+        return m_user;
+    }
+
+    public NRestingHeaders setUsername(final String user)
+    {
+        m_user = user;
+
+        return this;
+    }
+
+    public String getPassword()
+    {
+        return m_pass;
+    }
+
+    public NRestingHeaders setPassword(final String pass)
+    {
+        m_pass = pass;
+
+        return this;
     }
 
     protected List<String> getStorageHeaderNames()

@@ -42,12 +42,6 @@ public class NResting extends Activatable implements IResting
     {
         super(true);
 
-        setPrefix(prefix);
-    }
-
-    @Override
-    public void setPrefix(final String prefix)
-    {
         m_prefix = doNormalizePrefix(prefix);
     }
 
@@ -194,7 +188,7 @@ public class NResting extends Activatable implements IResting
                 @Override
                 public void onResponseReceived(final Request request, final Response response)
                 {
-                    callback.onResponse(new NRestingResponse(response.getStatusCode(), response.getText(), new NRestingHeaders(response.getHeaders()), type, new NRestingRequest(builder.getUrl(), head, type, cntr, time, request), System.currentTimeMillis() - time));
+                    callback.onResponse(new NRestingResponse(response.getStatusCode(), response.getText(), new NRestingHeaders(response.getHeaders()).setOptions(head), type, new NRestingRequest(builder.getUrl(), head, type, cntr, time, request), System.currentTimeMillis() - time));
                 }
 
                 @Override

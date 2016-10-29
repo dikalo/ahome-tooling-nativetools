@@ -26,7 +26,7 @@ public interface IRestingRequest extends IRestingCommon
 
     public void cancel();
 
-    public boolean isPending();
+    public boolean pending();
 
     public NMethod method();
 
