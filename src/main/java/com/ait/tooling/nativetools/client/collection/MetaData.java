@@ -22,12 +22,13 @@ import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.NObjectJSO;
+import com.ait.tooling.nativetools.client.NObjectOnWire;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.ait.tooling.nativetools.client.NUtils.Native;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
-public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify
+public final class MetaData implements NHasJSO<NObjectJSO>, NJSONStringify, NObjectOnWire
 {
     private final NObjectJSO m_jso;
 

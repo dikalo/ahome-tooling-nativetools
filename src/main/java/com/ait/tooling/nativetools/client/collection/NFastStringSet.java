@@ -27,11 +27,12 @@ import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.NObjectJSO;
+import com.ait.tooling.nativetools.client.NObjectOnWire;
 import com.ait.tooling.nativetools.client.NUtils;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
-public final class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.NFastStringSetJSO>, NJSONStringify
+public final class NFastStringSet implements Iterable<String>, NHasJSO<NFastStringSet.NFastStringSetJSO>, NJSONStringify, NObjectOnWire
 {
     private final NFastStringSetJSO m_jso;
 

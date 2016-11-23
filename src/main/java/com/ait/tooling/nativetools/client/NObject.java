@@ -24,7 +24,7 @@ import com.ait.tooling.nativetools.client.NUtils.Native;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
-public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefinition<NArray, NObject>
+public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefinition<NArray, NObject>, NObjectOnWire
 {
     private final NObjectJSO m_jso;
 
@@ -195,7 +195,7 @@ public final class NObject implements NValue<NObjectJSO>, IMixedStringHashDefini
         {
             return m_jso.getAsBoolean(name);
         }
-        return NUtils.NULLIFY();
+        return null;
     }
 
     @Override

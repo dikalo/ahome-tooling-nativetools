@@ -22,11 +22,12 @@ import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NObject;
+import com.ait.tooling.nativetools.client.NObjectOnWire;
 import com.ait.tooling.nativetools.client.NUtils.Native;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONArray;
 
-public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify
+public final class MetaDataArray implements NHasJSO<NArrayJSO>, NJSONStringify, NObjectOnWire
 {
     private final NArrayJSO m_jso;
 

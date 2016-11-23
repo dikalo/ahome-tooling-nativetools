@@ -21,10 +21,11 @@ import java.util.Objects;
 import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.nativetools.client.NHasJSO;
 import com.ait.tooling.nativetools.client.NObject;
+import com.ait.tooling.nativetools.client.NObjectOnWire;
 import com.ait.tooling.nativetools.client.collection.MetaData;
 import com.google.gwt.core.client.JavaScriptObject;
 
-public final class UserMediaConfiguration implements NHasJSO<JavaScriptObject>, JSONStringify
+public final class UserMediaConfiguration implements NHasJSO<JavaScriptObject>, JSONStringify, NObjectOnWire
 {
     private final MetaData m_meta;
 

@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 import com.ait.tooling.common.api.java.util.StringOps;
+import com.ait.tooling.common.api.java.util.UUID;
 import com.ait.tooling.nativetools.client.collection.NFastStringArray;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -28,6 +29,8 @@ import com.google.gwt.http.client.URL;
 public class WebSocket implements IWebSocket<String>
 {
     private boolean                 m_isopened;
+
+    private String                  m_sockuuid;
 
     private final WebSocketCallback m_callback;
 
@@ -117,6 +120,16 @@ public class WebSocket implements IWebSocket<String>
     public boolean isOpen()
     {
         return m_isopened;
+    }
+
+    @Override
+    public String uuid()
+    {
+        if (null == m_sockuuid)
+        {
+            m_sockuuid = UUID.uuid();
+        }
+        return m_sockuuid;
     }
 
     private final void onOpenHelper()

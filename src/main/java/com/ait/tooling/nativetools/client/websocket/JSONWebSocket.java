@@ -156,4 +156,10 @@ public class JSONWebSocket implements IWebSocket<NObjectOnWire>
     {
         return m_wssocket.isOpen();
     }
+
+    @Override
+    public String uuid()
+    {
+        return m_wssocket.uuid();
+    }
 }

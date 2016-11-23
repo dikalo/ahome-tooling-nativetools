@@ -18,7 +18,33 @@ package com.ait.tooling.nativetools.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-public interface NHasJSO<T extends JavaScriptObject>
+public final class NativeFunction implements NHasJSO<NativeFunctionJSO>
 {
-    public T getJSO();
+    private final NativeFunctionJSO m_jso;
+
+    public NativeFunction(final NativeFunctionJSO jso)
+    {
+        m_jso = jso;
+    }
+
+    @Override
+    public final NativeFunctionJSO getJSO()
+    {
+        return m_jso;
+    }
+
+    public final JavaScriptObject call()
+    {
+        return m_jso.call();
+    }
+
+    public final JavaScriptObject call(final NArray args)
+    {
+        return m_jso.call(args);
+    }
+
+    public final JavaScriptObject call(final JavaScriptObject args)
+    {
+        return m_jso.call(args);
+    }
 }

@@ -37,11 +37,6 @@ public final class NUtils
         return name;
     }
 
-    public static final <T> T NULLIFY()
-    {
-        return null;
-    }
-
     /*
      * These are static methods to throw common exceptions from inside JSNI code.
      */
@@ -259,6 +254,55 @@ public final class NUtils
 			return nops.isNativeFunction(jso[index]);
         }-*/;
 
+        public static final native boolean isObject(JavaScriptObject jso)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isObject(jso);
+        }-*/;
+
+        public static final native boolean isArray(JavaScriptObject jso)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isArray(jso);
+        }-*/;
+
+        public static final native boolean isBoolean(JavaScriptObject jso)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isBoolean(jso);
+        }-*/;
+
+        public static final native boolean isNumber(JavaScriptObject jso)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isNumber(jso);
+        }-*/;
+
+        public static final native boolean isInteger(JavaScriptObject jso)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isInteger(jso);
+        }-*/;
+
+        public static final native boolean isString(JavaScriptObject jso)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isString(jso);
+        }-*/;
+
+        public static final native boolean isNativeFunction(JavaScriptObject jso)
+        /*-{
+			var nops = @com.ait.tooling.nativetools.client.NUtils.Native::nops;
+
+			return nops.isNativeFunction(jso);
+        }-*/;
+
         public final static NValue<?> getAsNValue(final NArrayJSO array, final int index)
         {
             if ((index >= 0) && (index < array.size()))
@@ -327,7 +371,7 @@ public final class NUtils
                 {
                     final JavaScriptObject func = reviver.reviver();
 
-                    if (JSONType.FUNCTION == Native.getNativeTypeOfJSO(func))
+                    if (Native.isNativeFunction(func))
                     {
                         root = Native.parseJSON(json, func);
                     }
@@ -387,7 +431,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (JSONType.FUNCTION == Native.getNativeTypeOfJSO(func))
+            if (Native.isNativeFunction(func))
             {
                 return Native.toJSONString(value, func);
             }
@@ -423,7 +467,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (JSONType.FUNCTION == Native.getNativeTypeOfJSO(func))
+            if (Native.isNativeFunction(func))
             {
                 if (null == indent)
                 {
@@ -459,7 +503,7 @@ public final class NUtils
             }
             final JavaScriptObject func = replacer.replacer();
 
-            if (JSONType.FUNCTION == Native.getNativeTypeOfJSO(func))
+            if (Native.isNativeFunction(func))
             {
                 return Native.toJSONString(value, func, Math.max(0, indent));
             }

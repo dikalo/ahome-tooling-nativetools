@@ -16,15 +16,100 @@
 
 package com.ait.tooling.nativetools.client;
 
+import com.ait.tooling.common.api.json.JSONStringify;
 import com.ait.tooling.common.api.json.JSONType;
 import com.ait.tooling.common.api.types.IMixedListDefinition;
 import com.ait.tooling.nativetools.client.NUtils.Native;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONArray;
 
-public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NArray, NObject>
+public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NArray, NObject>, NObjectOnWire
 {
     private final NArrayJSO m_jso;
+
+    public static final NArray args(final Iterable<?> args)
+    {
+        final NArrayJSO jso = NArrayJSO.make();
+
+        for (Object arg : args)
+        {
+            if (null == arg)
+            {
+                jso.push((String) null);
+            }
+            else if (arg instanceof String)
+            {
+                jso.push(arg.toString());
+            }
+            else if (arg instanceof Number)
+            {
+                jso.push(((Number) arg).doubleValue());
+            }
+            else if (arg instanceof Boolean)
+            {
+                jso.push(((Boolean) arg).booleanValue());
+            }
+            else if (arg instanceof NHasJSO)
+            {
+                jso.push(((NHasJSO<?>) arg));
+            }
+            else if (arg instanceof JavaScriptObject)
+            {
+                jso.push((JavaScriptObject) arg);
+            }
+            else if (arg instanceof JSONStringify)
+            {
+                jso.push(((JSONStringify) arg).toJSONString());
+            }
+            else
+            {
+                jso.push(arg.toString());
+            }
+        }
+        return new NArray(jso);
+    }
+
+    public static final NArray args(final Object... args)
+    {
+        final NArrayJSO jso = NArrayJSO.make();
+
+        for (Object arg : args)
+        {
+            if (null == arg)
+            {
+                jso.push((String) null);
+            }
+            else if (arg instanceof String)
+            {
+                jso.push(arg.toString());
+            }
+            else if (arg instanceof Number)
+            {
+                jso.push(((Number) arg).doubleValue());
+            }
+            else if (arg instanceof Boolean)
+            {
+                jso.push(((Boolean) arg).booleanValue());
+            }
+            else if (arg instanceof NHasJSO)
+            {
+                jso.push(((NHasJSO<?>) arg));
+            }
+            else if (arg instanceof JavaScriptObject)
+            {
+                jso.push((JavaScriptObject) arg);
+            }
+            else if (arg instanceof JSONStringify)
+            {
+                jso.push(((JSONStringify) arg).toJSONString());
+            }
+            else
+            {
+                jso.push(arg.toString());
+            }
+        }
+        return new NArray(jso);
+    }
 
     public NArray(final NArrayJSO jso)
     {
@@ -378,6 +463,21 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         return this;
     }
 
+    @SuppressWarnings("unchecked")
+    public final NArray unshift(final NHasJSO<? extends JavaScriptObject> value, final NHasJSO<? extends JavaScriptObject>... values)
+    {
+        if ((null != values) && (values.length > 0))
+        {
+            for (int i = values.length; i > 0; i--)
+            {
+                m_jso.unshift(values[i - 1]);
+            }
+        }
+        m_jso.unshift(value);
+
+        return this;
+    }
+
     public final NArray remove(final NHasJSO<? extends JavaScriptObject> value)
     {
         m_jso.remove(value);
@@ -520,7 +620,7 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
         {
             return m_jso.getAsBoolean(index);
         }
-        return NUtils.NULLIFY();
+        return null;
     }
 
     @Override
@@ -549,6 +649,17 @@ public final class NArray implements NValue<NArrayJSO>, IMixedListDefinition<NAr
             {
                 return new NObject(mjso);
             }
+        }
+        return null;
+    }
+
+    public final NativeFunction getAsNativeFunction(final int index)
+    {
+        final NativeFunctionJSO fjso = m_jso.getAsNativeFunction(index);
+
+        if (null != fjso)
+        {
+            return new NativeFunction(fjso);
         }
         return null;
     }

@@ -39,4 +39,6 @@ public interface IWebSocket<T>
     public String getProtocol();
 
     public boolean isOpen();
+    
+    public String uuid();
 }

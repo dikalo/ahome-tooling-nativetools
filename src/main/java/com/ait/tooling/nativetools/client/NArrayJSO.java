@@ -225,6 +225,15 @@ public class NArrayJSO extends NArrayBaseJSO<NArrayJSO>
 		}
     }-*/;
 
+    public final NativeFunctionJSO getAsNativeFunction(final int index)
+    {
+        if (NUtils.Native.isNativeFunction(this, index))
+        {
+            return getAsJSO(index).cast();
+        }
+        return null;
+    }
+
     public final NValue<?> getAsNValue(final int index)
     {
         return NUtils.Native.getAsNValue(this, index);

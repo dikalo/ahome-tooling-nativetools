@@ -25,11 +25,12 @@ import com.ait.tooling.nativetools.client.NJSONReplacer;
 import com.ait.tooling.nativetools.client.NJSONStringify;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.NObjectJSO;
+import com.ait.tooling.nativetools.client.NObjectOnWire;
 import com.ait.tooling.nativetools.client.NUtils.JSON;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONObject;
 
-public final class NFastStringHistogram implements NHasJSO<NFastStringHistogram.NFastStringHistogramJSO>, NJSONStringify
+public final class NFastStringHistogram implements NHasJSO<NFastStringHistogram.NFastStringHistogramJSO>, NJSONStringify, NObjectOnWire
 {
     private final NFastStringHistogramJSO m_jso = NFastStringHistogramJSO.make();
 
