@@ -1,5 +1,5 @@
 /*
-   Copyright (c) 2014,2015,2016 Ahome' Innovation Technologies. All rights reserved.
+   Copyright (c) 2017 Ahome' Innovation Technologies. All rights reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -19,14 +19,9 @@ package com.ait.tooling.nativetools.client.datamodel.controller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
-import com.ait.tooling.common.api.java.util.Filters;
-import com.ait.tooling.common.api.java.util.IAsyncFilter;
-import com.ait.tooling.common.api.java.util.IFilter;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.datamodel.AbstractJSONDataModel;
 import com.ait.tooling.nativetools.client.datamodel.ModelIDList;
@@ -59,96 +54,6 @@ public abstract class AbstractModelController<T extends AbstractJSONDataModel> i
     public final void prime(final Consumer<Boolean> callback)
     {
         queryModelsInCache(callback);
-    }
-
-    @Override
-    public final void filter(final IAsyncFilter<T> filter, final Consumer<Collection<T>> callback)
-    {
-        values(new Consumer<Collection<T>>()
-        {
-            @Override
-            public void accept(final Collection<T> results)
-            {
-                filter(results, filter, callback);
-            }
-        });
-    }
-
-    @Override
-    public final void filter(final Predicate<T> predicate, final Comparator<T> compareit, final Consumer<Collection<T>> callback)
-    {
-        filter(Filters.async(predicate, compareit), callback);
-    }
-
-    @Override
-    public final void filter(final Predicate<T> predicate, final Consumer<Collection<T>> callback)
-    {
-        filter(Filters.async(predicate), callback);
-    }
-
-    @Override
-    public final void filter(final Collection<T> collection, final IAsyncFilter<T> filter, final Consumer<Collection<T>> callback)
-    {
-        if (collection.isEmpty())
-        {
-            callback.accept(collection);
-        }
-        else
-        {
-            filter.filter(collection, callback);
-        }
-    }
-
-    @Override
-    public final void filter(final Collection<T> collection, final Predicate<T> predicate, final Comparator<T> compareit, final Consumer<Collection<T>> callback)
-    {
-        if (collection.isEmpty())
-        {
-            callback.accept(collection);
-        }
-        else
-        {
-            filter(collection, Filters.async(predicate, compareit), callback);
-        }
-    }
-
-    @Override
-    public final void filter(final Collection<T> collection, final Predicate<T> predicate, final Consumer<Collection<T>> callback)
-    {
-        if (collection.isEmpty())
-        {
-            callback.accept(collection);
-        }
-        else
-        {
-            filter(collection, Filters.async(predicate), callback);
-        }
-    }
-
-    @Override
-    public final Collection<T> filter(final Collection<T> collection, final IFilter<T> filter)
-    {
-        if (collection.isEmpty())
-        {
-            return collection;
-        }
-        else
-        {
-            return filter.filter(collection);
-        }
-    }
-
-    @Override
-    public final Collection<T> filter(final Collection<T> collection, final Predicate<T> predicate)
-    {
-        if (collection.isEmpty())
-        {
-            return collection;
-        }
-        else
-        {
-            return filter(collection, Filters.make(predicate));
-        }
     }
 
     @Override

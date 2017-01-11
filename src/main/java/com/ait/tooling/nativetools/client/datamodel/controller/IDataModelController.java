@@ -1,5 +1,5 @@
 /*
-   Copyright (c) 2014,2015,2016 Ahome' Innovation Technologies. All rights reserved.
+   Copyright (c) 2017 Ahome' Innovation Technologies. All rights reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -21,35 +21,24 @@ import java.util.Comparator;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import com.ait.tooling.common.api.java.util.IAsyncFilter;
-import com.ait.tooling.common.api.java.util.IFilter;
-import com.ait.tooling.common.api.java.util.NoOpConsumer;
 import com.ait.tooling.nativetools.client.datamodel.AbstractJSONDataModel;
 import com.ait.tooling.nativetools.client.datamodel.ModelIDList;
 
 public interface IDataModelController<T extends AbstractJSONDataModel>
 {
-    public static final Consumer<Boolean> NO_OP_CALLBACK = new NoOpConsumer<Boolean>();
-
     public Collection<T> getEmpty();
 
     public void getEmpty(Consumer<Collection<T>> callback);
 
     public void prime(Consumer<Boolean> callback);
 
-    public void filter(IAsyncFilter<T> filter, Consumer<Collection<T>> callback);
-
     public void filter(Predicate<T> predicate, Consumer<Collection<T>> callback);
 
     public void filter(Predicate<T> predicate, Comparator<T> compareit, Consumer<Collection<T>> callback);
 
-    public void filter(Collection<T> collection, IAsyncFilter<T> filter, Consumer<Collection<T>> callback);
-
     public void filter(Collection<T> collection, Predicate<T> predicate, Consumer<Collection<T>> callback);
 
     public void filter(Collection<T> collection, Predicate<T> predicate, Comparator<T> compareit, Consumer<Collection<T>> callback);
-
-    public Collection<T> filter(Collection<T> collection, IFilter<T> filter);
 
     public Collection<T> filter(Collection<T> collection, Predicate<T> predicate);
 
