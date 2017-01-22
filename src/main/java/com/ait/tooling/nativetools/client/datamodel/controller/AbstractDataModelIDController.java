@@ -20,10 +20,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 
-import com.ait.tooling.common.api.types.ISearchResult;
-import com.ait.tooling.common.api.types.ISearcher;
 import com.ait.tooling.nativetools.client.NArray;
 import com.ait.tooling.nativetools.client.NObject;
 import com.ait.tooling.nativetools.client.datamodel.AbstractDataModelID;
@@ -31,22 +28,10 @@ import com.ait.tooling.nativetools.client.datamodel.ModelIDList;
 import com.ait.tooling.nativetools.client.rpc.IJSONNamedCommandRequest;
 import com.ait.tooling.nativetools.client.rpc.JSONCommandCallback;
 
-public abstract class AbstractDataModelIDController<T extends AbstractDataModelID<T> & Comparable<T>> extends AbstractModelController<T>implements IDataModelIDController<T>, ISearcher<T>
+public abstract class AbstractDataModelIDController<T extends AbstractDataModelID<T> & Comparable<T>>extends AbstractModelController<T> implements IDataModelIDController<T>
 {
     protected AbstractDataModelIDController()
     {
-    }
-
-    @Override
-    public void searchFor(final Predicate<T> predicate, final Consumer<ISearchResult<T>> callback)
-    {
-        values(new Consumer<Collection<T>>()
-        {
-            @Override
-            public void accept(final Collection<T> result)
-            {
-            }
-        });
     }
 
     @Override
